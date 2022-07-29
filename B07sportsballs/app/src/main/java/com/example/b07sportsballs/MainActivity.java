@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference(); //update URL!!!
         ref.child("students").child("s1").setValue("bob");
+        ref.child("students").child("s2").setValue("abby");
 
         ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("students"); //update URL!!
 
