@@ -1,13 +1,16 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
 
-    <string name="customer">Customer Login Page</string>
-    <string name="username">Username:</string>
-    <string name="password">Password:</string>
-    <string name="enter_username">Enter Username Here</string>
-    <string name="enter_password">Enter Password Here</string>
-    <string name="login">Login</string>
-    <string name="login_as_an_admin">Login as an admin?</string>
-    <string name="sign_up_for_customer_account">Sign up for customer account</string>
-    <string name="quit">Quit</string>
+    // CustomerLoginScreen strings
+    <string name="customerLoginScreen_customer">Customer Login Page</string>
+    <string name="customerLoginScreen_username">Username:</string>
+    <string name="customerLoginScreen_password">Password:</string>
+    <string name="customerLoginScreen_enter_username">Enter Username Here</string>
+    <string name="customerLoginScreen_enter_password">Enter Password Here</string>
+    <string name="customerLoginScreen_login">Login</string>
+    <string name="customerLoginScreen_login_as_an_admin">Go to admin login page?</string>
+    <string name="customerLoginScreen_register_customer_account">Register</string>
+    <string name="customerLoginScreen_quit">Quit</string>
+
+    // CustomerSignUpScreen strings
 </resources>
