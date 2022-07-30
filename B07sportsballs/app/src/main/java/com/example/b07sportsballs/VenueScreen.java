@@ -26,7 +26,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_screen);
 
-        listView = (ListView) findViewById(R.id.listofvenues);
+        listView = (ListView) findViewById(R.id.VenueScreen_List);
         arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
 
         //Placeholder

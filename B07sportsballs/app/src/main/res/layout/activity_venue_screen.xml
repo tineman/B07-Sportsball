@@ -7,36 +7,39 @@
     tools:context=".VenueScreen">
 
     <TextView
-        android:id="@+id/venuescreentitle"
+        android:id="@+id/VenueScreen_Title"
         android:layout_width="373dp"
         android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:text="VenueScreen - Please Select a Venue"
+        android:text="@string/VenueScreen_Title"
+        android:textColor="@color/black"
         android:textSize="25sp"
-        app:layout_constraintStart_toStartOf="@+id/listofvenues"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/VenueScreen_List"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/VenueScreenQuit"
+        android:id="@+id/VenueScreen_Quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:text="Quit"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/VenueScreen_Quit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
-        android:id="@+id/listofvenues"
-        android:layout_width="372dp"
-        android:layout_height="440dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginBottom="1dp"
-        android:clickable="false"
-        android:focusable="false"
-        app:layout_constraintBottom_toTopOf="@+id/VenueScreenQuit"
+        android:id="@+id/VenueScreen_List"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/VenueScreen_Quit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/venuescreentitle" />
+        app:layout_constraintTop_toBottomOf="@+id/VenueScreen_Title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
