@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
+
+    <!--Global-->
+    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
+
+    <!--VenueScreen-->
     <string name="VenueScreen_Title">Please Select a Venue</string>
-    <string name="VenueScreen_Quit">Quit</string> <!--Synchronise all quit strings-->
+
+    <!--ScheduleEventScreen-->
+    <string name="ScheduleEventScreen_Title">Please Enter Event Information</string>
+    <string name="ScheduleEventScreen_Text_Venue">Venue Location:</string>
+    <string name="ScheduleEventScreen_Text_Event">Event Name:</string>
+    <string name="ScheduleEventScreen_Text_Start">Start Time:</string>
+    <string name="ScheduleEventScreen_Text_End">End Time:</string>
+    <string name="ScheduleEventScreen_Text_Max">Maximum Number of Players:</string>
+
+    <string name="ScheduleEventScreen_EditText_Venue">Enter Location Here</string>
+    <string name="ScheduleEventScreen_EditText_Event">Enter Name Here</string>
+    <string name="ScheduleEventScreen_EditText_Start">Enter Start Time Here</string>
+    <string name="ScheduleEventScreen_EditText_End">Enter End Time Here</string>
+    <string name="ScheduleEventScreen_EditText_Max">Enter Max Players Here</string>
+
+    <string name="ScheduleEventScreen_Button_Submit">Submit</string>
+
 
 </resources>

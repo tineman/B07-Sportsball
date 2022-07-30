@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
 
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, ScheduleEventScreen.class);
         startActivity(intent);
 
     }
