@@ -2,6 +2,7 @@ package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -14,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
 
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
+
+        Intent intent = new Intent(this, VenueScreen.class);
+        startActivity(intent);
 
     }
 }
