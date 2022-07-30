@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
 
+    <string name="customer">Customer Login Page</string>
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="enter_username">Enter Username Here</string>
+    <string name="enter_password">Enter Password Here</string>
+    <string name="login">Login</string>
+    <string name="login_as_an_admin">Login as an admin?</string>
+    <string name="sign_up_for_customer_account">Sign up for customer account</string>
+    <string name="quit">Quit</string>
 </resources>
