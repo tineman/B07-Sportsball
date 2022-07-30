@@ -4,51 +4,57 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerLoginScreen">
+    tools:context=".CustomerSignUpScreen">
+
+    <Button
+        android:id="@+id/customerLoginScreen_Button"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:onClick="quitApp"
+        android:text="@string/CustomerLoginScreen_quit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/customerLoginScreen_TextView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="81dp"
-        android:text="@string/CustomerLoginScreen_customer"
+        android:text="@string/CustomerSignUpScreen_title"
         android:textColor="@color/black"
-        android:textSize="38sp"
+        android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_TextView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/customerLoginScreen_TextView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CustomerLoginScreen_password"
+        android:layout_marginTop="32dp"
+        android:text="@string/CustomerSignUpScreen_password"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_EdiText2"
         app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_TextView2"
-        app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_EditText1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_TextView2"
         app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_EditText1" />
 
     <EditText
         android:id="@+id/customerLoginScreen_EdiText2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/CustomerLoginScreen_enter_password"
+        android:hint="@string/CustomerSignUpScreen_enter_password"
         android:inputType="textPersonName"
+        android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_Button1"
         app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_EditText1"
         app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_EditText1"
         app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_TextView3" />
@@ -57,16 +63,15 @@
         android:id="@+id/customerLoginScreen_EditText1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
-        android:hint="@string/CustomerLoginScreen_enter_username"
+        android:hint="@string/CustomerSignUpScreen_enter_username"
         android:inputType="textPersonName"
+        android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_TextView3"
         app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_TextView2"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_TextView2"
         app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_TextView2" />
 
@@ -74,58 +79,27 @@
         android:id="@+id/customerLoginScreen_TextView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CustomerLoginScreen_username"
+        android:layout_marginTop="80dp"
+        android:text="@string/CustomerSignUpScreen_username"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_EditText1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.102"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_TextView1" />
 
     <Button
-        android:id="@+id/customerLoginScreen_Button1"
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="70dp"
-        android:text="@string/CustomerLoginScreen_login"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_Button2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_EdiText2"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <Button
-        android:id="@+id/customerLoginScreen_Button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="25dp"
-        android:text="@string/CustomerLoginScreen_login_as_an_admin"
-        app:layout_constraintBottom_toTopOf="@+id/customerLoginScreen_Button3"
-        app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_Button1"
-        app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_Button1"
-        app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_Button1" />
-
-    <Button
-        android:id="@+id/customerLoginScreen_Button3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/CustomerLoginScreen_register_customer_account"
-        app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_Button2"
-        app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_Button2"
-        app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_Button2" />
-
-    <Button
-        android:id="@+id/customerLoginScreen_Button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:onClick="quitButton"
-        android:text="@string/CustomerLoginScreen_quit"
+        android:layout_marginTop="92dp"
+        android:text="@string/CustomerSignUpScreen_create_account"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/customerLoginScreen_EdiText2"
+        app:layout_constraintStart_toStartOf="@+id/customerLoginScreen_EdiText2"
+        app:layout_constraintTop_toBottomOf="@+id/customerLoginScreen_EdiText2"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
