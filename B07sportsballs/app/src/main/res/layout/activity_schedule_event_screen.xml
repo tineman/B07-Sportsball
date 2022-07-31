@@ -21,13 +21,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
         android:text="@string/ScheduleEventScreen_Title"
         android:textColor="@color/black"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ScheduleEventScreen_Text_Location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
         android:id="@+id/ScheduleEventScreen_Text_Location"
@@ -132,9 +133,10 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:text="@string/ScheduleEventScreen_Button_Submit"
+        app:layout_constraintBaseline_toBaselineOf="@+id/ScheduleEventScreen_Quit"
         app:layout_constraintEnd_toStartOf="@+id/ScheduleEventScreen_Quit"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="549dp" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/ScheduleEventScreen_EditText_Start"

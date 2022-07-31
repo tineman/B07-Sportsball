@@ -17,9 +17,9 @@
 
     <string name="ScheduleEventScreen_EditText_Venue">Enter Location Here</string>
     <string name="ScheduleEventScreen_EditText_Event">Enter Name Here</string>
-    <string name="ScheduleEventScreen_EditText_Start">Enter Start Time Here</string>
-    <string name="ScheduleEventScreen_EditText_End">Enter End Time Here</string>
-    <string name="ScheduleEventScreen_EditText_Max">Enter Max Players Here</string>
+    <string name="ScheduleEventScreen_EditText_Start"></string>
+    <string name="ScheduleEventScreen_EditText_End"></string>
+    <string name="ScheduleEventScreen_EditText_Max"></string>
 
     <string name="ScheduleEventScreen_Button_Submit">Submit</string>
 
