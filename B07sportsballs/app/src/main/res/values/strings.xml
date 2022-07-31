@@ -40,6 +40,13 @@
     <string name="ScheduleEventScreen_EditText_Max"></string>
 
     <string name="ScheduleEventScreen_Button_Submit">Submit</string>
+    <string name="CustomerHomePage_HelloText">Hello,</string>
+    <string name="CustomerHomePage_Username">username</string>
+    <string name="CustomerHomePage_EventsJoined">Events Joined</string>
+    <string name="CustomerHomePage_EventsScheduled">Events you Scheduled</string>
+    <string name="CustomerHomePage_UpcomingEvents">Upcoming Events</string>
+    <string name="CustomerHomePage_ViewVenues">Venues</string>
+    <string name="CustomerHomePage_ScheduleEvent">Create an Event</string>
 
 
 </resources>
