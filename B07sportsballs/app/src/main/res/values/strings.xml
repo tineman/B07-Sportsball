@@ -2,7 +2,7 @@
     <string name="app_name">B07sportsballs</string>
 
     // CustomerLoginScreen strings
-    <string name="CustomerLoginScreen_customer">Customer Login Page</string>
+    <string name="CustomerLoginScreen_title">Customer Login Page</string>
     <string name="CustomerLoginScreen_username">Username:</string>
     <string name="CustomerLoginScreen_password">Password:</string>
     <string name="CustomerLoginScreen_enter_username">Enter Username Here</string>
@@ -13,4 +13,10 @@
     <string name="CustomerLoginScreen_quit">Quit</string>
 
     // CustomerSignUpScreen strings
+    <string name="CustomerSignUpScreen_title">Customer Sign Up Page</string>
+    <string name="CustomerSignUpScreen_username">Username:</string>
+    <string name="CustomerSignUpScreen_password">Password:</string>
+    <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
+    <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
+    <string name="CustomerSignUpScreen_create_account">Create Account</string>
 </resources>
