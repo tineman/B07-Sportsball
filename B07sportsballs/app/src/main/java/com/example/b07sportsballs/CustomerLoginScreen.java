@@ -8,6 +8,8 @@ import android.view.*;
 
 public class CustomerLoginScreen extends AppCompatActivity {
 
+
+    //TEST COMMENT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
