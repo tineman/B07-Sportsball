@@ -1,23 +1,16 @@
 package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
-import android.widget.*;
 
 public class CustomerLoginScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // These two lines of code below will remove the Title Bar From the Activity in Android
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getSupportActionBar().hide();
-
         setContentView(R.layout.activity_customer_login_screen);
 
         Log.i("MainActivity", "Startup");
