@@ -19,4 +19,27 @@
     <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
     <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
     <string name="CustomerSignUpScreen_create_account">Create Account</string>
+    <!--Global-->
+    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
+
+    <!--VenueScreen-->
+    <string name="VenueScreen_Title">Please Select a Venue</string>
+
+    <!--ScheduleEventScreen-->
+    <string name="ScheduleEventScreen_Title">Please Enter Event Information</string>
+    <string name="ScheduleEventScreen_Text_Venue">Venue Location:</string>
+    <string name="ScheduleEventScreen_Text_Event">Event Name:</string>
+    <string name="ScheduleEventScreen_Text_Start">Start Time:</string>
+    <string name="ScheduleEventScreen_Text_End">End Time:</string>
+    <string name="ScheduleEventScreen_Text_Max">Maximum Number of Players:</string>
+
+    <string name="ScheduleEventScreen_EditText_Venue">Enter Location Here</string>
+    <string name="ScheduleEventScreen_EditText_Event">Enter Name Here</string>
+    <string name="ScheduleEventScreen_EditText_Start"></string>
+    <string name="ScheduleEventScreen_EditText_End"></string>
+    <string name="ScheduleEventScreen_EditText_Max"></string>
+
+    <string name="ScheduleEventScreen_Button_Submit">Submit</string>
+
+
 </resources>
