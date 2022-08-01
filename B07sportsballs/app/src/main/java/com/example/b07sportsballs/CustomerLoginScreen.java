@@ -21,7 +21,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
 
-        Button loginButton = findViewById(R.id.button_CustomerLoginPage_Login);
+        Button loginButton = findViewById(R.id.button_CustomerLoginScreen_Login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,7 +54,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
     public void openCustomerHomePage(){
         Intent intent = new Intent(this, CustomerHomePage.class);
 
-        EditText editText = findViewById(R.id.editText_CustomerLoginPage_Username);
+        EditText editText = findViewById(R.id.editText_CustomerLoginScreen_Username);
         String username = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, username);
 
