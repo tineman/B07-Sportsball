@@ -47,6 +47,10 @@ public class CustomerLoginScreen extends AppCompatActivity {
         this.finishAffinity();
     }
 
+    /**
+     * This method is called when the "Login" button is pressed
+     * This method opens the Customer's Home Page.
+     */
     public void openCustomerHomePage(){
         Intent intent = new Intent(this, CustomerHomePage.class);
 
