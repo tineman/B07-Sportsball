@@ -10,11 +10,12 @@
         android:id="@+id/textView_CustomerSignUpPage_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/CustomerLoginScreen_title"
         android:textColor="@color/black"
         android:textSize="38sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textView_CustomerSignUpPage_Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.488"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,13 +26,12 @@
         android:id="@+id/textView_CustomerSignUpPage_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="@string/CustomerLoginScreen_password"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editText_CustomerLoginPage_Password"
         app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpPage_Username"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpPage_Username"
         app:layout_constraintTop_toBottomOf="@+id/editText_CustomerLoginPage_Username" />
 
@@ -39,6 +39,7 @@
         android:id="@+id/editText_CustomerLoginPage_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerLoginScreen_enter_password"
@@ -46,6 +47,7 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/button_CustomerLoginPage_Login"
         app:layout_constraintEnd_toEndOf="@+id/editText_CustomerLoginPage_Username"
         app:layout_constraintStart_toStartOf="@+id/editText_CustomerLoginPage_Username"
         app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpPage_Password" />
@@ -54,6 +56,7 @@
         android:id="@+id/editText_CustomerLoginPage_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerLoginScreen_enter_username"
@@ -61,8 +64,9 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
+        app:layout_constraintBottom_toTopOf="@+id/textView_CustomerSignUpPage_Password"
         app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpPage_Username"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpPage_Username"
         app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpPage_Username" />
 
@@ -70,37 +74,35 @@
         android:id="@+id/textView_CustomerSignUpPage_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
         android:text="@string/CustomerLoginScreen_username"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpPage_Title" />
+        app:layout_constraintBottom_toTopOf="@+id/editText_CustomerLoginPage_Username"
+        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpPage_Title"
+        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpPage_Title"
+        app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpPage_Title"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/button_CustomerLoginPage_Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginBottom="30dp"
         android:text="@string/CustomerLoginScreen_login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_CustomerLoginPage_Password"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintBottom_toTopOf="@+id/button_CustomerLoginPage_GoToAdmin"
+        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpPage_Password"
+        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpPage_Password"
+        app:layout_constraintTop_toBottomOf="@+id/editText_CustomerLoginPage_Password" />
 
     <Button
         android:id="@+id/button_CustomerLoginPage_GoToAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
         android:text="@string/CustomerLoginScreen_login_as_an_admin"
+        app:layout_constraintBottom_toTopOf="@+id/button_CustomerLoginPage_Register"
         app:layout_constraintEnd_toEndOf="@+id/button_CustomerLoginPage_Login"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="@+id/button_CustomerLoginPage_Login"
         app:layout_constraintTop_toBottomOf="@+id/button_CustomerLoginPage_Login" />
 
@@ -112,10 +114,8 @@
         android:text="@string/CustomerLoginScreen_register_customer_account"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/button_CustomerLoginPage_GoToAdmin"
-        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="@+id/button_CustomerLoginPage_GoToAdmin"
-        app:layout_constraintTop_toBottomOf="@+id/button_CustomerLoginPage_GoToAdmin"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/button_CustomerLoginPage_GoToAdmin" />
 
     <Button
         android:id="@+id/button_CustomerLoginPage_Quit"
