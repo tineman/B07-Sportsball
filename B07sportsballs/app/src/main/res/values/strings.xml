@@ -41,5 +41,8 @@
 
     <string name="ScheduleEventScreen_Button_Submit">Submit</string>
 
+    <!--CustomerUpcomingEventsScreen-->
+    <string name="CustomerUpcomingEventsScreen_Button_Join">Join</string>
+
 
 </resources>
