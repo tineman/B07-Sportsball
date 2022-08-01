@@ -17,7 +17,6 @@
             android:name=".AdminHomePage"
             android:exported="false" />
         <activity
-            
             android:name=".CustomerHomePage"
             android:exported="false"
             android:parentActivityName=".CustomerLoginScreen"/>
