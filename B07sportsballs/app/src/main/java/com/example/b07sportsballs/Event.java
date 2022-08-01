@@ -6,6 +6,16 @@ import java.util.Date;
 
 public class Event {
 
+    /*
+    Concerns - does write to database need a ref parameter?
+    Should we make the read from database have a string parameter with the unique identifier being
+    the name? I bring this up again since my idea of the program goes like this:
+        Venue is read, and displays a list of names. The program then uses those names and fetches
+        the values from the database matching its key so it can be put into its hashset
+    The Database reference is unneccary since we know the node we need to attach to - there is no
+    pint forcing an implementtion on it, see interface segregation?
+     */
+
     //Note - all
 
     private EventWriter writer;
@@ -38,6 +48,16 @@ public class Event {
         this.currPlayers = currPlayers;
         this.maxPlayers = maxPlayers;
         this.ref = ref;
+    }
+
+    public void readFromDatabase(DatabaseReference ref)
+    {
+
+    }
+
+    public void writeToDatabase()
+    {
+        writer.write(this);
     }
 
     //Getters
