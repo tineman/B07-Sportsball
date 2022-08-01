@@ -25,6 +25,10 @@
             android:exported="false" />
         <activity
             android:name=".CustomerLoginScreen"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ScheduleEventScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +36,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ScheduleEventScreen"
-            android:exported="false" />
+
         <activity
             android:name=".VenueScreen"
             android:exported="false" />
