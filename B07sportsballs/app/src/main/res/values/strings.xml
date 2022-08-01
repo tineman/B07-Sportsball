@@ -47,6 +47,7 @@
     <string name="CustomerHomePage_UpcomingEvents">Upcoming Events</string>
     <string name="CustomerHomePage_ViewVenues">Venues</string>
     <string name="CustomerHomePage_ScheduleEvent">Create an Event</string>
+    <string name="CustomerHomePage_LogOut">Log out</string>
 
 
 </resources>
