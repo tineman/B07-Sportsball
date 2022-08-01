@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 
-public class adminhomepage extends AppCompatActivity {
+public class AdminHomePage extends AppCompatActivity {
     public boolean clicked=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
