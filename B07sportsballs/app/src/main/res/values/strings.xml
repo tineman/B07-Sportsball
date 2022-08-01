@@ -5,12 +5,14 @@
     <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
 
 
+
     <!--AdminHomePage-->
-    <string name="admin_add_venue_button">Create a new venue</string>
-    <string name="admin_view_venue_button">View all venues</string>
-    <string name="admin_home_page">Admin Home Page</string>
-    <string name="admin_view_events">Display upcoming events</string>
-    <string name="admin_quit_button">Quit</string>
+    <string name="AdminHomePage_add_venue_button">Create a new venue</string>
+    <string name="AdminHomePage_view_venue_button">View all venues</string>
+    <string name="AdminHomePage_home_page">Admin Home Page</string>
+    <string name="AdminHomePage_view_events">Display upcoming events</string>
+    <string name="AdminHomePage_quit_button">Quit</string>
+
 
 
     <!--CustomerLoginScreen-->
