@@ -1,25 +1,19 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
 
-    <string name="customer">Customer Login Page</string>
-    <string name="username">Username:</string>
-    <string name="password">Password:</string>
-    <string name="enter_username">Enter Username Here</string>
-    <string name="enter_password">Enter Password Here</string>
-    <string name="login">Login</string>
-    <string name="login_as_an_admin">Login as an admin?</string>
-    <string name="sign_up_for_customer_account">Sign up for customer account</string>
-    <string name="quit">Quit</string>
+    <!--Global-->
+    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
 
 
-    //Admin homepage
+    <!--AdminHomePage-->
     <string name="admin_add_venue_button">Create a new venue</string>
     <string name="admin_view_venue_button">View all venues</string>
     <string name="admin_home_page">Admin Home Page</string>
     <string name="admin_view_events">Display upcoming events</string>
     <string name="admin_quit_button">Quit</string>
 
-    // CustomerLoginScreen strings
+
+    <!--CustomerLoginScreen-->
     <string name="CustomerLoginScreen_title">Customer Login Page</string>
     <string name="CustomerLoginScreen_username">Username:</string>
     <string name="CustomerLoginScreen_password">Password:</string>
@@ -30,18 +24,19 @@
     <string name="CustomerLoginScreen_register_customer_account">Register</string>
     <string name="CustomerLoginScreen_quit">Quit</string>
 
-    // CustomerSignUpScreen strings
+
+    <!--CustomerSignUpScreen-->
     <string name="CustomerSignUpScreen_title">Customer Sign Up Page</string>
     <string name="CustomerSignUpScreen_username">Username:</string>
     <string name="CustomerSignUpScreen_password">Password:</string>
     <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
     <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
     <string name="CustomerSignUpScreen_create_account">Create Account</string>
-    <!--Global-->
-    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
+
 
     <!--VenueScreen-->
     <string name="VenueScreen_Title">Please Select a Venue</string>
+
 
     <!--ScheduleEventScreen-->
     <string name="ScheduleEventScreen_Title">Please Enter Event Information</string>
