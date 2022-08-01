@@ -5,9 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.*;
+import android.widget.Button;
+import android.widget.EditText;
 
 public class CustomerLoginScreen extends AppCompatActivity {
 
+    public static final String EXTRA_MESSAGE = "";
+
+    //TEST COMMENT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -15,6 +20,14 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
+
+        Button loginButton = findViewById(R.id.button_CustomerLoginScreen_Login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openCustomerHomePage();
+            }
+        });
     }
 
     /**
@@ -32,5 +45,20 @@ public class CustomerLoginScreen extends AppCompatActivity {
      */
     public void quitApp(View view) {
         this.finishAffinity();
+    }
+
+    /**
+     * This method is called when the "Login" button is pressed
+     * This method opens the Customer's Home Page.
+     */
+    public void openCustomerHomePage(){
+        Intent intent = new Intent(this, CustomerHomePage.class);
+
+        EditText editText = findViewById(R.id.editText_CustomerLoginScreen_Username);
+        String username = editText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, username);
+
+
+        startActivity(intent);
     }
 }
