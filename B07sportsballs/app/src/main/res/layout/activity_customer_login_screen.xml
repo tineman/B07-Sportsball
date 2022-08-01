@@ -112,7 +112,7 @@
         android:layout_height="wrap_content"
         android:onClick="displayCustomerSignUpScreen"
         android:text="@string/CustomerLoginScreen_register_customer_account"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_CustomerLoginScreen_Quit"
         app:layout_constraintEnd_toEndOf="@+id/button_CustomerLoginScreen_GoToAdmin"
         app:layout_constraintStart_toStartOf="@+id/button_CustomerLoginScreen_GoToAdmin"
         app:layout_constraintTop_toBottomOf="@+id/button_CustomerLoginScreen_GoToAdmin" />
