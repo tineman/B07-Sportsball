@@ -100,7 +100,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CustomerSignUpScreen_create_account"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button_CustomerSignUpPage_Quit"
         app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Password"
         app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Password"
         app:layout_constraintTop_toBottomOf="@+id/editText_CustomerSignUpScreen_Password" />
