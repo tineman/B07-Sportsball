@@ -25,7 +25,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCustomerHomePage();
+                loginOnClick();
             }
         });
     }
@@ -48,6 +48,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
     }
 
     public void openCustomerHomePage(){
+
         Intent intent = new Intent(this, CustomerHomePage.class);
 
         EditText editText = findViewById(R.id.editText_CustomerLoginPage_Username);
@@ -56,5 +57,17 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
 
         startActivity(intent);
+    }
+
+    public void loginOnClick(){
+        EditText editText = findViewById(R.id.editText_CustomerLoginPage_Username);
+        String username = editText.getText().toString();
+        editText = findViewById(R.id.editText_CustomerLoginPage_Password);
+        String password = editText.getText().toString();
+
+        Customer customer = new Customer(username, password);
+        if (customer.logIn() == true){
+            openCustomerHomePage();
+        }
     }
 }
