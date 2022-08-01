@@ -1,0 +1,56 @@
+Name: Austin
+	
+What did I do since yesterday?
+	Formatted CustomerLoginScreen and CustomerSignUpScreen
+  Visited lots of websites and videos and learned a lot about the ConstraintLayout class	
+What am I going to do?
+  Finish frontend for CustomerEventsJoinedScreen
+  Finish frontend for CustomerEventsScheduledScreen
+What I need help with?
+	Nothing for now
+ 
+Name: Tian
+	
+What did I do since yesterday?
+	Practiced Firebase
+	Backend planning help
+What am I going to do?
+	Implement a reader or writer
+Polish frontend
+What I need help with?
+	Nothing - all good
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Created quit button for AdminHomePage
+	Practiced using Firebase
+What am I going to do?
+	Edit AdminHomePage
+	Create a reader/writer
+What I need help with?
+	Doing certain tasks using Android Studio
+  
+Name: Xiaotong Ye(George)
+What did I do since yesterday?
+  Finalize Admin Login Activity(Finalize the backend development)
+What am I going to do?
+	-Test Admin Login Activity to see it runs as wanted
+	-Merge to the main branch which stores all of the activities once it runs successfully
+	-Java backend methods planning
+What I need help with?
+	-Android Studio operating issue
+	-Github merge
+  
+Name: Chau	
+What did I do since yesterday?
+	Implemented AdminUpcomingEventsScreen
+Review backend design	
+What am I going to do?
+	Clean up and add comments to Admin/CustomerUpcomingEventsScreen
+	Publish Admin/CustomerUpcomingEventsScreen to GitHub
+            Create prototype classes and methods for backend
+	Update backend diagram
+	Implement AdminReader and CustomerReader
+What I need help with?
+	Nothing
