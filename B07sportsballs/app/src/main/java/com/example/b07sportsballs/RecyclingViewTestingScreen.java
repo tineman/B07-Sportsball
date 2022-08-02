@@ -14,7 +14,7 @@ public class RecyclingViewTestingScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_events_joined_screen);
+        setContentView(R.layout.recycling_view_testing_screen);
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerview_books);
         new FirebaseDatabaseHelper().readBooks(new FirebaseDatabaseHelper.DataStatus() {
             @Override
