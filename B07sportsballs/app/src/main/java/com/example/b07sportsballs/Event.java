@@ -6,16 +6,12 @@ import java.util.Date;
 
 public class Event {
 
-    //Is the DatabaseReference neccessary?
-
     private EventWriter writer;
-    private EventReader reader;
+    private EventBinder binder;
     private String name, host, location;
     private Date startTime, endTime;
     private int currPlayers, maxPlayers;
-    private DatabaseReference ref;
-
-    //Note - reader, writer, and ref have no getters to avoid being written
+    private DatabaseReference ref; //the reference to the event's node
 
     //For persistent listener
     public Event()
@@ -23,9 +19,10 @@ public class Event {
 
     }
 
-    public Event(EventWriter writer, EventReader reader, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
+    //For testing
+    public Event(EventWriter writer, EventBinder binder, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
         this.writer = writer;
-        this.reader = reader;
+        this.binder = binder;
         this.name = name;
         this.host = host;
         this.location = location;
@@ -36,19 +33,37 @@ public class Event {
         this.ref = ref;
     }
 
-    public void readFromDatabase(DatabaseReference ref, EventReader.Updater updater)
+    /**
+     * Attaches a persistent listener to ref and keeps event updated. Does not check if the event is
+     * in the database beforehand, that is the calling function's responsibility
+     * @param ref the reference to the event's node in Firebase
+     * @param updater an implementation of a void() function. Called whenever event updates
+     */
+    public void bindToDatabase(DatabaseReference ref, EventBinder.Updater updater)
     {
-        reader.read(ref, updater);
+        this.ref = ref;
+        EventBinder binder = new EventBinder(this);
+        this.binder = binder;
+        this.binder.bind(this.ref, updater);
     }
 
     /**
-     * Writes Event to database under /Venues/[specificvenue]/Event with a key of Name
-     * @param ref the root node of the database in question
+     * Writes Event to database under /Venues/[specificvenue]/Event/this.name, Assumes the bindToDatabase
+     * has been called on the event already
      */
-    public void writeToDatabase(DatabaseReference ref)
+    public void writeToDatabase()
     {
-        writer.write(ref, this);
+        writer.write(this.ref, this);
     }
+
+
+
+
+
+
+
+
+    //Helper functions
 
     //Getters
     public String getName() {
@@ -83,8 +98,9 @@ public class Event {
         this.currPlayers = currPlayers;
     }
 
-    public void setReader(EventReader reader) {this.reader = reader;}
+    public void setBinder(EventBinder binder) {this.binder = binder;}
 
+    //Sets name, host, location, starttime, endrime, currplayers, maxplayers to those in events
     public void setData(Event event)
     {
         this.name = event.getName();

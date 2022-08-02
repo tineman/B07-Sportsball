@@ -9,8 +9,6 @@ import android.view.View;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.Date;
-
 public class ScheduleEventScreen extends AppCompatActivity {
 
     @Override
@@ -23,7 +21,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
         /*
         EventWriter writer = new EventWriter();
-        EventReader reader = new EventReader(EventRef);
+        EventBinder reader = new EventBinder(EventRef);
 
         Event event1 = new Event(writer, reader, "Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2022, 1, 1, 22, 0), new Date(2022, 1, 1, 24, 0), 0, 12, EventRef);
         Event event2 = new Event(writer, reader, "Nettle Eating", "Brady Haren", "UOFT", new Date(2022, 1, 1, 11, 0), new Date(2022, 1, 1, 13, 0), 0, 32, EventRef);
@@ -34,16 +32,20 @@ public class ScheduleEventScreen extends AppCompatActivity {
         event3.writeToDatabase(EventRef);
         */
 
-        Event event4 = new Event();
-        EventReader reader = new EventReader(event4);
-        event4.setReader(reader);
+        /*
+        Typical usage of Event - create it with the empty initialiser and then bind it to a database
+        and an updater
 
-        event4.readFromDatabase(EventRef, new EventReader.Updater() {
+        Rewrite the value of currPlayers in /Tian-Testing/Venues/UOFT/Events/Chess Boxing and check logcat
+         */
+        Event event4 = new Event();
+        event4.bindToDatabase(EventRef, new EventBinder.Updater() {
             @Override
             public void onUpdate() {
-                Log.i("Event Testing", event4.getCurrPlayers() + " out of " + event4.getMaxPlayers());
+                Log.i("Testing: ", event4.getCurrPlayers() + " out of " + event4.getMaxPlayers());
             }
         });
+
 
 
     }

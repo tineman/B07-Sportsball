@@ -13,26 +13,43 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class EventReader {
+public class EventBinder {
 
     private Event parent;
 
-    public EventReader(Event event)
+    /**
+     * Prevents EventBinder from being initialised without a event to attach it to
+     */
+    private EventBinder()
+    {
+
+    }
+
+    /**
+     * Initialises an EventBinder
+     * @param event the event to which this reader is attached
+     */
+    public EventBinder(Event event)
     {
         parent = event;
     }
 
     public interface Updater
     {
+        /**
+         * Called whenever Event is updated
+         */
         void onUpdate();
     }
 
     /**
-     *
-     * @param ref
-     * @param
+     * Binds the parent event to a reference in the database. Does not check if the event is there
+     * beforehand, that is the calling function's responsibility
+     * @param ref the reference to the event
+     * @param updater a void() function that the user implements. It is called every time event is
+     *                updated
      */
-    public void read(DatabaseReference ref, Updater updater)
+    public void bind(DatabaseReference ref, Updater updater)
     {
 
         ref.addValueEventListener(new ValueEventListener() {
@@ -49,7 +66,7 @@ public class EventReader {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.w("EventBinder Warning:", "error while binding to " + parent.getName(), error.toException());
             }
         });
 
