@@ -28,6 +28,18 @@ public class CustomerLoginScreen extends AppCompatActivity {
                 openCustomerHomePage();
             }
         });
+
+        /**
+         * The following button will take the user to Admin Login page once it being clicked
+         */
+
+        Button adminButton = findViewById(R.id.CustomerLoginScreen_Button_GoToAdmin);
+        adminButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoAdmin();
+            }
+        });
     }
 
     /**
@@ -47,10 +59,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
         this.finishAffinity();
     }
 
-    /**
-     * This method is called when the "Login" button is pressed
-     * This method opens the Customer's Home Page.
-     */
     public void openCustomerHomePage(){
         Intent intent = new Intent(this, CustomerHomePage.class);
 
@@ -58,6 +66,16 @@ public class CustomerLoginScreen extends AppCompatActivity {
         String username = editText.getText().toString();
         intent.putExtra(EXTRA_MESSAGE, username);
 
+
+        startActivity(intent);
+    }
+
+    /**
+     * This method takes the user to Admin Login Activity
+     */
+
+    public void gotoAdmin(){
+        Intent intent = new Intent(this, AdminLoginPage.class);
 
         startActivity(intent);
     }
