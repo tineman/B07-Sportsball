@@ -18,17 +18,23 @@ public class ScheduleEventScreen extends AppCompatActivity {
         setContentView(R.layout.activity_schedule_event_screen);
 
         //Reference is to events node
-        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Events");
+        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing");
+
+        /*
         EventWriter writer = new EventWriter();
-        EventReader reader = new EventReader();
+        EventReader reader = new EventReader(EventRef);
 
         Event event1 = new Event(writer, reader, "Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2022, 1, 1, 22, 0), new Date(2022, 1, 1, 24, 0), 0, 12, EventRef);
         Event event2 = new Event(writer, reader, "Nettle Eating", "Brady Haren", "UOFT", new Date(2022, 1, 1, 11, 0), new Date(2022, 1, 1, 13, 0), 0, 32, EventRef);
         Event event3 = new Event(writer, reader, "Water Polo", "John Paul Jones", "UOFT", new Date(2022, 1, 1, 22, 0), new Date(2022, 1, 1, 23, 0), 0, 12, EventRef);
 
-        event1.writeToDatabase();
-        event2.writeToDatabase();
-        event3.writeToDatabase();
+        event1.writeToDatabase(EventRef);
+        event2.writeToDatabase(EventRef);
+        event3.writeToDatabase(EventRef);
+        */
+
+        Event event4 = new Event();
+
 
     }
 

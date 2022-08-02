@@ -6,27 +6,13 @@ import java.util.Date;
 
 public class Event {
 
-    /*
-    Concerns - does write to database need a ref parameter?
-    Should we make the read from database have a string parameter with the unique identifier being
-    the name? I bring this up again since my idea of the program goes like this:
-        Venue is read, and displays a list of names. The program then uses those names and fetches
-        the values from the database matching its key so it can be put into its hashset
-    The Database reference is unneccary since we know the node we need to attach to - there is no
-    pint forcing an implementtion on it, see interface segregation?
-     */
-
-    //Note - all
+    //Is the DatabaseReference neccessary?
 
     private EventWriter writer;
     private EventReader reader;
-    private String name;
-    private String host;
-    private String location;
-    private Date startTime;
-    private Date endTime;
-    private int currPlayers;
-    private int maxPlayers;
+    private String name, host, location;
+    private Date startTime, endTime;
+    private int currPlayers, maxPlayers;
     private DatabaseReference ref;
 
     //Note - reader, writer, and ref have no getters to avoid being written
@@ -50,14 +36,24 @@ public class Event {
         this.ref = ref;
     }
 
-    public void readFromDatabase(DatabaseReference ref)
+    public void readFromDatabase(DatabaseReference ref, EventReader.Updater updater)
     {
+        reader.read(ref, new EventReader.Loader() {
+            @Override
+            public void DataisLoaded(Event event) {
 
+            }
+
+        }, updater);
     }
 
-    public void writeToDatabase()
+    /**
+     * Writes Event to database under /Venues/[specificvenue]/Event with a key of Name
+     * @param ref the root node of the database in question
+     */
+    public void writeToDatabase(DatabaseReference ref)
     {
-        writer.write(this);
+        writer.write(ref, this);
     }
 
     //Getters
@@ -89,34 +85,18 @@ public class Event {
         return maxPlayers;
     }
 
-    //Setters
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public void setStartTime(Date startTime) {
-        this.startTime = startTime;
-    }
-
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
-
     public void setCurrPlayers(int currPlayers) {
         this.currPlayers = currPlayers;
     }
 
-    public void setMaxPlayers(int maxPlayers) {
-        this.maxPlayers = maxPlayers;
+    public void setData(Event event)
+    {
+        this.name = event.getName();
+        this.host = event.getHost();
+        this.location = event.getLocation();
+        this.startTime = event.getStartTime();
+        this.endTime = event.getEndTime();
+        this.currPlayers = event.getCurrPlayers();
+        this.maxPlayers = event.getMaxPlayers();
     }
-
 }

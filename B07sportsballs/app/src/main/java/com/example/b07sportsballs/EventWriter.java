@@ -8,11 +8,16 @@ public class EventWriter {
     public EventWriter() {
     }
 
-    public void write(Event event)
+    /*
+    Writes Event event to the database
+    DatabaseReference ref points to the root node of the database
+     */
+    public void write(DatabaseReference ref, Event event)
     {
 
-        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Events");
-        EventRef.child(event.getName()).setValue(event);
+        //Add a transaction
+
+        ref.child("Venues").child(event.getLocation()).child("Events").child(event.getName()).setValue(event);
 
     }
 }
