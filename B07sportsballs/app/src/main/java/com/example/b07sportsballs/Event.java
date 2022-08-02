@@ -38,13 +38,7 @@ public class Event {
 
     public void readFromDatabase(DatabaseReference ref, EventReader.Updater updater)
     {
-        reader.read(ref, new EventReader.Loader() {
-            @Override
-            public void DataisLoaded(Event event) {
-
-            }
-
-        }, updater);
+        reader.read(ref, updater);
     }
 
     /**
@@ -88,6 +82,8 @@ public class Event {
     public void setCurrPlayers(int currPlayers) {
         this.currPlayers = currPlayers;
     }
+
+    public void setReader(EventReader reader) {this.reader = reader;}
 
     public void setData(Event event)
     {

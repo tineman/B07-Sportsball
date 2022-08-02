@@ -15,14 +15,11 @@ import java.util.List;
 
 public class EventReader {
 
-    public EventReader()
-    {
+    private Event parent;
 
-    }
-
-    public interface Loader
+    public EventReader(Event event)
     {
-        void DataisLoaded(Event event);
+        parent = event;
     }
 
     public interface Updater
@@ -35,16 +32,17 @@ public class EventReader {
      * @param ref
      * @param
      */
-    public void read(DatabaseReference ref, Loader loader, Updater updater)
+    public void read(DatabaseReference ref, Updater updater)
     {
 
         ref.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
-                loader.DataisLoaded(event);
+                parent.setData(event);
                 updater.onUpdate();
 
             }

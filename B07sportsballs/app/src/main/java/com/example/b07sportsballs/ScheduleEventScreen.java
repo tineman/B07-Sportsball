@@ -3,6 +3,7 @@ package com.example.b07sportsballs;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.database.DatabaseReference;
@@ -18,7 +19,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         setContentView(R.layout.activity_schedule_event_screen);
 
         //Reference is to events node
-        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing");
+        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Chess Boxing");
 
         /*
         EventWriter writer = new EventWriter();
@@ -34,6 +35,15 @@ public class ScheduleEventScreen extends AppCompatActivity {
         */
 
         Event event4 = new Event();
+        EventReader reader = new EventReader(event4);
+        event4.setReader(reader);
+
+        event4.readFromDatabase(EventRef, new EventReader.Updater() {
+            @Override
+            public void onUpdate() {
+                Log.i("Event Testing", event4.getCurrPlayers() + " out of " + event4.getMaxPlayers());
+            }
+        });
 
 
     }
