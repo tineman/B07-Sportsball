@@ -1,66 +1,60 @@
 package com.example.b07sportsballs;
-
 import com.google.firebase.database.DatabaseReference;
-
 import java.util.HashSet;
 
 public class Venue
 {
         public String name;
-        //uncomment the line below once Event class has been created
-        //public HashSet<Event> events;
-        public DatabaseReference ref;
-        public VenueWriter venuewriter;
-        public VenueReader venuereader;
+        public HashSet<Event> events;
+        private DatabaseReference ref;
+        private VenueWriter venuewriter;
+        private VenueReader venuereader;
 
-        public Venue()
-        {
-                this.name = "";
-                this.venuewriter = new VenueWriter();
-                this.venuereader = new VenueReader();
-        }
+        //Empty constructor
+        public Venue() { }
 
         public Venue(String name)
         {
                 this.name = name;
-                this.venuewriter = new VenueWriter();
-                this.venuereader = new VenueReader();
         }
 
+        //returns the name of the venue
         public String getName()
         {
                 return name;
         }
 
-        public void setName(String name)
+        //returns a HashSet of the events that will take place in the given venue
+        public HashSet<Event> getEvents()
         {
-                this.name = name;
+                return events;
         }
 
-        //public HashSet<Event> getEvents() {
-        //        return events;
-        //}
-
-        public void setReader(VenueReader venuereader) {
+        public void setReader(VenueReader venuereader)
+        {
                 this.venuereader = venuereader;
         }
 
-        public void setWriter(VenueWriter venuewriter) {
+        public void setWriter(VenueWriter venuewriter)
+        {
                 this.venuewriter = venuewriter;
         }
 
-        //public void setEvents(HashSet<Event> events) {
-        //        this.events = events;
-        //}
+        public void setEvents(HashSet<Event> events)
+        {
+                this.events = events;
+        }
 
+        //read the venues stored in the database
         public void readFromDataBase(DatabaseReference ref)
         {
                 VenueReader reader = new VenueReader();
                 reader.read(ref);
         }
 
+        //creates a new venue in the database
         public void writeToDataBase(DatabaseReference ref) {
                 VenueWriter writer = new VenueWriter();
-                writer.write(ref);
+                writer.write(ref,this);
         }
 }
