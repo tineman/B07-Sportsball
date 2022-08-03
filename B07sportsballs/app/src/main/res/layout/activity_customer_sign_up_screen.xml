@@ -7,16 +7,15 @@
     tools:context=".CustomerSignUpScreen">
 
     <Button
-        android:id="@+id/button_CustomerSignUpPage_Quit"
+        android:id="@+id/CustomerSignUpScreen_Button_Quit"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:onClick="quitApp"
         android:text="@string/CustomerLoginScreen_quit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textView_CustomerSignUpScreen_Title"
+        android:id="@+id/CustomerSignUpScreen_TextView_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -25,27 +24,27 @@
         android:textColor="@color/black"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView_CustomerSignUpScreen_Username"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/textView_CustomerSignUpScreen_Password"
+        android:id="@+id/CustomerSignUpScreen_TextView_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CustomerSignUpScreen_password"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText_CustomerSignUpScreen_Password"
-        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Username"
-        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Username"
-        app:layout_constraintTop_toBottomOf="@+id/editText_CustomerSignUpScreen_Username" />
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_EditText_Username" />
 
     <EditText
-        android:id="@+id/editText_CustomerSignUpScreen_Password"
+        android:id="@+id/CustomerSignUpScreen_EditText_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
@@ -56,14 +55,14 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/button_CustomerSignUpPage_CreateAccount"
-        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Password"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Password"
         app:layout_constraintHorizontal_bias="0.508"
-        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Password"
-        app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpScreen_Password" />
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Password"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Password" />
 
     <EditText
-        android:id="@+id/editText_CustomerSignUpScreen_Username"
+        android:id="@+id/CustomerSignUpScreen_EditText_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
@@ -74,14 +73,14 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/textView_CustomerSignUpScreen_Password"
-        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Username"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Password"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
         app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Username"
-        app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpScreen_Username" />
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Username" />
 
     <TextView
-        android:id="@+id/textView_CustomerSignUpScreen_Username"
+        android:id="@+id/CustomerSignUpScreen_TextView_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CustomerSignUpScreen_username"
@@ -89,20 +88,20 @@
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editText_CustomerSignUpScreen_Username"
-        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Title"
-        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Title"
-        app:layout_constraintTop_toBottomOf="@+id/textView_CustomerSignUpScreen_Title"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_EditText_Username"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Title"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Title"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Title"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
-        android:id="@+id/button_CustomerSignUpPage_CreateAccount"
+        android:id="@+id/CustomerSignUpScreen_Button_CreateAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/CustomerSignUpScreen_create_account"
-        app:layout_constraintBottom_toTopOf="@+id/button_CustomerSignUpPage_Quit"
-        app:layout_constraintEnd_toEndOf="@+id/textView_CustomerSignUpScreen_Password"
-        app:layout_constraintStart_toStartOf="@+id/textView_CustomerSignUpScreen_Password"
-        app:layout_constraintTop_toBottomOf="@+id/editText_CustomerSignUpScreen_Password" />
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_Quit"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Password"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Password"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_EditText_Password" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
