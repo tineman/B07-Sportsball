@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
 
+    <!--Firebase URL-->
+    <string name="DB_URL">https://b07sportsballs-default-rtdb.firebaseio.com/</string>
+
     // CustomerLoginScreen strings
     <string name="CustomerLoginScreen_title">Customer Login Page</string>
     <string name="CustomerLoginScreen_username">Username:</string>
