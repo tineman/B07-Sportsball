@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:onClick="onSubmit"
     tools:context=".ScheduleEventScreen">
 
     <Button
@@ -132,6 +133,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:onClick="onSubmit"
         android:text="@string/ScheduleEventScreen_Button_Submit"
         app:layout_constraintBaseline_toBaselineOf="@+id/ScheduleEventScreen_Quit"
         app:layout_constraintEnd_toStartOf="@+id/ScheduleEventScreen_Quit"

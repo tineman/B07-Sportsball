@@ -36,15 +36,29 @@ public class Event {
     /**
      * Attaches a persistent listener to ref and keeps event updated. Does not check if the event is
      * in the database beforehand, that is the calling function's responsibility
+     *
+     * Update function is called on Event update even if the activity is switched
+     *
      * @param ref the reference to the event's node in Firebase
-     * @param updater an implementation of a void() function. Called whenever event updates
+     * @param onUpdate an implementation of a void() function. Called whenever event updates
      */
-    public void bindToDatabase(DatabaseReference ref, EventBinder.Updater updater)
+    public void bindToDatabase(DatabaseReference ref, EventBinder.Updater onUpdate)
     {
         this.ref = ref;
         EventBinder binder = new EventBinder(this);
         this.binder = binder;
-        this.binder.bind(this.ref, updater);
+        this.binder.bind(this.ref, onUpdate);
+    }
+
+    /**
+     * Updates the onUpdate function called when event updates. Assumes Event has already been bound
+     * to a reference.
+     *
+     * @param onUpdate an implementation of a void() function. Called whenever event updates
+     */
+    public void changeOnUpdate(EventBinder.Updater onUpdate)
+    {
+        this.binder.update(this.ref, onUpdate);
     }
 
     /**

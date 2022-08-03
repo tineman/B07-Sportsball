@@ -16,6 +16,7 @@ import java.util.List;
 public class EventBinder {
 
     private Event parent;
+    private ValueEventListener listener;
 
     /**
      * Prevents EventBinder from being initialised without a event to attach it to
@@ -46,13 +47,13 @@ public class EventBinder {
      * Binds the parent event to a reference in the database. Does not check if the event is there
      * beforehand, that is the calling function's responsibility
      * @param ref the reference to the event
-     * @param updater a void() function that the user implements. It is called every time event is
+     * @param onUpdate a void() function that the user implements. It is called every time event is
      *                updated
      */
-    public void bind(DatabaseReference ref, Updater updater)
+    public void bind(DatabaseReference ref, Updater onUpdate)
     {
 
-        ref.addValueEventListener(new ValueEventListener() {
+        listener = ref.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,7 +61,7 @@ public class EventBinder {
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
                 parent.setData(event);
-                updater.onUpdate();
+                onUpdate.onUpdate();
 
             }
 
@@ -69,6 +70,21 @@ public class EventBinder {
                 Log.w("EventBinder Warning:", "error while binding to " + parent.getName(), error.toException());
             }
         });
+
+    }
+
+    /**
+     * Update the onUpdate function. Assumes bind has been called previously
+     *
+     * @param ref the reference to the event
+     * @param onUpdate a void() function that the user implements. It is called every time event is
+     *                updated
+     */
+    public void update(DatabaseReference ref, Updater onUpdate)
+    {
+
+        ref.removeEventListener(this.listener);
+        this.bind(ref, onUpdate);
 
     }
 
