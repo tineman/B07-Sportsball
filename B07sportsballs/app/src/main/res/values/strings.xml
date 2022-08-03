@@ -13,6 +13,13 @@
     <string name="AdminHomePage_quit_button">Quit</string>
 
 
+    <!--CreateVenueScreen-->
+    <string name="CreateVenueScreen_TextView_Venue">Venue Name</string>
+    <string name="CreateVenueScreen_EditText_Venue">Enter Venue Name Here</string>
+    <string name="CreateVenueScreen_Button_AddVenue">Add Venue</string>
+    <string name="CreateVenueScreen_Button_Quit">Quit</string>
+
+
     <!--CustomerEventsJoinedScreen-->
     <string name="CustomerEventsJoinedScreen_title">Events Joined</string>
     <string name="CustomerEventsJoinedScreen_quit">Quit</string>
