@@ -22,8 +22,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
         DatabaseReference ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Chess Boxing");
 
-        ref.child("Test").setValue(1);
-
         event.bindToDatabase(ref, new EventBinder.Updater() {
             @Override
             public void onUpdate() {
@@ -39,9 +37,11 @@ public class ScheduleEventScreen extends AppCompatActivity {
      */
     public void onSubmit(View view)
     {
-/*
+
+
         //MISSING - INPUT VERIFICATION
         Log.i("Testing", event.getName() + " " + event.getCurrPlayers() + "/" + event.getMaxPlayers() + " at " + event.getLocation());
+        event.setWriter();
         if(event.increment())
         {
             Log.i("Testing", "Incremented!");
@@ -51,7 +51,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
             Log.i("Testing", "Over capacity!");
         }
 
-*/
+
 
     }
 

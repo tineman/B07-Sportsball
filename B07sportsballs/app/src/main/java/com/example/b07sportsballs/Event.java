@@ -14,11 +14,17 @@ public class Event {
     //ref is the reference to the node containing the event
     private DatabaseReference ref;
 
+    /**
+     * When using the empty constructor, call bindToDatabase to initialise the values. Call setWriter()
+     * before calling writeToDatabase() or increment()
+     */
+
     public Event()
     {
 
     }
 
+    //For Testing
     public Event(EventWriter writer, EventBinder binder, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
         this.writer = writer;
         this.binder = binder;
@@ -58,6 +64,15 @@ public class Event {
     public void changeOnUpdate(EventBinder.Updater onUpdate)
     {
         this.binder.update(this.ref, onUpdate);
+    }
+
+    /**
+     * Call setWriter on an event before writing to it
+     */
+
+    public void setWriter()
+    {
+        this.writer = new EventWriter();
     }
 
     /**
@@ -139,4 +154,5 @@ public class Event {
         this.currPlayers = event.getCurrPlayers();
         this.maxPlayers = event.getMaxPlayers();
     }
+
 }
