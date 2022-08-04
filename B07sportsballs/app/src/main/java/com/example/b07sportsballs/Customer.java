@@ -1,48 +1,67 @@
 package com.example.b07sportsballs;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
 public class Customer extends User {
+
 
     public Customer(String username, String password) {
         super(username, password);
     }
 
     @Override
-    public void logIn() {
-        DatabaseReference root = FirebaseDatabase.
-                getInstance("https://sportsballtesting-default-rtdb.firebaseio.com").
-                getReference("chau-testing/Customers");
-        root.addListenerForSingleValueEvent(new ValueEventListener() {
+    public void logIn(final Updater updater) {
+        DatabaseReference customersRef = FirebaseDatabase.
+                getInstance(Constants.DATABASE.DB_URL).
+                getReference("chau-testing/" + Constants.DATABASE.CUSTOMER_PATH);
+        updater.onStart();
+        customersRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot customer : snapshot.getChildren()) {
-                    if (customer.child("name").getValue(String.class).equals(Customer.super.getUsername())
-                    && customer.child("password").getValue(String.class).equals(Customer.super.getPassword()))
-                    {
-                        ref = customer.getRef();
-                        Log.i("demo", ref.toString());
+                    if (customer.child(Constants.DATABASE.USERNAME_KEY).getValue(String.class).equals(username)) {
+                        if (customer.child(Constants.DATABASE.PASSWORD_KEY).getValue(String.class).equals(password)) {
+                            ref = customer.getRef();
+                            updater.onSuccess(Constants.LOGIN_CODE.SUCCESS);
+                        }
+                        else {
+                            ref = null;
+                            updater.onSuccess(Constants.LOGIN_CODE.WRONG_PASSWORD);
+                        }
+                        return;
                     }
                 }
+                ref = null;
+                updater.onSuccess(Constants.LOGIN_CODE.NO_USER);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                updater.onFailure(error);
+            }
+        });
+    }
 
+    public void signUp(Updater updater) {
+        DatabaseReference customersRef = FirebaseDatabase.
+                getInstance(Constants.DATABASE.DB_URL).
+                getReference("chau-testing/Customers");
+        customersRef.push().setValue(new Customer(username, password), new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
+                if (error != null) {
+                    updater.onFailure(error);
+                }
+                else updater.onSuccess(Constants.SIGNUP_CODE.SUCCESS);
             }
         });
     }

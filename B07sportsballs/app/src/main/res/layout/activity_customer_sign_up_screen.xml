@@ -96,6 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="92dp"
         android:text="@string/CustomerSignUpScreen_create_account"
+        android:onClick="customerSignUp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/editText_CustomerLoginPage_Password"
         app:layout_constraintStart_toStartOf="@+id/editText_CustomerLoginPage_Password"

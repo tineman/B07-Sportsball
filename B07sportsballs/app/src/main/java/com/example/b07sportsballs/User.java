@@ -5,11 +5,11 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.HashSet;
 
 public abstract class User {
-    private String username;
-    private String password;
+    protected String username;
+    protected String password;
 //    private UserBinder binder;
 //    private UserWriter writer;
-    DatabaseReference ref;
+    protected DatabaseReference ref;
 
     // Default constructor for reading from database.
     public User() {}
@@ -35,15 +35,7 @@ public abstract class User {
         this.password = password;
     }
 
-    public DatabaseReference getRef() {
-        return ref;
-    }
-
-    public void setRef(DatabaseReference ref) {
-        this.ref = ref;
-    }
-
-    public abstract void logIn();
+    public abstract void logIn(final Updater listener);
 
     public HashSet<Venue> collectAllVenues() {
         return null;
