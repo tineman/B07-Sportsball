@@ -6,26 +6,28 @@ import java.util.Date;
 
 public class Event {
 
-    //Is the DatabaseReference neccessary?
-
     private EventWriter writer;
-    private EventReader reader;
+    private EventBinder binder;
     private String name, host, location;
     private Date startTime, endTime;
     private int currPlayers, maxPlayers;
+    //ref is the reference to the node containing the event
     private DatabaseReference ref;
 
-    //Note - reader, writer, and ref have no getters to avoid being written
+    /**
+     * When using the empty constructor, call bindToDatabase to initialise the values. Call setWriter()
+     * before calling writeToDatabase() or increment()
+     */
 
-    //For persistent listener
     public Event()
     {
 
     }
 
-    public Event(EventWriter writer, EventReader reader, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
+    //For Testing
+    public Event(EventWriter writer, EventBinder binder, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
         this.writer = writer;
-        this.reader = reader;
+        this.binder = binder;
         this.name = name;
         this.host = host;
         this.location = location;
@@ -37,24 +39,74 @@ public class Event {
     }
 
     /**
-     * Reads from database and puts the data in name. The name field of the Event will remain
-     * unchanged if the Event is not found in the database
-     * @param ref the root node of the database in question
-     * @param name the name of event
+     * Attaches a persistent listener to ref and keeps event updated. Does not check if the event is
+     * in the database beforehand, that is the calling function's responsibility
+     *
+     * Update function is called on Event update even if the activity is switched
+     *
+     * @param ref the reference to the event's node in Firebase
+     * @param onUpdate an implementation of a void() function. Called whenever event updates
      */
-    public void readFromDatabase(DatabaseReference ref, String name)
+    public void bindToDatabase(DatabaseReference ref, EventBinder.Updater onUpdate)
     {
-        //reader.read(name);
+        this.ref = ref;
+        EventBinder binder = new EventBinder(this);
+        this.binder = binder;
+        this.binder.bind(this.ref, onUpdate);
     }
 
     /**
-     * Writes Event to database under /Venues/[specificvenue]/Event with a key of Name
-     * @param ref the root node of the database in question
+     * Updates the onUpdate function called when event updates. Assumes Event has already been bound
+     * to a reference.
+     *
+     * @param onUpdate an implementation of a void() function. Called whenever event updates
      */
-    public void writeToDatabase(DatabaseReference ref)
+    public void changeOnUpdate(EventBinder.Updater onUpdate)
     {
-        writer.write(ref, this);
+        this.binder.update(this.ref, onUpdate);
     }
+
+    /**
+     * Call setWriter on an event before writing to it
+     */
+
+    public void setWriter()
+    {
+        this.writer = new EventWriter();
+    }
+
+    /**
+     * Writes Event to database under /Venues/[specificvenue]/Event/this.name, Assumes the bindToDatabase
+     * has been called on the event already
+     */
+    public void writeToDatabase()
+    {
+        writer.write(this.ref, this);
+    }
+
+    /**
+     * Checks if the event is at capacity. If so, returns false. If not, increment the currPlayer by one
+     * and return true. Assumes that bindToDatabase has been called on event already
+     * @return The success value of the operation
+     */
+    public boolean increment()
+    {
+        if(currPlayers >= maxPlayers) return false;
+
+        currPlayers += 1;
+        writer.increment(this.ref);
+        return true;
+
+    }
+
+
+
+
+
+
+
+
+    //Helper functions
 
     //Getters
     public String getName() {
@@ -85,6 +137,22 @@ public class Event {
         return maxPlayers;
     }
 
+    public void setCurrPlayers(int currPlayers) {
+        this.currPlayers = currPlayers;
+    }
 
+    public void setBinder(EventBinder binder) {this.binder = binder;}
+
+    //Sets name, host, location, starttime, endrime, currplayers, maxplayers to those in events
+    public void setData(Event event)
+    {
+        this.name = event.getName();
+        this.host = event.getHost();
+        this.location = event.getLocation();
+        this.startTime = event.getStartTime();
+        this.endTime = event.getEndTime();
+        this.currPlayers = event.getCurrPlayers();
+        this.maxPlayers = event.getMaxPlayers();
+    }
 
 }

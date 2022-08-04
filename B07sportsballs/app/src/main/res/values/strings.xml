@@ -5,7 +5,6 @@
     <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
 
 
-
     <!--AdminHomePage-->
     <string name="AdminHomePage_add_venue_button">Create a new venue</string>
     <string name="AdminHomePage_view_venue_button">View all venues</string>
@@ -13,6 +12,22 @@
     <string name="AdminHomePage_view_events">Display upcoming events</string>
     <string name="AdminHomePage_quit_button">Quit</string>
 
+
+    <!--CreateVenueScreen-->
+    <string name="CreateVenueScreen_TextView_Venue">Venue Name</string>
+    <string name="CreateVenueScreen_EditText_Venue">Enter Venue Name Here</string>
+    <string name="CreateVenueScreen_Button_AddVenue">Add Venue</string>
+    <string name="CreateVenueScreen_Button_Quit">Quit</string>
+
+
+    <!--CustomerEventsJoinedScreen-->
+    <string name="CustomerEventsJoinedScreen_title">Events Joined</string>
+    <string name="CustomerEventsJoinedScreen_quit">Quit</string>
+
+
+    <!--CustomerEventsScheduledScreen-->
+    <string name="CustomerEventsScheduledScreen_title">Events Scheduled</string>
+    <string name="CustomerEventsScheduledScreen_quit">Quit</string>
 
 
     <!--CustomerLoginScreen-->

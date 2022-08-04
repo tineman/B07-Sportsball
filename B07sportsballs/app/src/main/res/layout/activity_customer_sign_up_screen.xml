@@ -10,7 +10,6 @@
         android:id="@+id/CustomerSignUpScreen_Button_Quit"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:onClick="quitApp"
         android:text="@string/CustomerLoginScreen_quit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
