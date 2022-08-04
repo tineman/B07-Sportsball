@@ -1,5 +1,6 @@
 package com.example.b07sportsballs;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,16 +8,28 @@ import android.util.Log;
 import android.view.*;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CustomerLoginScreen extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "";
+    DatabaseReference reference;
 
     //TEST COMMENT
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_login_screen);
+        reference = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
 
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
@@ -28,7 +41,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openCustomerHomePage();
+                loginAccount();
             }
         });
 
@@ -97,7 +110,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
      */
     public void displayCustomerSignUpScreen() {
         Intent intent = new Intent(this, CustomerSignUpScreen.class);
-
         startActivity(intent);
     }
 
@@ -107,4 +119,43 @@ public class CustomerLoginScreen extends AppCompatActivity {
     public void quitApp() {
         this.finishAffinity();
     }
+
+    public void loginAccount(){
+        EditText usernameET = findViewById(R.id.CustomerLoginScreen_EditText_Username);
+        EditText passwordET = findViewById(R.id.CustomerLoginScreen_EditText_Password);
+        String username = usernameET.getText().toString();
+        String password = passwordET.getText().toString();
+
+        reference.child("Root").child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean match = false;
+                for(DataSnapshot infoSnapshot : snapshot.getChildren()){
+                    if(infoSnapshot!=null){
+                        String dataName = infoSnapshot.child("Username").getValue().toString();
+                        System.out.println(dataName);
+                        if(dataName.equals(username)){
+                            match = true;
+                            if(infoSnapshot.child("Password").getValue().toString().equals(password)){
+                                openCustomerHomePage();
+                            }else{
+                                Toast.makeText(CustomerLoginScreen.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+                if(match==false) {Toast.makeText(CustomerLoginScreen.this, "Username not found", Toast.LENGTH_SHORT).show();}
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
+    }
+
+
+
 }
