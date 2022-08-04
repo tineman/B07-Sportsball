@@ -47,7 +47,13 @@ public class CustomerLoginScreen extends AppCompatActivity {
                 else if (returnCode == Constants.LOGIN_CODE.WRONG_PASSWORD)
                     Toast.makeText(context, "Wrong password.", Toast.LENGTH_LONG).show();
                 else {
+                    //TODO: Change to CustomerHomePageScreen.
                     Intent intent = new Intent(context, VenueScreen.class);
+                    // Send the database reference
+                    intent.putExtra("CUSTOMER_REF", customer.ref.toString());
+                    intent.putExtra("ADMIN_REF", "INVALID");
+                    // To get the database reference from ref.toString(), use:
+                    // FirebaseDatabase.getInstance().getReferenceFromUrl(str)
                     startActivity(intent);
                 }
             }

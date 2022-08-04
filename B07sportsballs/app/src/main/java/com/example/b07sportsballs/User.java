@@ -7,7 +7,7 @@ import java.util.HashSet;
 public abstract class User {
     protected String username;
     protected String password;
-//    private UserBinder binder;
+//    private UserReader reader;
 //    private UserWriter writer;
     protected DatabaseReference ref;
 
@@ -19,6 +19,7 @@ public abstract class User {
         this.password = password;
     }
 
+    // Getters/Setters
     public String getUsername() {
         return username;
     }
@@ -35,9 +36,11 @@ public abstract class User {
         this.password = password;
     }
 
+
     public abstract void logIn(final Updater listener);
 
     public HashSet<Venue> collectAllVenues() {
+
         return null;
     }
 
