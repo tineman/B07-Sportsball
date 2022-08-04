@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/frans/OneDrive/Desktop/B07_Another/B07-Sportsball_FRANS/B07sportsballs/app/src/main/res/layout/activity_admin_login_page.xml" value="0.11041666666666666" />
         <entry key="..\:/Users/frans/OneDrive/Desktop/B07_Another/B07-Sportsball_FRANS/B07sportsballs/app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.15104166666666666" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/B07_Another/B07-Sportsball_FRANS/B07sportsballs/app/src/main/res/layout/activity_customer_login_screen.xml" value="0.11041666666666666" />
       </map>
     </option>
   </component>

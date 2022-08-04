@@ -100,7 +100,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
      */
     public void gotoAdmin(){
         Intent intent = new Intent(this, AdminLoginPage.class);
-
         startActivity(intent);
     }
 
@@ -126,6 +125,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
         String username = usernameET.getText().toString();
         String password = passwordET.getText().toString();
 
+
         reference.child("Root").child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -134,7 +134,10 @@ public class CustomerLoginScreen extends AppCompatActivity {
                     if(infoSnapshot!=null){
                         String dataName = infoSnapshot.child("Username").getValue().toString();
                         System.out.println(dataName);
-                        if(dataName.equals(username)){
+                        if(username.isEmpty() || password.isEmpty()){
+                            Toast.makeText(CustomerLoginScreen.this, "field must not be empty", Toast.LENGTH_SHORT).show();
+                            match = true;
+                        }else if(dataName.equals(username)){
                             match = true;
                             if(infoSnapshot.child("Password").getValue().toString().equals(password)){
                                 openCustomerHomePage();

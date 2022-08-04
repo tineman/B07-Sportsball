@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CustomerSignUpScreen extends AppCompatActivity {
 
@@ -65,6 +67,8 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         EditText passwordET = findViewById(R.id.CustomerSignUpScreen_EditText_Password);
         String username = usernameET.getText().toString();
         String password = passwordET.getText().toString();
+        Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9]+$");
+        Matcher matcher = usernamePattern.matcher(username);
 
         reference.child("Root").child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -76,15 +80,19 @@ public class CustomerSignUpScreen extends AppCompatActivity {
                         System.out.println(dataName);
                         usernameList.add((String)dataName);}
                 }
-
-                if(usernameList.contains(username)==true){
+                if(username.isEmpty() || password.isEmpty()){
+                    Toast.makeText(CustomerSignUpScreen.this, "field must not be empty", Toast.LENGTH_SHORT).show();
+                }else if(matcher.matches()==false){
+                    Toast.makeText(CustomerSignUpScreen.this, "Username must be alphanumeric", Toast.LENGTH_SHORT).show();
+                }else if(password.length()<6){
+                    Toast.makeText(CustomerSignUpScreen.this, "Password must at least be 6 characters", Toast.LENGTH_SHORT).show();
+                }
+                else if(usernameList.contains(username)==true){
                     Toast.makeText(CustomerSignUpScreen.this, "Username is taken", Toast.LENGTH_SHORT).show();
                 }else{
                     DatabaseReference commentRef = reference.child("Root").child("Customer").push();
                     commentRef.child("Username").setValue(username);
                     commentRef.child("Password").setValue(password);
-                    commentRef.child("EventsCreatedNames");
-                    commentRef.child("EventsJoinedNames");
                     openCustomerHomePage();
                 }
             }
