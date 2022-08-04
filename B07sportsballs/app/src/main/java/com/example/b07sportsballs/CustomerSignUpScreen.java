@@ -61,6 +61,16 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         this.finishAffinity();
     }
 
+    /**
+     * This method is called when "Create Account" button is pressed
+     * It takes reads the text in Username and Password edit text and
+     * check them against the database.
+     *
+     * account creation only occurs when: both fields are filled, username
+     * is alphanumeric, password is at least 6 characters and no duplicate
+     * username is found in the database.
+     *
+     * Once account is created Customer is directed to the Home Page*/
     public void createAccount(){
         //get username and password in edit text
         EditText usernameET = findViewById(R.id.CustomerSignUpScreen_EditText_Username);
@@ -104,6 +114,9 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         });
     }
 
+    /**
+     * This method is called after account creation is successful
+     * */
     public void openCustomerHomePage(){
         Intent intent = new Intent(this, CustomerHomePage.class);
         EditText editText = findViewById(R.id.CustomerSignUpScreen_EditText_Username);
