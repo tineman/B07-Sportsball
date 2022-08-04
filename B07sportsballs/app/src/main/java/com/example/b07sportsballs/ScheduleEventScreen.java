@@ -31,7 +31,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
 
     }
-
     public void onDisplay(View view)
     {
         //Temporary - to display information in real time
