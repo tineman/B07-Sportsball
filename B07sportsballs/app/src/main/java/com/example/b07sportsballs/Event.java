@@ -11,15 +11,14 @@ public class Event {
     private String name, host, location;
     private Date startTime, endTime;
     private int currPlayers, maxPlayers;
-    private DatabaseReference ref; //the reference to the event's node
+    //ref is the reference to the node containing the event
+    private DatabaseReference ref;
 
-    //For persistent listener
     public Event()
     {
 
     }
 
-    //For testing
     public Event(EventWriter writer, EventBinder binder, String name, String host, String location, Date startTime, Date endTime, int currPlayers, int maxPlayers, DatabaseReference ref) {
         this.writer = writer;
         this.binder = binder;
@@ -68,6 +67,21 @@ public class Event {
     public void writeToDatabase()
     {
         writer.write(this.ref, this);
+    }
+
+    /**
+     * Checks if the event is at capacity. If so, returns false. If not, increment the currPlayer by one
+     * and return true. Assumes that bindToDatabase has been called on event already
+     * @return The success value of the operation
+     */
+    public boolean increment()
+    {
+        if(currPlayers >= maxPlayers) return false;
+
+        currPlayers += 1;
+        writer.increment(this.ref);
+        return true;
+
     }
 
 

@@ -33,7 +33,7 @@
             android:exported="false"
             android:parentActivityName=".CustomerLoginScreen" />
         <activity
-            android:name=".CustomerLoginScreen"
+            android:name=".ScheduleEventScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -45,7 +45,7 @@
             android:name=".CustomerSignUpScreen"
             android:exported="false" />
         <activity
-            android:name=".ScheduleEventScreen"
+            android:name=".CustomerLoginScreen"
             android:exported="false"/>
 
         <activity
