@@ -4,8 +4,8 @@ import java.util.HashSet;
 
 public class Venue
 {
-        public String name;
-        public HashSet<Event> events;
+        private String name;
+        private HashSet<Event> events;
         private DatabaseReference ref;
         private VenueWriter venuewriter;
         private VenueReader venuereader;
@@ -57,4 +57,6 @@ public class Venue
                 VenueWriter writer = new VenueWriter();
                 writer.write(ref,this);
         }
+
+
 }
