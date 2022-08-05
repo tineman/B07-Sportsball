@@ -8,17 +8,25 @@ import android.view.View;
 import android.widget.Button;
 
 public class AdminHomePage extends AppCompatActivity {
-    public boolean clicked_quit=false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_home_page);
 
         //buttons for AdminHomePage
+        Button logout_button = (Button) findViewById(R.id.AdminHomePage_Button_Logout);
         Button create_venue = (Button) findViewById((R.id.AdminHomePage_create_venue));
         Button view_all_venues = (Button) findViewById(R.id.AdminHomePage_view_venues);
         Button display_upcoming_events = (Button) findViewById(R.id.AdminHomePage_display_events);
-        Button quit_button = (Button) findViewById(R.id.button4);
+        Button quit_button = (Button) findViewById(R.id.AdminHomePage_Button_Quit);
+
+        logout_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout();
+            }
+        });
 
         create_venue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,25 +51,29 @@ public class AdminHomePage extends AppCompatActivity {
 
         quit_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                clicked_quit=true;
+            public void onClick(View view) {
                 quit();
             }
         });
-
-
     }
+
+    /**
+     * This method is called when the "Log Out" button is clicked, and it takes the current page
+     * back to the admin login screen.
+     */
+    public void logout()
+    {
+        this.finish();
+    }
+
     /**
      * This method is called when the "Create a new venue" button is clicked, and it
      * opens the CreateVenueScreen.
     */
     public void openCreateVenuesScreen()
     {
-        //uncomment the lines below once CreateVenueScreen.class has been added
-
-        //Intent intent = new Intent(this, CreateVenueScreen.class);
-        //startActivity(intent);
+       Intent intent = new Intent(this, CreateVenueScreen.class);
+       startActivity(intent);
     }
 
     /**
@@ -80,24 +92,17 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void openDisplayUpcomingEventsScreen()
     {
-        //uncomment the lines below once DisplayUpcomingEvents.class has been added
+        //uncomment the lines below once AdminUpcomingEventsScreen.class has been added
 
         //Intent intent = new Intent(this, DisplayUpcomingEvents.class);
         //startActivity(intent);
     }
 
-
     /**
-     * This method is called when the "Quit" button is clicked, and it takes the current page
-     * back to the customer login screen.
+     * This method is called when the "Quit" button is pressed
      */
     public void quit()
     {
-        if(clicked_quit)
-        {
-            this.finish();
-        }
+        this.finishAffinity();
     }
-
-
 }

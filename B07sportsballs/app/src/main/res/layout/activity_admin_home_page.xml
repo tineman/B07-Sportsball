@@ -19,9 +19,9 @@
         app:layout_constraintVertical_bias="0.111" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="309dp"
-        android:layout_height="53dp"
+        android:id="@+id/AdminLoginPage_TextView_Username"
+        android:layout_width="286dp"
+        android:layout_height="33dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="32dp"
         android:text="@string/AdminHomePage_home_page"
@@ -30,6 +30,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/AdminHomePage_create_venue"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.032"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
@@ -47,14 +48,14 @@
         app:layout_constraintVertical_bias="0.219" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/AdminHomePage_Button_Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="@string/AdminHomePage_quit_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:text="@string/AdminHomePage_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/AdminHomePage_display_events"
@@ -68,5 +69,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AdminHomePage_view_venues"
         app:layout_constraintVertical_bias="0.121" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_Quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/AdminHomePage_quit_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

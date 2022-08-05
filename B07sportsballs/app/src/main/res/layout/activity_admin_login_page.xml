@@ -7,99 +7,116 @@
     tools:context=".AdminLoginPage">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/AdminLoginPage_TextView_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="-15dp"
         android:text="Username"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.731" />
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_EditText_Username"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Title" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/AdminLoginPage_TextView_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="368dp"
         android:text="Password"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.139"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_EditText_Password"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_EditText_Username" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/AdminLoginPage_TextView_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="70dp"
+        android:text="Admin Login Page"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_TextView_Username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.462"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.122" />
+        app:layout_constraintVertical_bias="0.314"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
-        android:layout_width="219dp"
-        android:layout_height="59dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Enter Username"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView" />
-
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
-        android:layout_width="219dp"
-        android:layout_height="59dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Enter Password"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView2" />
-
-    <Button
-        android:id="@+id/button"
+        android:id="@+id/AdminLoginPage_EditText_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:ems="10"
+        android:hint="Enter Username Here"
+        android:inputType="textPersonName"
+        android:minWidth="300dp"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_TextView_Password"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Username" />
+
+    <EditText
+        android:id="@+id/AdminLoginPage_EditText_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="164dp"
+        android:layout_marginBottom="70dp"
+        android:ems="10"
+        android:hint="Enter Password Here"
+        android:inputType="textPersonName"
+        android:minWidth="300dp"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_EditText_Username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_EditText_Username"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Password" />
+
+    <Button
+        android:id="@+id/AdminLoginPage_Button_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
         android:text="Login"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.148"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:layout_constraintVertical_bias="0.39" />
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_LogInAsCustomer"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_EditText_Password" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/AdminLoginPage_Button_LogInAsCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Log in as a customer"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.611"
-        app:layout_constraintStart_toEndOf="@+id/button" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="68dp"
+        android:text="Log in as a customer?"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_Quit"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_Button_Login" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/AdminLoginPage_Button_Quit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:text="Quit"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.861"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.929" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,7 @@
     <string name="AdminHomePage_view_venue_button">View all venues</string>
     <string name="AdminHomePage_home_page">Admin Home Page</string>
     <string name="AdminHomePage_view_events">Display upcoming events</string>
+    <string name="AdminHomePage_logout">Log Out</string>
     <string name="AdminHomePage_quit_button">Quit</string>
 
 
@@ -49,6 +50,7 @@
     <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
     <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
     <string name="CustomerSignUpScreen_create_account">Create Account</string>
+    <string name="CustomerSignUpScreen_back_to_login">Go back to login</string>
 
 
     <!--VenueScreen-->
