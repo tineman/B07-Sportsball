@@ -101,20 +101,20 @@ public class Admin {
         this.password = password;
     }
 
-    public void createVenue(String venue){
-//        DatabaseReference ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
-        Venue avenue = new Venue();
-        avenue.name = venue;
-        if(venuesCreated.contains(venue)){
-            Log.e("Duplicate input");
-        }
-        if(!venuesCreated.contains(venue)){
-            venuesCreated.add(venue);
-            avenue.writeToDataBase(ref);
-            DatabaseReference cvenueRef = ref.child("Root").child("Admin").child("VenuesCreated");
-            String key = cvenueRef.push().getKey();
-            cvenueRef.child(key).setValue(avenue.name);
-        }
+//    public void createVenue(String venue){
+////        DatabaseReference ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
+//        Venue avenue = new Venue();
+//        avenue.name = venue;
+//        if(venuesCreated.contains(venue)){
+//            Log.e("Duplicate input");
+//        }
+//        if(!venuesCreated.contains(venue)){
+//            venuesCreated.add(venue);
+//            avenue.writeToDataBase(ref);
+//            DatabaseReference cvenueRef = ref.child("Root").child("Admin").child("VenuesCreated");
+//            String key = cvenueRef.push().getKey();
+//            cvenueRef.child(key).setValue(avenue.name);
+//        }
 
 
 
@@ -123,4 +123,4 @@ public class Admin {
 
 
 
-}
+

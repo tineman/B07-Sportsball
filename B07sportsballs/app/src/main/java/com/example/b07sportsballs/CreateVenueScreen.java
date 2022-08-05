@@ -54,9 +54,9 @@ public class CreateVenueScreen extends AppCompatActivity {
         addVenue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Venue venue = new Venue(VenueName.getText().toString(), new HashSet<Event>());
-                DatabaseReference ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
-                venue.writeToDataBase(ref);
+//                Venue venue = new Venue(VenueName.getText().toString(), new HashSet<Event>());
+//                DatabaseReference ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
+//                venue.writeToDataBase(ref);
 //                venue.setName(VenueName.getText().toString());
 //                venue.setEvents(new HashSet<Event>());
 //                new AdminVenueWriter().addVenue(venue, new AdminVenueWriter.datastatus() {
