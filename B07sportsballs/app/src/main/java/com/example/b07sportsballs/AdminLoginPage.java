@@ -10,35 +10,34 @@ import android.widget.EditText;
 
 public class AdminLoginPage extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "";
-    Button button;
-    Button button1;
-    Button button2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login_page);
         Intent intent2 = getIntent();
-        button = findViewById(R.id.button2);
-        button.setOnClickListener(new View.OnClickListener() {
+
+        Button loginButton = findViewById(R.id.AdminLoginPage_Button_Login);
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logInAdmin();
+            }
+        });
+
+        Button goToCustomerLoginScreenButton = findViewById(R.id.AdminLoginPage_Button_LogInAsCustomer);
+        goToCustomerLoginScreenButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getCustomer();
             }
         });
 
-        button1 = findViewById(R.id.button3);
-        button1.setOnClickListener(new View.OnClickListener() {
+        Button quitButton = findViewById(R.id.AdminLoginPage_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 quitAdmin();
-            }
-        });
-
-        button2 = findViewById(R.id.button);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                LogInAdmin();
             }
         });
 
@@ -55,11 +54,10 @@ public class AdminLoginPage extends AppCompatActivity {
 
     private void getCustomer() {
         Intent intent1 = new Intent(this, CustomerLoginScreen.class);
-
         startActivity(intent1);
     }
 
-    public void LogInAdmin(){
+    public void logInAdmin(){
         Intent intent1 = new Intent(this, AdminHomePage.class);
         EditText editText = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
         EditText editText1 = (EditText) findViewById(R.id.AdminLoginPage_EditText_Password);

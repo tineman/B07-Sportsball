@@ -73,8 +73,6 @@ public class CustomerHomePage extends AppCompatActivity {
                 quitApp(view);
             }
         });
-
-
     }
 
     public void quitApp(View view) {
@@ -87,25 +85,30 @@ public class CustomerHomePage extends AppCompatActivity {
     // startActivity(intent);
 
     public void openEventsJoined(){
-
+        Intent intent = new Intent(this, CustomerEventsJoinedScreen.class);
+        startActivity(intent);
     }
-    public void openScheduledEvents(){
 
+    public void openScheduledEvents(){
+        Intent intent = new Intent(this, CustomerEventsScheduledScreen.class);
+        startActivity(intent);
     }
     public void openUpcomingEvents(){
 
     }
+
     public void openVenues(){
-
-    }
-    public void openCreateAnEvent(){
-
-    }
-    public void backToLoginScreen(){
-        Intent intent= getParentActivityIntent();
+        Intent intent = new Intent(this, VenueScreen.class);
         startActivity(intent);
-
     }
 
+    public void openCreateAnEvent(){
+        Intent intent = new Intent(this, ScheduleEventScreen.class);
+        startActivity(intent);
+    }
 
+    public void backToLoginScreen(){
+        Intent intent = getParentActivityIntent();
+        startActivity(intent);
+    }
 }

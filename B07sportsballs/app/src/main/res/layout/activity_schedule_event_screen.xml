@@ -128,7 +128,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_EditText_Start" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/AdminLoginPage_Button_Login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -160,7 +160,7 @@
         android:ems="10"
         android:inputType="number"
         android:text="@string/ScheduleEventScreen_EditText_Max"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_Login"
         app:layout_constraintStart_toStartOf="@+id/ScheduleEventScreen_Text_Title"
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_Text_MaxPlayer" />
 
