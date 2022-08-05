@@ -4,49 +4,68 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashSet;
 
 public class VenueReader extends AppCompatActivity
 {
-    //stores all of the venue names in this HashSet
-    public HashSet<String> keys = new HashSet<String>();
+    public static HashSet<String> keys = new HashSet<String>();
 
+    public VenueReader()
+    {
+
+    }
     public void read(DatabaseReference ref)
     {
         ref = ref.child("Root").child("Venues");
 
         ref.addValueEventListener(new ValueEventListener()
-        {
-          @Override
-          public void onDataChange(DataSnapshot dataSnapshot)
           {
-              Log.i("demo", "data changed");
-              for (DataSnapshot child : dataSnapshot.getChildren()) {
-                  String key = child.getKey();
-                  keys.add(key);
-                  Venue v = child.getValue(Venue.class);
-                  Log.i("demo", "Venue and events for the venue: " + child);
+              @Override
+              public void onDataChange(DataSnapshot dataSnapshot)
+              {
+                  HashSet<String> venues = new HashSet<String>();
+                  Log.i("demo", "data changed");
+                  for (DataSnapshot child : dataSnapshot.getChildren()) {
+                      String key = child.getKey();
+                      Log.i("demo", "Key: " +key);
+                      venues.add(key);
+                  }
+                  updateKeys(venues);
+              }
+
+              @Override
+              public void onCancelled(DatabaseError databaseError)
+              {
+                  Log.w("VenueReader warning", "Error while reading venues from database",
+                          databaseError.toException());
               }
           }
-          @Override
-          public void onCancelled(DatabaseError databaseError)
-          {
-              Log.w("VenueReader warning", "Error while reading venues from database",
-                      databaseError.toException());
-          }
+
+        );
+
+
+    }
+    public void updateKeys(HashSet<String> venues)
+    {
+        for (String key: venues)
+        {
+            if (!keys.contains(key))
+            {
+                keys.add(key);
+            }
         }
-);
+    }
+
+
 
 
 }
 
 
-}
+

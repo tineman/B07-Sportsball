@@ -1,5 +1,9 @@
 package com.example.b07sportsballs;
+
+
 import com.google.firebase.database.DatabaseReference;
+
+
 import java.util.HashSet;
 
 public class Venue
@@ -48,15 +52,26 @@ public class Venue
         //read the venues stored in the database
         public void readFromDataBase(DatabaseReference ref)
         {
-                VenueReader reader = new VenueReader();
-                reader.read(ref);
+                setReader(new VenueReader());
+                venuereader.read(ref);
         }
 
         //creates a new venue in the database
         public void writeToDataBase(DatabaseReference ref) {
-                VenueWriter writer = new VenueWriter();
-                writer.write(ref,this);
+                setWriter(new VenueWriter());
+                venuewriter.write(ref,this);
+        }
+
+        //return a HashSet of all venues that exist
+        public HashSet<String> getAllVenues()
+        {
+                return VenueReader.keys;
+
         }
 
 
+
+
+
 }
+

@@ -7,6 +7,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class VenueWriter extends AppCompatActivity
 {
+    public VenueWriter()
+    {}
+
     //Writes a venue into the database
     public void write(DatabaseReference ref, Venue venue)
     {
