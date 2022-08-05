@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.25832977294921877" />
+        <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.535951517340769" />
+        <entry key="app/src/main/res/layout/activity_customer_home_page.xml" value="0.1731509191962377" />
+        <entry key="app/src/main/res/layout/activity_customer_login_screen.xml" value="0.1731509191962377" />
+        <entry key="app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.1731509191962377" />
+        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.5001172030262583" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

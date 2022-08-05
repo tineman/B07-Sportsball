@@ -13,12 +13,20 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class ScheduleEventScreen extends AppCompatActivity {
 
+    Event event = new Event();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_event_screen);
 
+        DatabaseReference EventRef = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Chess Boxing");
+        event.bindToDatabase(EventRef, new EventBinder.Updater() {
+            @Override
+            public void onUpdate() {
 
+            }
+        });
 
     }
 
@@ -28,7 +36,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
     public void onSubmit(View view)
     {
 
-
+        Intent intent = new Intent(this, CustomerEventsJoinedScreen.class);
+        intent.putExtra("Event", event);
+        startActivity(intent);
 
     }
     public void onDisplay(View view)

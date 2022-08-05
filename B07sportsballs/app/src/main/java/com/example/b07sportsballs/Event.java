@@ -3,16 +3,18 @@ package com.example.b07sportsballs;
 import com.google.firebase.database.DatabaseReference;
 
 import java.util.Date;
+import java.util.Objects;
+import java.io.Serializable;
 
-public class Event {
+public class Event implements Serializable{
 
-    private EventWriter writer;
-    private EventBinder binder;
+    private transient EventWriter writer;
+    private transient EventBinder binder;
     private String name, host, location;
     private Date startTime, endTime;
     private int currPlayers, maxPlayers;
     //ref is the reference to the node containing the event
-    private DatabaseReference ref;
+    private transient DatabaseReference ref;
 
     /**
      * When using the empty constructor, call bindToDatabase to initialise the values. Call setWriter()
@@ -99,8 +101,18 @@ public class Event {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return name.equals(event.name);
+    }
 
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
 
 
