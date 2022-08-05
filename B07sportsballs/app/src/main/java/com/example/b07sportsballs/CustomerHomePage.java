@@ -87,10 +87,12 @@ public class CustomerHomePage extends AppCompatActivity {
     // startActivity(intent);
 
     public void openEventsJoined(){
-
+        Intent intent = new Intent(this, CustomerEventsJoinedScreen.class);
+        startActivity(intent);
     }
     public void openScheduledEvents(){
-
+        Intent intent = new Intent(this, CustomerEventsScheduledScreen.class);
+        startActivity(intent);
     }
     public void openUpcomingEvents(){
 
@@ -99,7 +101,8 @@ public class CustomerHomePage extends AppCompatActivity {
 
     }
     public void openCreateAnEvent(){
-
+        Intent intent = new Intent(this, ScheduleEventScreen.class);
+        startActivity(intent);
     }
     public void backToLoginScreen(){
         Intent intent= getParentActivityIntent();

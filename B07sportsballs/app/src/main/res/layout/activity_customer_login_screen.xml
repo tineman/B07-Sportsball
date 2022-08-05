@@ -48,8 +48,9 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/CustomerLoginScreen_Button_Login"
-        app:layout_constraintEnd_toEndOf="@+id/CustomerLoginScreen_EditText_Username"
-        app:layout_constraintStart_toStartOf="@+id/CustomerLoginScreen_EditText_Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CustomerLoginScreen_TextView_Password" />
 
     <EditText
@@ -65,9 +66,9 @@
         android:minHeight="48dp"
         android:textColorHint="#757575"
         app:layout_constraintBottom_toTopOf="@+id/CustomerLoginScreen_TextView_Password"
-        app:layout_constraintEnd_toEndOf="@+id/CustomerLoginScreen_TextView_Username"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="@+id/CustomerLoginScreen_TextView_Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/CustomerLoginScreen_TextView_Username" />
 
     <TextView
