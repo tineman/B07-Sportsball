@@ -30,14 +30,11 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         setContentView(R.layout.activity_customer_sign_up_screen);
         reference = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
 
-        /**
-         * The following button will quit the program once it is clicked
-         */
-        Button quitButton = findViewById(R.id.CustomerSignUpScreen_Button_Quit);
-        quitButton.setOnClickListener(new View.OnClickListener() {
+        Button createAccountButton = findViewById(R.id.CustomerSignUpScreen_Button_CreateAccount);
+        createAccountButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                quitApp();
+                createAccount();
             }
         });
 
@@ -49,11 +46,11 @@ public class CustomerSignUpScreen extends AppCompatActivity {
             }
         });
 
-        Button createAccountButton = findViewById(R.id.CustomerSignUpScreen_Button_CreateAccount);
-        createAccountButton.setOnClickListener(new View.OnClickListener() {
+        Button quitButton = findViewById(R.id.CustomerSignUpScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                createAccount();
+                quitApp();
             }
         });
     }
