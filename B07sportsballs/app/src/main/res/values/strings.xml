@@ -49,6 +49,7 @@
     <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
     <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
     <string name="CustomerSignUpScreen_create_account">Create Account</string>
+    <string name="CustomerSignUpScreen_back_to_login">Go back to login</string>
 
 
     <!--VenueScreen-->

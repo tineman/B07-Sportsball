@@ -8,9 +8,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
 public class AdminLoginPage extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "";
     Button button;
@@ -64,8 +61,8 @@ public class AdminLoginPage extends AppCompatActivity {
 
     public void LogInAdmin(){
         Intent intent1 = new Intent(this, AdminHomePage.class);
-        EditText editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        EditText editText1 = (EditText) findViewById(R.id.editTextTextPersonName2);
+        EditText editText = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
+        EditText editText1 = (EditText) findViewById(R.id.AdminLoginPage_EditText_Password);
         String message = editText.getText().toString();
         String message1 = editText1.getText().toString();
         intent1.putExtra(EXTRA_MESSAGE, message);

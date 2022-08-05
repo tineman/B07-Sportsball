@@ -29,6 +29,7 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_sign_up_screen);
         reference = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
+
         /**
          * The following button will quit the program once it is clicked
          */
@@ -37,6 +38,14 @@ public class CustomerSignUpScreen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 quitApp();
+            }
+        });
+
+        Button backToLoginScreenButton = findViewById(R.id.CustomerSignUpScreen_Button_BackToLogin);
+        backToLoginScreenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openLoginScreen();
             }
         });
 
@@ -110,9 +119,16 @@ public class CustomerSignUpScreen extends AppCompatActivity {
     }
 
     /**
+     * This method is called when the user wants to go back to the login screen
+     * */
+    public void openLoginScreen(){
+        Intent intent = new Intent(this, CustomerLoginScreen.class);
+        startActivity(intent);
+    }
+
+    /**
      * This method is called after account creation is successful
      * */
-
     public void openCustomerHomePage(){
         Intent intent = new Intent(this, CustomerHomePage.class);
         EditText editText = findViewById(R.id.CustomerSignUpScreen_EditText_Username);
