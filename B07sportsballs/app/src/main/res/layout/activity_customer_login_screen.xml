@@ -13,11 +13,11 @@
         android:layout_marginBottom="60dp"
         android:text="@string/CustomerLoginScreen_title"
         android:textColor="@color/black"
-        android:textSize="38sp"
+        android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/CustomerLoginScreen_TextView_Username"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed" />
