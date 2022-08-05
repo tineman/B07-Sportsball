@@ -119,6 +119,12 @@ public class CustomerLoginScreen extends AppCompatActivity {
         this.finishAffinity();
     }
 
+
+    /**
+     * following method will read username and password from the edittext
+     * and compare it against the data base
+     * 
+     * when username and password match,user is directed to Customer Home Page */
     public void loginAccount(){
         EditText usernameET = findViewById(R.id.CustomerLoginScreen_EditText_Username);
         EditText passwordET = findViewById(R.id.CustomerLoginScreen_EditText_Password);
@@ -158,7 +164,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
 
     }
-
 
 
 }
