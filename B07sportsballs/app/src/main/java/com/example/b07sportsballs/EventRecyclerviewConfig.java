@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class EventRecyclerviewConfig {
@@ -51,7 +52,7 @@ public class EventRecyclerviewConfig {
             host.setText(event.getHost());
             venue.setText(event.getLocation());
             capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
-            duration.setText("Duration: " + event.getStartTime() + " - " + event.getEndTime());
+            duration.setText("Duration: " + new SimpleDateFormat("HH:mm").format(event.getStartTime()) + " - " + new SimpleDateFormat("HH:mm").format(event.getEndTime()));
         }
 
     }
