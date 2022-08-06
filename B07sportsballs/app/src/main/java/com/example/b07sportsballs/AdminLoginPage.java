@@ -85,13 +85,14 @@ public class AdminLoginPage extends AppCompatActivity {
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
                         String dataName = infoSnapshot.child("Username").getValue().toString();
-                        System.out.println(dataName);
+    //                    System.out.println(dataName);
                         if(ausername.isEmpty() || apassword.isEmpty()){
-                            Toast.makeText(AdminLoginPage.this, "field must not be empty", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AdminLoginPage.this, "field must not be empty", Toast.LENGTH_LONG).show();
                             match = true;
                         }else if(dataName.equals(ausername)){
                             match = true;
                             if(infoSnapshot.child("Password").getValue().toString().equals(apassword)){
+         //                       System.out.println("TESTING");
                                 goAdminHome();
                             }else{
                                 Toast.makeText(AdminLoginPage.this, "Wrong password", Toast.LENGTH_SHORT).show();
