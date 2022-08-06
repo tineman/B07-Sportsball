@@ -1,0 +1,56 @@
+Name: Tian
+	
+What did I do since yesterday?
+	EventsJoined and EventsSchedueld screens impleented
+What am I going to do?
+	Implement ScheduleEvent
+What I need help with?
+	Nothing much
+  
+Name: Austin
+	
+What did I do since yesterday?
+	Fixed some formatting isuees in some frontend classes
+What am I going to do?
+	Implement background image for app
+	Make some simple testcases for the user stories
+What I need help with?
+	Nothing
+  
+Name: Chau
+	
+What did I do since yesterday?
+  Finish the Customer class. Update Updater interface to merge with EventBinder.Updater. Linked some methods with Customer/AdminUpcomingEventsScreen.
+What am I going to do?
+  Test the Customer class.
+What I need help with?
+  Test the Customer class.
+
+Name: George
+	
+What did I do since yesterday?
+	Merge admin readers and writers together with the admin class
+What am I going to do?
+	Finalize the admin class and admin functionalities based on the methods from venue classes
+What I need help with?
+	Methods provided in venue classes
+
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Worked on getAllVenues() method to get all of the venues stored in the database
+What am I going to do?
+	Finalize getAllVenues() method
+	Write some test cases
+What I need help with?
+	Nothing right now
+
+Name: Frans
+	
+What did I do since yesterday?
+	Finalize and push login & signup
+What am I going to do?
+	Designing page background
+What I need help with?
+	Nothing right now
