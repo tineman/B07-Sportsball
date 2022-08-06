@@ -1,0 +1,52 @@
+Name: Austin
+	
+What did I do since yesterday?
+	Researched a feature to make the frontend more compatible. I will implement this feature tomorrow. Here is a link to the feature: https://www.youtube.com/watch?v=mtYBBInIIE8&ab_channel=CodingWithMitch
+What am I going to do?
+	Implement the feature mentioned above
+	Tidy up the front-end layouts to make it more user-friendly
+What I need help with?
+	Nothing, really busy with a bunch of assignments today
+  
+Name: Tian
+	
+What did I do since yesterday?
+	Nothing
+What am I going to do?
+	Implement the adding event screen’s functionality
+What I need help with?
+	Nothing, I was just really busy today
+  
+Name: Chau
+What did I do since yesterday?
+Looked into ways of passing a Java object from one activity to another (will try one of the solutions today). Implemented User class with two additional methods for getting all venues and events from the database. Working on Customer class. 
+What am I going to do?
+What I need help with?
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Tested Venue class and finalized VenueReader
+What am I going to do?
+	Continue testing and try improving the read() method in VenueReader
+What I need help with?
+	Nothing right now
+
+Name: George
+	
+What did I do since yesterday?
+	Finalize Admin class, as well as Admin Reader and Admin Writer
+	Finalize implementing the CreateVenue activity and add some improvements about this activity
+What am I going to do?
+	Testing activities
+	Planning about the connections between backend design and frontend design(linking the backend designs and frontend designs which needs corresponding backend designs together)
+What I need help with?
+	Linking with backend designs to frontend design when merge together
+
+Name: Frans
+	
+What did I do since yesterday?
+	Implement regex and popup messages for login and signup
+What am I going to do?
+	Not sure, anything that has not been completed
+What I need help with?
