@@ -1,5 +1,7 @@
 package com.example.b07sportsballs;
 
+import static com.example.b07sportsballs.Venue.allVenues;
+
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,8 +49,7 @@ public class VenueReader extends AppCompatActivity {
                 Venue.allVenues.addAll(keys);
 
                 isRunning = false;
-                Venue v = new Venue();
-                v.getAllVenues();
+                Venue.getAllVenues();
             }
         });
     }
