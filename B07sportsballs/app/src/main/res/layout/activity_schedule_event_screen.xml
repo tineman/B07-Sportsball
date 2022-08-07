@@ -48,13 +48,13 @@
 
     <Button
         android:id="@+id/ScheduleEventScreen_EditText_StartTime"
-        android:onClick="pickStartTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="time"
-        android:text="@string/ScheduleEventScreen_EditText_Start"
+        android:onClick="pickStartTime"
+        android:text="@string/ScheduleEventScreen_EditText_End"
         app:layout_constraintBottom_toTopOf="@+id/ScheduleEventScreen_Text_End"
         app:layout_constraintStart_toStartOf="@+id/ScheduleEventScreen_Text_Title"
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_Text_Start" />
@@ -63,7 +63,7 @@
         android:id="@+id/ScheduleEventScreen_Text_Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ScheduleEventScreen_Text_Start"
+        android:text="@string/ScheduleEventScreen_EditText_Start"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -165,6 +165,24 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/ScheduleEventScreen_Text_Title"
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_Text_Location" />
+
+    <Button
+        android:id="@+id/ScheduleEventScreen_StartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Select Date"
+        app:layout_constraintStart_toEndOf="@+id/ScheduleEventScreen_EditText_StartTime"
+        app:layout_constraintTop_toTopOf="@+id/ScheduleEventScreen_EditText_StartTime" />
+
+    <Button
+        android:id="@+id/ScheduleEventScreen_EndDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Select Date"
+        app:layout_constraintStart_toEndOf="@+id/ScheduleEventScreen_EditText_EndTime"
+        app:layout_constraintTop_toTopOf="@+id/ScheduleEventScreen_EditText_EndTime" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

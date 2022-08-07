@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -22,41 +24,19 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
-        //The following should be replaced by getExtra and getting list of events from customer
-
-        Event event1 = new Event();
-        Event event2 = new Event();
-        Event event3 = new Event();
-
-        event1.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Chess Boxing"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-        event2.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Nettle Eating"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-        event3.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Water Polo"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-
-        List<Event> events = new ArrayList<>();
-        events.add(event1);
-        events.add(event2);
-        events.add(event3);
+        if(Customer.getJoinedEvents() == null)
+        {
+            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
+            return;
+        }
+        List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
 
         //
 
         for(Event event : events)
         {
-            event.changeOnUpdate(new EventBinder.Updater() {
+            event.changeOnUpdate(new Updater() {
                 @Override
                 public void onUpdate() {
                     new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsJoinedScreen.this, events);

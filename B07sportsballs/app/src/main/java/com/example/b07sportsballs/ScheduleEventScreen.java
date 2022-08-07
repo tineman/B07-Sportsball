@@ -14,7 +14,9 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +32,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
     Button endButton;
 
     int startHour, startMinute, endHour, endMinute; //set to negative 1
+
+    Date Start, End;
+    Boolean startTime, startDate, endTime, endDate; //Have they picked the start time and date yet?
 
 
     @Override
@@ -54,10 +59,13 @@ public class ScheduleEventScreen extends AppCompatActivity {
         endButton = (Button) findViewById(R.id.ScheduleEventScreen_EditText_EndTime);
         maxText = (EditText) findViewById(R.id.ScheduleEventScreen_EditText_Max);
 
-        startHour = -1;
-        startMinute = -1;
-        endHour = -1;
-        endMinute = -1;
+        Start = Calendar.getInstance().getTime(); //or get current date
+        End = Calendar.getInstance().getTime();
+        startTime = false;
+        startDate = false;
+        endTime = false;
+        endDate = false;
+
     }
 
 
@@ -88,20 +96,17 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
-        if(startHour == -1 || startMinute == -1)
+        if(!startTime)
         {
             Toast.makeText(ScheduleEventScreen.this, "A start time must be selected", Toast.LENGTH_LONG).show();
             return;
         }
 
-        if(endHour == -1 || endMinute == -1)
+        if(!endTime)
         {
             Toast.makeText(ScheduleEventScreen.this, "An end time must be selected", Toast.LENGTH_LONG).show();
             return;
         }
-
-        Date Start = new Date(0, 1, 1, startHour, startMinute);
-        Date End = new Date(0, 1, 1, endHour, endMinute);
 
         String max = maxText.getText().toString();
         if(max.isEmpty())
@@ -120,7 +125,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         int maxPlayer = Integer.parseInt(max);
 
         //Get Customer
-        String host = "";
+        String host = Customer.username;
 
         Event newEvent = new Event(null, null, name, host, venue, Start, End, 0, maxPlayer, null);
 
@@ -129,41 +134,40 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
         Log.i("Event Created", newEvent.getName() + " at " + newEvent.getLocation() + " from " + newEvent.getStartTime() + " to " + newEvent.getEndTime() + " with " + newEvent.getCurrPlayers() + "/" + newEvent.getMaxPlayers());
 
+
+        //Customer.scheduleEvent();
     }
 
-    public void pickStartTime(View view) {
-
+    public void pickTime(View view, Date date)
+    {
         TimePickerDialog.OnTimeSetListener startListener = new TimePickerDialog.OnTimeSetListener()
         {
             @Override
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                startHour = hour;
-                startMinute = min;
-                startButton.setText(hour + ":" + min);
+                date.setHours(hour);
+                date.setMinutes(min);
+                startButton.setText(new SimpleDateFormat("HH:mm").format(date));
             }
 
         };
 
-        TimePickerDialog startDialog = new TimePickerDialog(ScheduleEventScreen.this, startListener, startHour, startMinute, true);
+        TimePickerDialog startDialog = new TimePickerDialog(ScheduleEventScreen.this, startListener, date.getHours(), date.getMinutes(), true);
         startDialog.setTitle("Select Time");
         startDialog.show();
     }
 
+
+    public void pickStartTime(View view) {
+
+        pickTime(view, Start);
+        startTime = true;
+
+    }
+
     public void pickEndTime(View view) {
 
-        TimePickerDialog.OnTimeSetListener endListener = new TimePickerDialog.OnTimeSetListener()
-        {
-            @Override
-            public void onTimeSet(TimePicker timePicker, int hour, int min) {
-                endHour = hour;
-                endMinute = min;
-                endButton.setText(hour + ":" + min);
-            }
+        pickTime(view, End);
+        endTime = true;
 
-        };
-
-        TimePickerDialog endDialog = new TimePickerDialog(ScheduleEventScreen.this, endListener, endHour, endMinute, true);
-        endDialog.setTitle("Select Time");
-        endDialog.show();
     }
 }

@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,49 +26,21 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
-
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
+        if(Customer.getScheduledEvents() == null)
+        {
+            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
+            return;
+        }
 
+        List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
 
-
-        //The following should be replaced by getExtra and getting list of events from customer
-
-        Event event1 = new Event();
-        Event event2 = new Event();
-        Event event3 = new Event();
-
-        event1.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Chess Boxing"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-        event2.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Nettle Eating"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-        event3.bindToDatabase(FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Tian-Testing/Venues/UOFT/Events/Water Polo"), new EventBinder.Updater() {
-            @Override
-            public void onUpdate() {
-                //This represents the previous onUpdate method
-            }
-        });
-
-        List<Event> events = new ArrayList<>();
-        events.add(event1);
-        events.add(event2);
-        events.add(event3);
-
-        //
 
         for(Event event : events)
         {
-            event.changeOnUpdate(new EventBinder.Updater() {
+            event.changeOnUpdate(new Updater() {
                 @Override
                 public void onUpdate() {
                     new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsScheduledScreen.this, events);
