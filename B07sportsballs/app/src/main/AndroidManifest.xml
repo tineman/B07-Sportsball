@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.b07sportsballs">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -14,29 +13,46 @@
         android:theme="@style/Theme.B07sportsballs"
         tools:targetApi="31">
         <activity
+            android:name=".CreateVenueScreen"
+            android:exported="false" />
+        <activity
+            android:name=".AdminHomePage"
+            android:exported="false" />
+        <activity
+            android:name=".AdminLoginPage"
+            android:exported="false" />
+        <activity
             android:name=".AdminUpcomingEventsScreen"
             android:exported="false" />
         <activity
-            android:name=".CustomerUpcomingEventsScreen"
+            android:name=".CustomerEventsJoinedScreen"
             android:exported="false" />
+        <activity
+            android:name=".CustomerEventsScheduledScreen"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerHomePage"
+            android:exported="false"
+            android:parentActivityName=".CustomerLoginScreen" />
         <activity
             android:name=".CustomerSignUpScreen"
             android:exported="false" />
         <activity
-            android:name=".ScheduleEventScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".CustomerUpcomingEventsScreen"
+            android:exported="false" />
         <activity
             android:name=".ScheduleEventScreen"
             android:exported="false" />
         <activity
             android:name=".VenueScreen"
             android:exported="false" />
+        <activity
+            android:name=".CustomerLoginScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
-
 </manifest>

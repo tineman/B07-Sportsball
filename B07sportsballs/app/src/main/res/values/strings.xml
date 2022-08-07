@@ -1,27 +1,69 @@
 <resources>
     <string name="app_name">B07sportsballs</string>
 
+    <!--Global-->
+    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
+    <string name="Logout_Button">Log Out</string> <!--Synchronise all logout strings-->
 
-    // CustomerLoginScreen strings
+    <!--AdminHomePage-->
+    <string name="AdminHomePage_Title">Admin Home Page</string>
+    <string name="AdminHomePage_HelloText">Hello,</string>
+    <string name="AdminHomePage_Username">username</string>
+    <string name="AdminHomePage_AddVenue">Create a new venue</string>
+    <string name="AdminHomePage_ViewVenues">View all venues</string>
+    <string name="AdminHomePage_DisplayEvents">Display upcoming events</string>
+
+    <!--AdminLoginPage-->
+    <string name="AdminLoginPage_TextView_Title">Admin Login Page</string>
+    <string name="AdminLoginPage_TextView_Username">Username</string>
+    <string name="AdminLoginPage_EditText_Username">Enter Username Here</string>
+    <string name="AdminLoginPage_TextView_Password">Password</string>
+    <string name="AdminLoginPage_EditText_Password">Enter Password Here</string>
+    <string name="AdminLoginPage_Button_Login">Login</string>
+    <string name="AdminLoginPage_Button_GoToCustomerLoginPage">Go To Customer Login Page?</string>
+
+    <!--CreateVenueScreen-->
+    <string name="CreateVenueScreen_TextView_Venue">Venue Name</string>
+    <string name="CreateVenueScreen_EditText_Venue">Enter Venue Name Here</string>
+    <string name="CreateVenueScreen_Button_AddVenue">Add Venue</string>
+
+    <!--CustomerEventsJoinedScreen-->
+    <string name="CustomerEventsJoinedScreen_title">Events Joined</string>
+
+    <!--CustomerEventsScheduledScreen-->
+    <string name="CustomerEventsScheduledScreen_title">Events Scheduled</string>
+
+    <!--CustomerHomePage-->
+    <string name="CustomerHomePage_Title">Customer Home Page</string>
+    <string name="CustomerHomePage_HelloText">Hello,</string>
+    <string name="CustomerHomePage_Username">username</string>
+    <string name="CustomerHomePage_EventsJoined">Events Joined</string>
+    <string name="CustomerHomePage_EventsScheduled">Events you Scheduled</string>
+    <string name="CustomerHomePage_UpcomingEvents">Upcoming Events</string>
+    <string name="CustomerHomePage_ViewVenues">Venues</string>
+    <string name="CustomerHomePage_ScheduleEvent">Create an Event</string>
+
+    <!--CustomerLoginScreen-->
     <string name="CustomerLoginScreen_title">Customer Login Page</string>
-    <string name="CustomerLoginScreen_username">Username:</string>
-    <string name="CustomerLoginScreen_password">Password:</string>
+    <string name="CustomerLoginScreen_username">Username</string>
+    <string name="CustomerLoginScreen_password">Password</string>
     <string name="CustomerLoginScreen_enter_username">Enter Username Here</string>
     <string name="CustomerLoginScreen_enter_password">Enter Password Here</string>
     <string name="CustomerLoginScreen_login">Login</string>
     <string name="CustomerLoginScreen_login_as_an_admin">Go to admin login page?</string>
     <string name="CustomerLoginScreen_register_customer_account">Register</string>
-    <string name="CustomerLoginScreen_quit">Quit</string>
 
-    // CustomerSignUpScreen strings
+    <!--CustomerSignUpScreen-->
     <string name="CustomerSignUpScreen_title">Customer Sign Up Page</string>
-    <string name="CustomerSignUpScreen_username">Username:</string>
-    <string name="CustomerSignUpScreen_password">Password:</string>
+    <string name="CustomerSignUpScreen_username">Username</string>
+    <string name="CustomerSignUpScreen_password">Password</string>
     <string name="CustomerSignUpScreen_enter_username">Enter Username Here</string>
     <string name="CustomerSignUpScreen_enter_password">Enter Password Here</string>
     <string name="CustomerSignUpScreen_create_account">Create Account</string>
-    <!--Global-->
-    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
+    <string name="CustomerSignUpScreen_back_to_login">Go back to login page</string>
+
+    <!--CustomerUpcomingEventsScreen-->
+    <string name="CustomerUpcomingEventsScreen_Button_Join">Join</string>
 
     <!--VenueScreen-->
     <string name="VenueScreen_Title">Please Select a Venue</string>
@@ -33,18 +75,10 @@
     <string name="ScheduleEventScreen_Text_Start">Start Time:</string>
     <string name="ScheduleEventScreen_Text_End">End Time:</string>
     <string name="ScheduleEventScreen_Text_Max">Maximum Number of Players:</string>
-
     <string name="ScheduleEventScreen_EditText_Venue">Enter Location Here</string>
     <string name="ScheduleEventScreen_EditText_Event">Enter Name Here</string>
     <string name="ScheduleEventScreen_EditText_Start">Select Time</string>
     <string name="ScheduleEventScreen_EditText_End">Select Time</string>
     <string name="ScheduleEventScreen_EditText_Max"></string>
-
     <string name="ScheduleEventScreen_Button_Submit">Submit</string>
-
-    <!--CustomerUpcomingEventsScreen-->
-    <string name="CustomerUpcomingEventsScreen_Button_Join">Join</string>
-
-
-
 </resources>
