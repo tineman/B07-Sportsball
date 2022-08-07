@@ -40,12 +40,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
         setAdapter();
 
         // Fetch data from database.
-        setEvents(new Updater() {
-            @Override
-            public void onUpdate() {
-
-            }
-        });
+        setEvents();
     }
 
     private void setAdapter() {
@@ -55,10 +50,12 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
         eventsView.setAdapter(recyclerAdapter);
     }
 
-    private void setEvents(Updater updater) {
+    private void setEvents() {
         Customer.collectUpcomingEvents(events, new Updater() { 
             @Override
             public void onUpdate() {
+                // Remove events that customer already joins.
+                for (Event event : Customer.joinedEvents) events.remove(event);
                 // Sort events by starting time from newest to oldest.
                 Collections.sort(events, new Comparator<Event>() {
                     @Override
@@ -68,7 +65,6 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
                 });
 
                 Collections.reverse(events);
-                updater.onUpdate();
                 recyclerAdapter.notifyDataSetChanged();
             }
         });

@@ -92,10 +92,8 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void openDisplayUpcomingEventsScreen()
     {
-        //uncomment the lines below once AdminUpcomingEventsScreen.class has been added
-
-        //Intent intent = new Intent(this, DisplayUpcomingEvents.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AdminUpcomingEventsScreen.class);
+        startActivity(intent);
     }
 
     /**

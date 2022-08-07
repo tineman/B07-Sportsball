@@ -104,6 +104,7 @@ public class CustomerSignUpScreen extends AppCompatActivity {
                     DatabaseReference commentRef = reference.child("Root").child("Customer").push();
                     commentRef.child("Username").setValue(username);
                     commentRef.child("Password").setValue(password);
+                    Customer customer = new Customer(username, password, commentRef);
                     openCustomerHomePage();
                 }
             }
