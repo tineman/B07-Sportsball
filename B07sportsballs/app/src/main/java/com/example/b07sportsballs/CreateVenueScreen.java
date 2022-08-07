@@ -33,7 +33,7 @@ public class CreateVenueScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_venue_screen);
         ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
-        Log.i("AdminLogin", "Startup");
+        Log.i("CreateVenue", "Startup");
         Log.i("CreateVenue", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
 
 
@@ -65,20 +65,21 @@ public class CreateVenueScreen extends AppCompatActivity {
                 ref.child("Root").child("Venue").addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        boolean match = false;
                         for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                             if(infoSnapshot!=null){
                                 String vname = infoSnapshot.child("VenuesName").getValue().toString();
                                 if(avenuename.isEmpty()){
                                     Toast.makeText(CreateVenueScreen.this, "Venue name cannot be empty", Toast.LENGTH_SHORT).show();
-                                    match = true;
                                 }
                                 if(vname.equals(avenuename)){
-                                    match = false;
                                     Toast.makeText(CreateVenueScreen.this, "This venue already exists, please try input other venues", Toast.LENGTH_SHORT).show();
                                 }
                                 if (!vname.equals(avenuename)){
-
+                                    Venue venue = new Venue();
+                                    venue.name = avenuename;
+                                    venue.writeToDataBase(ref);
+                                    Admin admin = new Admin();
+                                    admin.createVenue(avenuename);
                                 }
                             }
                         }

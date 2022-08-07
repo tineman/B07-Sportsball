@@ -1,6 +1,8 @@
 package com.example.b07sportsballs;
 
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 
 
@@ -8,11 +10,12 @@ import java.util.HashSet;
 
 public class Venue
 {
-    public static String name;
-    public static HashSet<Event> events;
-    public static DatabaseReference ref;
-    public static VenueWriter venuewriter;
-    public static VenueReader venuereader;
+    public String name;
+    private HashSet<Event> events;
+    private DatabaseReference ref;
+    private VenueWriter venuewriter;
+    private VenueReader venuereader;
+    public static HashSet<String> allVenues;
 
     //Empty constructor
     public Venue() { }
@@ -53,21 +56,32 @@ public class Venue
     public void readFromDataBase(DatabaseReference ref)
     {
         setReader(new VenueReader());
+        VenueReader.ref = ref.child("Root").child("Venues");
         venuereader.read(ref);
     }
 
-    //creates a new venue in the database
+    //create a new venue in the database
     public void writeToDataBase(DatabaseReference ref) {
         setWriter(new VenueWriter());
         venuewriter.write(ref,this);
     }
 
     //return a HashSet of all venues that exist
-    public HashSet<String> getAllVenues()
+    public static HashSet<String> getAllVenues()
     {
-        return VenueReader.keys;
-
+        if (!VenueReader.isRunning)
+        {
+            Log.i("demo", "allVenues: " + allVenues);
+            return allVenues;
+        }
+        return allVenues;
     }
+
+
+
+
+
+
 
 
 
