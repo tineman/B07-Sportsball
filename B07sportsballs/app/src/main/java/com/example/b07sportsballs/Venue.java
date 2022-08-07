@@ -31,6 +31,9 @@ public class Venue
                 return name;
         }
 
+        // Sets name of venue
+        public void setName(String name) { this.name = name; }
+
         //returns a HashSet of the events that will take place in the given venue
         public HashSet<Event> getEvents()
         {
@@ -75,16 +78,6 @@ public class Venue
                 }
                 return allVenues;
         }
-
-
-
-
-
-
-
-
-
-
-
 }
+
 

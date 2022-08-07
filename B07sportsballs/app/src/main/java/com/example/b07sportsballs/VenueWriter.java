@@ -7,7 +7,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class VenueWriter extends AppCompatActivity
 {
+
     public VenueWriter() {}
+
 
     //Writes a venue into the database
     public void write(DatabaseReference ref, Venue venue)
@@ -15,6 +17,11 @@ public class VenueWriter extends AppCompatActivity
         String venue_name = venue.getName();
         ref.child("Root").child("Venues").child(venue_name).child("Events").setValue("");
         Venue.allVenues.add(venue_name);
-    }
 
+    }
 }
+
+
+
+
+
