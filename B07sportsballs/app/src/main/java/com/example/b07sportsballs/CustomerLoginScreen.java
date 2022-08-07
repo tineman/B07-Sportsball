@@ -24,13 +24,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
-
-
-//        Event event1;
-//        event1 = new Event(new EventWriter(), new EventBinder(event1), "Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 24, 0), 0, 12, EventRef);
-//        event1.setData("Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 24, 0), 0, 12);
-//        Event event2 = new Event(writer, reader, "Nettle Eating", "Brady Haren", "UOFT", new Date(2023, 1, 1, 11, 0), new Date(2023, 1, 1, 13, 0), 0, 32, EventRef);
-//        Event event3 = new Event(writer, reader, "Water Polo", "John Paul Jones", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 23, 0), 0, 12, EventRef);
     }
 
     /**
