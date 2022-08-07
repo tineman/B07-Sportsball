@@ -67,8 +67,8 @@
 
     <string name="ScheduleEventScreen_EditText_Venue">Enter Location Here</string>
     <string name="ScheduleEventScreen_EditText_Event">Enter Name Here</string>
-    <string name="ScheduleEventScreen_EditText_Start"></string>
-    <string name="ScheduleEventScreen_EditText_End"></string>
+    <string name="ScheduleEventScreen_EditText_Start">Select Time</string>
+    <string name="ScheduleEventScreen_EditText_End">Select Time</string>
     <string name="ScheduleEventScreen_EditText_Max"></string>
 
     <string name="ScheduleEventScreen_Button_Submit">Submit</string>

@@ -3,12 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.25832977294921877" />
-        <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.535951517340769" />
-        <entry key="app/src/main/res/layout/activity_customer_home_page.xml" value="0.1731509191962377" />
-        <entry key="app/src/main/res/layout/activity_customer_login_screen.xml" value="0.1731509191962377" />
-        <entry key="app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.1731509191962377" />
-        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.5001172030262583" />
+        <entry key="app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.1731509191962377" />
+        <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.1731509191962377" />
+        <entry key="app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/activity_venue_screen.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.1" />
       </map>
     </option>
   </component>

@@ -20,13 +20,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_joined_screen);
 
-
-
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
-
-
-
 
         //The following should be replaced by getExtra and getting list of events from customer
 
@@ -69,8 +63,6 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                 }
             });
         }
-
-
 
 
     }
