@@ -26,7 +26,6 @@ public class Admin {
     public Admin() {
     }
 
-
     public Admin(HashSet<String> venuesCreated, String username, String password) {
         this.venuesCreated = venuesCreated;
         this.username = username;
@@ -90,14 +89,10 @@ public class Admin {
     }
 
 
-
-
-
-
     public void createVenue(String venue) {
 
         Venue avenue = new Venue();
-        avenue.name = venue;
+        avenue.setName(venue);
         venuesCreated.add(venue);
         String key = CVRef.push().getKey();
         CVRef.child(key).setValue(venue);

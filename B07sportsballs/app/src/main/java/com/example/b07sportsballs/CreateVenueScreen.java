@@ -76,7 +76,7 @@ public class CreateVenueScreen extends AppCompatActivity {
                                 }
                                 if (!vname.equals(avenuename)){
                                     Venue venue = new Venue();
-                                    venue.name = avenuename;
+                                    venue.setName(avenuename);
                                     venue.writeToDataBase(ref);
                                     Admin admin = new Admin();
                                     admin.createVenue(avenuename);

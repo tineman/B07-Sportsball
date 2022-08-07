@@ -52,12 +52,6 @@ public class VenueReader extends AppCompatActivity {
             }
         });
     }
-
-
-
-
-
-
 }
 
 

@@ -19,7 +19,6 @@ public class VenueWriter extends AppCompatActivity
         Venue.allVenues.add(venue_name);
 
     }
-
 }
 
 
