@@ -31,12 +31,12 @@ public class Customer extends User {
         DatabaseReference joinedEventsRoot = ref.child
                 (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
         for (Event event : joinedEvents) {
-            joinedEventsRoot.push().setValue(event.getName());
+            joinedEventsRoot.child(event.getLocation()).push().setValue(event.getName());
         }
         DatabaseReference scheduledEventsRoot = ref.child
                 (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
         for (Event event : scheduledEvents) {
-            scheduledEventsRoot.push().setValue(event.getName());
+            scheduledEventsRoot.child(event.getLocation()).push().setValue(event.getName());
         }
     }
 
@@ -47,18 +47,24 @@ public class Customer extends User {
     public static void readFromDatabase(Updater updater) {
         DatabaseReference joinedEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
         ref.addValueEventListener(new ValueEventListener() {
-
             //TODO: Find the data of event in the database and fill in the Event object.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot data : snapshot.getChildren()) {
-                    Event e = new Event();
-                    e.bindToDatabase(data.getRef(), new Updater() {
-                        @Override
-                        public void onUpdate() {
-                            joinedEvents.add(e);
-                        }
-                    });
+                for (DataSnapshot venue : snapshot.getChildren()) {
+                    for (DataSnapshot event : venue.getChildren()) {
+                        Event e = new Event();
+                        DatabaseReference ref = FirebaseDatabase.
+                                getInstance(Constants.DATABASE.DB_URL).
+                                getReference(Constants.DATABASE.VENUE_PATH+"/"+
+                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
+                                        event.getValue(String.class));
+                        e.bindToDatabase(ref, new Updater() {
+                            @Override
+                            public void onUpdate() {
+                                joinedEvents.add(e);
+                            }
+                        });
+                    }
                 }
             }
 

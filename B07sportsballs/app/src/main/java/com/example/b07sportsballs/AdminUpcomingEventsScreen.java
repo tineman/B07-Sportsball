@@ -100,6 +100,7 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
             @Override
             public void onUpdate() {
                 venues.add(0, "All Venues");
+//                recyclerAdapter.notifyDataSetChanged();
             }
         });
     }

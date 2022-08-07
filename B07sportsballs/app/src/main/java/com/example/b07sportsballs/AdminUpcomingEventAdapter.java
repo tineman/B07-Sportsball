@@ -88,8 +88,7 @@ public class AdminUpcomingEventAdapter
         @Override
         protected FilterResults performFiltering(CharSequence charSequence) {
             List<Event> filteredEvents = new ArrayList<Event>();
-            if (charSequence == null || charSequence.length() == 0 ||
-                    charSequence.equals("All Venues")) {
+            if (charSequence.equals("All Venues")) {
                 filteredEvents.addAll(eventsAll);
             }
             else {
