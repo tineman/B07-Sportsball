@@ -20,9 +20,6 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
-        //We need a customer class to access their hashset of
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
