@@ -1,50 +1,120 @@
 package com.example.b07sportsballs;
 
-import com.google.firebase.database.DatabaseReference;
+import android.os.Build;
+import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.TimeZone;
 
 public abstract class User {
-    protected String username;
-    protected String password;
-//    private UserReader reader;
-//    private UserWriter writer;
-    protected DatabaseReference ref;
+    static String username;
+    static String password;
+    static DatabaseReference ref;
 
     // Default constructor for reading from database.
     public User() {}
 
-    public User (String username, String password) {
+    // This constructor is called only once when the user logs in/signs up successfully.
+    public User (String username, String password, DatabaseReference ref) {
         this.username = username;
         this.password = password;
+        this.ref = ref;
     }
 
-    // Getters/Setters
-    public String getUsername() {
-        return username;
+    /**
+     * Updates <code>venuesNames</code> to include names of all venues in the database.
+     * @param venuesNames store all venues' names
+     * @param updater callback to notify data has been retrieved
+     */
+    public static void collectVenuesNames(ArrayList<String> venuesNames, Updater updater) {
+        DatabaseReference venuesRef = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
+                getReference("Tian-Testing/" + Constants.DATABASE.VENUE_PATH);
+        venuesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    venuesNames.add(data.getKey());
+                }
+                updater.onUpdate();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("User Warning", "Error while reading venues from database",
+                        error.toException());
+            }
+        });
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-
-    public abstract void logIn(final Updater listener);
-
-    public HashSet<Venue> collectAllVenues() {
-
-        return null;
-    }
-
-    public HashSet<Event> collectUpcomingEvents() {
-        return null;
+    /**
+     * Updates <code>events</code> to include all events that have not passed in the database.
+     * @param events store all upcoming events in the database
+     * @param updater callback to notify data has been retrieved
+     */
+    public static void collectUpcomingEvents(ArrayList<Event> events, Updater updater) {
+        SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
+        timeFormat.setTimeZone(TimeZone.getTimeZone("GMT-4"));
+        Date now = new Date();
+        DatabaseReference venuesRef = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
+                getReference("Tian-Testing/" + Constants.DATABASE.VENUE_PATH);
+        venuesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // venuesCount and eventsCount keep track of the number of venues/events left
+                // to check. Once there are no venues and events left, onUpdate() is called to
+                // let the calling function know that reading is done.
+                long venuesCount = snapshot.getChildrenCount();
+                Log.i("UserTest", String.format("total venues: %d\n", venuesCount));
+                long eventsCount = 0L;
+                for (DataSnapshot venue : snapshot.getChildren()) {
+                    venuesCount--;
+                    Log.i("UserTest", String.format("venues left: %d\n", venuesCount));
+                    eventsCount += venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildrenCount();
+                    Log.i("UserTest", String.format("total events: %d\n", eventsCount));
+                    for (DataSnapshot event :
+                            venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildren()) {
+                        eventsCount--;
+                        Log.i("UserTest", String.format("events left: %d\n", eventsCount));
+                        Event e = new Event();
+                        Log.i("UserTest", event.getRef().toString());
+                        long finalEventsCount = eventsCount;
+                        long finalVenuesCount = venuesCount;
+                        e.bindToDatabase(event.getRef(), new Updater() {
+                            @Override
+                            public void onUpdate() {
+                                Log.i("UserTest", now.toString());
+                                Log.i("UserTest", timeFormat.format(e.getStartTime()));
+                                events.add(e);
+//                                if (e.getStartTime().compareTo(now) > 0) {
+//                                    events.add(e);
+//                                }
+                                if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                    Log.i("UserTest", String.format("now have %d events\n", events.size()));
+                                    updater.onUpdate();
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("UserWarning", "Error while reading events from database",
+                        error.toException());
+            }
+        });
     }
 }

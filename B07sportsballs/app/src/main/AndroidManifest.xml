@@ -18,7 +18,7 @@
             android:exported="false" />
         <activity
             android:name=".CustomerUpcomingEventsScreen"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".CustomerSignUpScreen"
             android:exported="false" />

@@ -13,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,8 +31,8 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
     ArrayAdapter spinnerAdapter;
 
     // Initialize data.
-    private ArrayList<Event> events;
-    private ArrayList<String> venues;
+    private ArrayList<Event> events = new ArrayList<Event>();
+    private ArrayList<String> venues = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +46,7 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
         setSpinnerAdapter();
 
         // Fetch data from database.
-        events = new ArrayList<Event>();
         setEvents();
-        venues = new ArrayList<String>();
         setVenues();
     }
 
@@ -76,42 +76,31 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
         recyclerAdapter.getFilter().filter(null);
     }
 
-    //TODO: Modify to read and store all events from database.
     private void setEvents() {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-        try {
-            events.add(new Event("Tennis", "Australia Open", "Wimbledon",
-                    timeFormat.parse("4 Aug 2022 08:00 AM"),
-                    timeFormat.parse("4 Dec 2022 08:00 AM"),
-                    15, 20));
-            events.add(new Event("AFC U-23 Asian Cup", "AFC", "Bunyodkor Stadium",
-                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-                    100, 100));
-            events.add(new Event("sleeping", "me", "my bed",
-                    timeFormat.parse("30 Aug 2022 12:00 PM"),
-                    timeFormat.parse(" 20 Dec 2022 12:00 PM"),
-                    0, 1));
-        }
-        catch (ParseException e) {
-        }
-
-        // Sort <code>events</code> by <code>startTime</code> from newest to oldest.
-        Collections.sort(events, new Comparator<Event>() {
+        User.collectUpcomingEvents(events, new Updater() {
             @Override
-            public int compare(Event event, Event t1) {
-                return event.startTime.compareTo(t1.startTime);
+            public void onUpdate() {
+                // Sort events by startTime from newest to oldest.
+                Collections.sort(events, new Comparator<Event>() {
+                    @Override
+                    public int compare(Event event, Event t1) {
+                        return event.getStartTime().compareTo(t1.getStartTime());
+                    }
+                });
+
+                Collections.reverse(events);
+                recyclerAdapter.notifyDataSetChanged();
             }
         });
-
-        Collections.reverse(events);
     }
 
-    //TODO: Modify to read and store all venues from database.
+
     private void setVenues() {
-        venues.add("All Venues");
-        venues.add("Wimbledon");
-        venues.add("Bunyodkor Stadium");
-        venues.add("my bed");
+        User.collectVenuesNames(venues, new Updater() {
+            @Override
+            public void onUpdate() {
+                venues.add(0, "All Venues");
+            }
+        });
     }
 }

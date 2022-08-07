@@ -13,6 +13,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 
+import java.util.Date;
+
 public class CustomerLoginScreen extends AppCompatActivity {
 
     @Override
@@ -22,45 +24,13 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
-    }
 
-    /**
-     * This method is called when the "Login" button is pressed
-     * @param view The View object that is being considered
-     */
-    public void customerLogIn(View view) {
-        // Should we declare these variables at the top and initialize in onCreate()?
-        EditText editUsername = findViewById(R.id.editText_CustomerLoginPage_Username);
-        EditText editPassword = findViewById(R.id.editText_CustomerLoginPage_Password);
-        final Context context = getApplicationContext();
 
-        Customer customer = new Customer(editUsername.getText().toString(),
-                editPassword.getText().toString());
-        customer.logIn(new Updater() {
-            @Override
-            public void onStart() {}
-
-            @Override
-            public void onSuccess(int returnCode) {
-                if (returnCode == Constants.LOGIN_CODE.NO_USER)
-                    Toast.makeText(context, "User does not exist.", Toast.LENGTH_LONG).show();
-                else if (returnCode == Constants.LOGIN_CODE.WRONG_PASSWORD)
-                    Toast.makeText(context, "Wrong password.", Toast.LENGTH_LONG).show();
-                else {
-                    //TODO: Change to CustomerHomePageScreen.
-                    Intent intent = new Intent(context, VenueScreen.class);
-                    // Send the database reference
-                    intent.putExtra("CUSTOMER_REF", customer.ref.toString());
-                    intent.putExtra("ADMIN_REF", "INVALID");
-                    // To get the database reference from ref.toString(), use:
-                    // FirebaseDatabase.getInstance().getReferenceFromUrl(str)
-                    startActivity(intent);
-                }
-            }
-
-            @Override
-            public void onFailure(DatabaseError error) {}
-        });
+//        Event event1;
+//        event1 = new Event(new EventWriter(), new EventBinder(event1), "Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 24, 0), 0, 12, EventRef);
+//        event1.setData("Chess Boxing", "Hikaru Nakamura", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 24, 0), 0, 12);
+//        Event event2 = new Event(writer, reader, "Nettle Eating", "Brady Haren", "UOFT", new Date(2023, 1, 1, 11, 0), new Date(2023, 1, 1, 13, 0), 0, 32, EventRef);
+//        Event event3 = new Event(writer, reader, "Water Polo", "John Paul Jones", "UOFT", new Date(2023, 1, 1, 22, 0), new Date(2023, 1, 1, 23, 0), 0, 12, EventRef);
     }
 
     /**

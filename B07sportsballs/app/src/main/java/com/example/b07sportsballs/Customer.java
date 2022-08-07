@@ -11,83 +11,127 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.HashSet;
+
 public class Customer extends User {
+    static HashSet<Event> joinedEvents;
+    static HashSet<Event> scheduledEvents;
 
-
-    public Customer(String username, String password) {
-        super(username, password);
+    // This constructor is called only once when the user logs in/signs up successfully.
+    public Customer(String username, String password, DatabaseReference ref) {
+        super(username, password, ref);
     }
 
-    @Override
-    public void logIn(final Updater updater) {
-        DatabaseReference customersRef = FirebaseDatabase.
-                getInstance(Constants.DATABASE.DB_URL).
-                getReference("chau-testing/" + Constants.DATABASE.CUSTOMER_PATH);
-        updater.onStart();
-        customersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+    /**
+     * Writes all events joined and scheduled by the customer to respective branch of database.
+     */
+    public static void writeToDatabase() {
+        DatabaseReference joinedEventsRoot = ref.child
+                (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
+        for (Event event : joinedEvents) {
+            joinedEventsRoot.push().setValue(event.getName());
+        }
+        DatabaseReference scheduledEventsRoot = ref.child
+                (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
+        for (Event event : scheduledEvents) {
+            scheduledEventsRoot.push().setValue(event.getName());
+        }
+    }
+
+    /**
+     * Reads events the customer joined or scheduled into respective members. Attaches a listener
+     * to each event to keep updated.
+     */
+    public static void readFromDatabase(Updater updater) {
+        DatabaseReference joinedEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
+        ref.addValueEventListener(new ValueEventListener() {
+
+            //TODO: Find the data of event in the database and fill in the Event object.
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot customer : snapshot.getChildren()) {
-                    if (customer.child(Constants.DATABASE.USERNAME_KEY).getValue(String.class).equals(username)) {
-                        if (customer.child(Constants.DATABASE.PASSWORD_KEY).getValue(String.class).equals(password)) {
-                            ref = customer.getRef();
-                            updater.onSuccess(Constants.LOGIN_CODE.SUCCESS);
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    Event e = new Event();
+                    e.bindToDatabase(data.getRef(), new Updater() {
+                        @Override
+                        public void onUpdate() {
+                            joinedEvents.add(e);
                         }
-                        else {
-                            ref = null;
-                            updater.onSuccess(Constants.LOGIN_CODE.WRONG_PASSWORD);
-                        }
-                        return;
-                    }
+                    });
                 }
-                ref = null;
-                updater.onSuccess(Constants.LOGIN_CODE.NO_USER);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                updater.onFailure(error);
+                Log.w("Customer Warning", "Error while reading joinedEvents from database",
+                        error.toException());
             }
         });
     }
 
-    public void signUp(Updater updater) {
-        DatabaseReference customersRef = FirebaseDatabase.
-                getInstance(Constants.DATABASE.DB_URL).
-                getReference("chau-testing/Customers");
-        customersRef.push().setValue(new Customer(username, password), new DatabaseReference.CompletionListener() {
+    // Assume bindToDatabase has been called on event already.
+    /**
+     * If <code>e</code> is not full, add customer as a player and make changes to database.
+     * @param e the event to join
+     */
+    public static void joinEvent(Event e) {
+        if (e.increment()) {
+            joinedEvents.add(e);
+            writeToDatabase();
+        }
+    }
+
+    // Assume that location is valid (ie. venue exists). Assume that setData() has been called on e
+    // to set user-input info.
+    public static void scheduleEvent(Event e, Updater updater) {
+        // Check for duplicate event names inside venue
+        DatabaseReference venueRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
+                getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
+                        Constants.DATABASE.VENUE_EVENTS_KEY);
+        DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
+                getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
+                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+e.getName());
+        eventRoot.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                if (error != null) {
-                    updater.onFailure(error);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (!snapshot.exists()) {
+                    e.bindToDatabase(snapshot.getRef(), new Updater() {
+                        @Override
+                        public void onUpdate() {
+                            // Write new event to corresponding venue branch.
+                            e.setWriter();
+                            e.writeToDatabase();
+                            // Write new event to corresponding customer branch.
+                            scheduledEvents.add(e);
+                            writeToDatabase();
+                        }
+                    });
                 }
-                else updater.onSuccess(Constants.SIGNUP_CODE.SUCCESS);
+                updater.onUpdate();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
-//    public void joinEvent(Event e) {
-//        e.setCurrPlayers(e.getCurrPlayers+1);
-//        joinedEvents.add(e);
-//        //write to db
-//    }
 
-//    public void scheduleEvent(String name, String location, String startTime, String endTime,
-//                              int maxPlayers) {
-//        // Parse time into correct format
-//        // Make this final global
-//        SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-//        try {
-//            Event e = new Event(name, Customer.super.getUsername(), location,
-//                    timeFormat.parse(startTime), timeFormat.parse(endTime), 0, maxPlayers);
-//            scheduledEvents.add(e);
-//            // add to venue
-//            // write to db
-//        }
-//        catch (ParseException exception) {
-//            Log.e("Schedule event", "Incorrect format of starting and end time.");
-//        }
-//
-//    }
+    public static HashSet<Event> getJoinedEvents() {
+        return joinedEvents;
+    }
 
+    public static void setJoinedEvents(HashSet<Event> joinedEvents) {
+        Customer.joinedEvents = joinedEvents;
+    }
+
+    public static HashSet<Event> getScheduledEvents() {
+        return scheduledEvents;
+    }
+
+    public static void setScheduledEvents(HashSet<Event> scheduledEvents) {
+        Customer.scheduledEvents = scheduledEvents;
+    }
 }

@@ -60,23 +60,25 @@ public class CustomerUpcomingEventAdapter extends
             txtTime = (TextView) view.findViewById(R.id.txtTime);
             txtNumPlayers = (TextView) view.findViewById(R.id.txtNumPlayers);
             buttonJoin = (Button) view.findViewById(R.id.buttonJoin);
-            buttonJoin.setOnClickListener(new View.OnClickListener() {
-                //TODO: Modify to call method to join events once class Customer is finalized.
-                public void onClick(View v) {
-                }
-            });
         }
 
         //TODO: Modify when class Event is finalized.
         void setDetails(Event event) {
             SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-            txtName.setText(event.name);
-            txtOwner.setText(String.format("Created by: %s", event.owner));
-            txtVenue.setText(String.format("Location: %s", event.venue));
-            txtTime.setText(String.format("%s - %s", timeFormat.format(event.startTime),
-                    timeFormat.format(event.endTime)));
+            txtName.setText(event.getName());
+            txtOwner.setText(String.format("Created by: %s", event.getHost()));
+            txtVenue.setText(String.format("Location: %s", event.getLocation()));
+            txtTime.setText(String.format("%s - %s", timeFormat.format(event.getStartTime()),
+                    timeFormat.format(event.getEndTime())));
             txtNumPlayers.setText(String.format("Players: %d/%d",
-                    event.currPlayers, event.maxPlayers));
+                    event.getCurrPlayers(), event.getMaxPlayers()));
+            buttonJoin.setOnClickListener(new View.OnClickListener() {
+                //TODO: Modify to call method to join events once class Customer is finalized.
+                public void onClick(View v) {
+                    event.setWriter();
+                    Customer.joinEvent(event);
+                }
+            });
         }
     }
 }

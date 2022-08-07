@@ -47,7 +47,7 @@ public class Event {
      * @param ref the reference to the event's node in Firebase
      * @param onUpdate an implementation of a void() function. Called whenever event updates
      */
-    public void bindToDatabase(DatabaseReference ref, EventBinder.Updater onUpdate)
+    public void bindToDatabase(DatabaseReference ref, Updater onUpdate)
     {
         this.ref = ref;
         EventBinder binder = new EventBinder(this);
@@ -61,7 +61,7 @@ public class Event {
      *
      * @param onUpdate an implementation of a void() function. Called whenever event updates
      */
-    public void changeOnUpdate(EventBinder.Updater onUpdate)
+    public void changeOnUpdate(Updater onUpdate)
     {
         this.binder.update(this.ref, onUpdate);
     }
@@ -72,7 +72,7 @@ public class Event {
 
     public void setWriter()
     {
-        this.writer = new EventWriter();
+        if (this.writer == null) this.writer = new EventWriter();
     }
 
     /**

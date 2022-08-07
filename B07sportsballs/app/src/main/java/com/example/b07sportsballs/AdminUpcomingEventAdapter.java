@@ -67,13 +67,13 @@ public class AdminUpcomingEventAdapter
         //TODO: Modify once class Event is finalized.
         void setDetails(Event event) {
             SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-            txtName.setText(event.name);
-            txtOwner.setText(String.format("Created by: %s", event.owner));
-            txtVenue.setText(String.format("Location: %s", event.venue));
-            txtTime.setText(String.format("%s - %s", timeFormat.format(event.startTime),
-                    timeFormat.format(event.endTime)));
+            txtName.setText(event.getName());
+            txtOwner.setText(String.format("Created by: %s", event.getHost()));
+            txtVenue.setText(String.format("Location: %s", event.getLocation()));
+            txtTime.setText(String.format("%s - %s", timeFormat.format(event.getStartTime()),
+                    timeFormat.format(event.getEndTime())));
             txtNumPlayers.setText(String.format("Players: %d/%d",
-                    event.currPlayers, event.maxPlayers));
+                    event.getCurrPlayers(), event.getMaxPlayers()));
         }
     }
 
@@ -95,7 +95,7 @@ public class AdminUpcomingEventAdapter
             else {
                 String filteringVenue = charSequence.toString();
                 for (Event event:eventsAll) {
-                    if (event.venue.equals(filteringVenue)) filteredEvents.add(event);
+                    if (event.getLocation().equals(filteringVenue)) filteredEvents.add(event);
                 }
             }
             FilterResults result = new FilterResults();

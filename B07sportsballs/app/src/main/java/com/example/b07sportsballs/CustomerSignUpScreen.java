@@ -22,37 +22,6 @@ public class CustomerSignUpScreen extends AppCompatActivity {
     }
 
     /**
-     * This method is called when the "Register" button is pressed
-     * @param view The View object that is being considered
-     */
-    public void customerSignUp(View view) {
-        // Should we declare these variables at the top and initialize in onCreate()?
-        EditText editUsername = findViewById(R.id.editText_CustomerLoginPage_Username);
-        EditText editPassword = findViewById(R.id.editText_CustomerLoginPage_Password);
-        final Context context = getApplicationContext();
-
-        Customer customer = new Customer(editUsername.getText().toString(),
-                editPassword.getText().toString());
-        customer.signUp(new Updater() {
-            @Override
-            public void onStart() {}
-
-            @Override
-            public void onSuccess(int returnCode) {
-                Toast.makeText(context, "Signup success!", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(context, VenueScreen.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onFailure(DatabaseError error) {
-                Toast.makeText(context, "Something went wrong :(", Toast.LENGTH_LONG).show();
-                Log.e("customerSignUp", error.getMessage());
-            }
-        });
-    }
-
-    /**
      * This method is called when the "Quit" button is pressed
      * @param view The View object that is being considered
      */
