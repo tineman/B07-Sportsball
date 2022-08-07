@@ -72,7 +72,6 @@ public class Venue
                 if (!VenueReader.isRunning)
                 {
                         Log.i("demo", "allVenues: " + allVenues);
-                        return allVenues;
                 }
                 return allVenues;
         }
