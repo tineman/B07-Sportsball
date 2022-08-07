@@ -94,7 +94,8 @@ public class CustomerHomePage extends AppCompatActivity {
         startActivity(intent);
     }
     public void openUpcomingEvents(){
-
+        Intent intent = new Intent(this, CustomerUpcomingEventsScreen.class);
+        startActivity(intent);
     }
 
     public void openVenues(){

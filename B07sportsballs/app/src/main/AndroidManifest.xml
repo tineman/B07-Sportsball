@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.b07sportsballs">
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -18,9 +17,13 @@
             android:exported="false" />
         <activity
             android:name=".AdminHomePage"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".AdminLoginPage" />
         <activity
             android:name=".AdminLoginPage"
+            android:exported="false" />
+        <activity
+            android:name=".AdminUpcomingEventsScreen"
             android:exported="false" />
         <activity
             android:name=".CustomerEventsJoinedScreen"
@@ -34,11 +37,15 @@
             android:parentActivityName=".CustomerLoginScreen" />
         <activity
             android:name=".CustomerSignUpScreen"
-            android:exported="true">
-        </activity>
-
+            android:exported="false" />
+        <activity
+            android:name=".CustomerUpcomingEventsScreen"
+            android:exported="false" />
         <activity
             android:name=".ScheduleEventScreen"
+            android:exported="false" />
+        <activity
+            android:name=".VenueScreen"
             android:exported="false" />
         <activity
             android:name=".CustomerLoginScreen"
@@ -48,10 +55,5 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".VenueScreen"
-            android:exported="false" />
     </application>
-
 </manifest>

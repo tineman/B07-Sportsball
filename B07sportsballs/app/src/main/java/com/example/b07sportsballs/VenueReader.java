@@ -41,7 +41,11 @@ public class VenueReader extends AppCompatActivity {
         readData(new FirebaseCallback(){
             @Override
             public void onCallback(HashSet<String> keys) {
+
                 Venue.allVenues = keys;
+
+                Venue.allVenues.addAll(keys);
+
                 isRunning = false;
                 Venue v = new Venue();
                 v.getAllVenues();
@@ -55,6 +59,7 @@ public class VenueReader extends AppCompatActivity {
 
 
 }
+
 
 
 

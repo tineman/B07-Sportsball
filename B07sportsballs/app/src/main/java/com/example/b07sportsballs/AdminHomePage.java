@@ -16,9 +16,9 @@ public class AdminHomePage extends AppCompatActivity {
 
         //buttons for AdminHomePage
         Button logout_button = (Button) findViewById(R.id.AdminHomePage_Button_Logout);
-        Button create_venue = (Button) findViewById((R.id.AdminHomePage_create_venue));
-        Button view_all_venues = (Button) findViewById(R.id.AdminHomePage_view_venues);
-        Button display_upcoming_events = (Button) findViewById(R.id.AdminHomePage_display_events);
+        Button create_venue = (Button) findViewById((R.id.AdminHomePage_Button_CreateVenue));
+        Button view_all_venues = (Button) findViewById(R.id.AdminHomePage_Button_ViewVenues);
+        Button display_upcoming_events = (Button) findViewById(R.id.AdminHomePage_Button_DisplayEvents);
         Button quit_button = (Button) findViewById(R.id.AdminHomePage_Button_Quit);
 
         logout_button.setOnClickListener(new View.OnClickListener() {
@@ -63,7 +63,8 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void logout()
     {
-        this.finish();
+        Intent intent = getParentActivityIntent();
+        startActivity(intent);
     }
 
     /**
@@ -92,10 +93,8 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void openDisplayUpcomingEventsScreen()
     {
-        //uncomment the lines below once AdminUpcomingEventsScreen.class has been added
-
-        //Intent intent = new Intent(this, DisplayUpcomingEvents.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, AdminUpcomingEventsScreen.class);
+        startActivity(intent);
     }
 
     /**

@@ -35,14 +35,6 @@ public class EventBinder {
         parent = event;
     }
 
-    public interface Updater
-    {
-        /**
-         * Called whenever Event is updated
-         */
-        void onUpdate();
-    }
-
     /**
      * Binds the parent event to a reference in the database. Does not check if the event is there
      * beforehand, that is the calling function's responsibility
