@@ -14,41 +14,26 @@
         android:theme="@style/Theme.B07sportsballs"
         tools:targetApi="31">
         <activity
-            android:name=".CreateVenueScreen"
+            android:name=".AdminUpcomingEventsScreen"
             android:exported="false" />
         <activity
-            android:name=".AdminHomePage"
+            android:name=".CustomerUpcomingEventsScreen"
             android:exported="false" />
-        <activity
-            android:name=".AdminLoginPage"
-            android:exported="false" />
-        <activity
-            android:name=".CustomerEventsJoinedScreen"
-            android:exported="false" />
-        <activity
-            android:name=".CustomerEventsScheduledScreen"
-            android:exported="false" />
-        <activity
-            android:name=".CustomerHomePage"
-            android:exported="false"
-            android:parentActivityName=".CustomerLoginScreen" />
         <activity
             android:name=".CustomerSignUpScreen"
-            android:exported="true">
-        </activity>
-
-        <activity
-            android:name=".CustomerLoginScreen"
             android:exported="false" />
         <activity
             android:name=".ScheduleEventScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".ScheduleEventScreen"
+            android:exported="false" />
         <activity
             android:name=".VenueScreen"
             android:exported="false" />
