@@ -51,11 +51,8 @@ public class Admin {
 }
 
     public void setVenuesCreated(HashSet<String> venuesCreated) {
-//        this.venuesCreated = venuesCreated;
-        if (!VenueReader.isRunning)
-        {
-            Log.i("demo", "allVenues: " + venuesCreated);
-        }
+        venuesCreated = venue.getAllVenues();
+        this.venuesCreated = venuesCreated;
     }
     public String getPassword() {
         return password;
