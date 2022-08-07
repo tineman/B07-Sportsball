@@ -29,8 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="108dp"
-        android:hint="@string/CustomerHomePage_Username"
-        android:text="@string/CustomerHomePage_Username"
+        android:text="@string/TextView_Username"
         android:textSize="26sp"
         android:textStyle="italic"
         app:layout_constraintBaseline_toBaselineOf="@+id/CustomerHomePage_HelloText"
@@ -45,8 +44,7 @@
         android:layout_marginStart="108dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="6dp"
-        android:hint="@string/CustomerHomePage_HelloText"
-        android:text="@string/CustomerHomePage_HelloText"
+        android:text="@string/TextView_Hello"
         android:textSize="26sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toStartOf="@+id/CustomerHomePage_Username"
@@ -125,7 +123,7 @@
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
         android:backgroundTint="#FF0000"
-        android:text="@string/Logout_Button"
+        android:text="@string/Button_Logout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
