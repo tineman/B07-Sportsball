@@ -5,6 +5,7 @@
     android:id="@+id/ScheduleEventScreen_Button_Submit"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:onClick="onSubmit"
     tools:context=".ScheduleEventScreen">
 
