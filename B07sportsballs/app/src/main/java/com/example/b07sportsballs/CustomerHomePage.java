@@ -16,10 +16,10 @@ public class CustomerHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_customer_home_page);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra(CustomerLoginScreen.EXTRA_MESSAGE);
+        //String username = intent.getStringExtra(CustomerLoginScreen.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.CustomerHomePage_Username);
-        String[] splitName = username.split("@");
-        textView.setText(splitName[0]);
+        //String[] splitName = username.split("@");
+        //textView.setText(splitName[0]);
 
         Button eventsJoinedButton = findViewById(R.id.CustomerHomePage_EventsJoined);
         Button scheduledEventsButton = findViewById(R.id.CustomerHomePage_EventsScheduled);

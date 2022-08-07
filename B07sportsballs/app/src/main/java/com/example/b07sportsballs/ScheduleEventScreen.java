@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,7 +26,7 @@ import java.util.List;
 public class ScheduleEventScreen extends AppCompatActivity {
 
     Spinner venueSpinner;
-    List<String> venueName = new ArrayList<>();
+    List<String> venueName;
 
     EditText nameText;
     EditText maxText;
@@ -50,9 +51,15 @@ public class ScheduleEventScreen extends AppCompatActivity {
         Access list of venues from customer
          */
 
-        venueName.add("TPASC");
-        venueName.add("UOFT");
+        if(Venue.getAllVenues() == null)
+        {
+            Toast.makeText(ScheduleEventScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(ScheduleEventScreen.this, CustomerHomePage.class);
+            startActivity(intent);
+            return;
+        }
 
+        venueName = new ArrayList<>(Venue.getAllVenues());
         venueSpinner = (Spinner) findViewById(R.id.ScheduleEventScreen_Spinner_Venue);
         ArrayAdapter<String> adapter = new ArrayAdapter(ScheduleEventScreen.this, android.R.layout.simple_spinner_item, venueName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
