@@ -77,17 +77,13 @@ public abstract class User {
                 // to check. Once there are no venues and events left, onUpdate() is called to
                 // let the calling function know that reading is done.
                 long venuesCount = snapshot.getChildrenCount();
-                Log.i("UserTest", String.format("total venues: %d\n", venuesCount));
                 long eventsCount = 0L;
                 for (DataSnapshot venue : snapshot.getChildren()) {
                     venuesCount--;
-                    Log.i("UserTest", String.format("venues left: %d\n", venuesCount));
                     eventsCount += venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildrenCount();
-                    Log.i("UserTest", String.format("total events: %d\n", eventsCount));
                     for (DataSnapshot event :
                             venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildren()) {
                         eventsCount--;
-                        Log.i("UserTest", String.format("events left: %d\n", eventsCount));
                         Event e = new Event();
                         Log.i("UserTest", event.getRef().toString());
                         long finalEventsCount = eventsCount;
@@ -95,14 +91,10 @@ public abstract class User {
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
-                                Log.i("UserTest", now.toString());
-                                Log.i("UserTest", timeFormat.format(e.getStartTime()));
-                                events.add(e);
-//                                if (e.getStartTime().compareTo(now) > 0) {
-//                                    events.add(e);
-//                                }
+                                if (e.getStartTime().compareTo(now) > 0) {
+                                    events.add(e);
+                                }
                                 if (finalVenuesCount == 0 && finalEventsCount == 0) {
-                                    Log.i("UserTest", String.format("now have %d events\n", events.size()));
                                     updater.onUpdate();
                                 }
                             }
