@@ -123,7 +123,7 @@
         android:layout_height="48dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:text="@string/CustomerLoginScreen_quit"
+        android:text="@string/Quit_Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

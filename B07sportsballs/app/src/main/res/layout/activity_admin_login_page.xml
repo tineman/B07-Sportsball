@@ -17,7 +17,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_EditText_Username"
         app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Title"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Title"
         app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Title" />
 
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="68dp"
-        android:text="Log in as a customer?"
+        android:text="Go to Customer Login Page?"
         app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_Quit"
         app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_Button_Login"
         app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_Button_Login"
@@ -115,7 +115,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:text="Quit"
+        android:text="@string/Quit_Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
