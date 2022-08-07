@@ -2,6 +2,7 @@ package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
@@ -30,6 +32,8 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
     Button startButton;
     Button endButton;
+    Button startDateButton;
+    Button endDateButton;
 
     int startHour, startMinute, endHour, endMinute; //set to negative 1
 
@@ -58,6 +62,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
         startButton = (Button) findViewById(R.id.ScheduleEventScreen_EditText_StartTime);
         endButton = (Button) findViewById(R.id.ScheduleEventScreen_EditText_EndTime);
         maxText = (EditText) findViewById(R.id.ScheduleEventScreen_EditText_Max);
+
+        startDateButton = (Button) findViewById(R.id.ScheduleEventScreen_StartDate);
+        endDateButton = (Button) findViewById(R.id.ScheduleEventScreen_EndDate);
 
         Start = Calendar.getInstance().getTime(); //or get current date
         End = Calendar.getInstance().getTime();
@@ -108,6 +115,12 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
+        if(Start.compareTo(End) > 0)
+        {
+            Toast.makeText(ScheduleEventScreen.this, "Please make the end time come after start time", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         String max = maxText.getText().toString();
         if(max.isEmpty())
         {
@@ -138,7 +151,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         //Customer.scheduleEvent();
     }
 
-    public void pickTime(View view, Date date)
+    public void pickTime(View view, Date date, Button button)
     {
         TimePickerDialog.OnTimeSetListener startListener = new TimePickerDialog.OnTimeSetListener()
         {
@@ -146,7 +159,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
             public void onTimeSet(TimePicker timePicker, int hour, int min) {
                 date.setHours(hour);
                 date.setMinutes(min);
-                startButton.setText(new SimpleDateFormat("HH:mm").format(date));
+                button.setText(new SimpleDateFormat("HH:mm").format(date));
             }
 
         };
@@ -156,18 +169,48 @@ public class ScheduleEventScreen extends AppCompatActivity {
         startDialog.show();
     }
 
+    public void pickDate(View view, Date date, Button button)
+    {
+        DatePickerDialog.OnDateSetListener DateListener = new DatePickerDialog.OnDateSetListener()
+        {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                date.setYear(year - 1900);
+                date.setMonth(month);
+                date.setDate(day);
+                button.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
+            }
+
+        };
+
+        DatePickerDialog dateDialog = new DatePickerDialog(ScheduleEventScreen.this, DateListener, date.getYear(), date.getMonth(), date.getDate());
+        dateDialog.setTitle("Select Time");
+        dateDialog.show();
+    }
+
 
     public void pickStartTime(View view) {
 
-        pickTime(view, Start);
+        pickTime(view, Start, startButton);
         startTime = true;
 
     }
 
     public void pickEndTime(View view) {
 
-        pickTime(view, End);
+        pickTime(view, End, endButton);
         endTime = true;
 
+    }
+
+    public void pickStartDate(View view) {
+        pickDate(view, Start, startDateButton);
+        startDate = true;
+
+    }
+
+    public void pickEndDate(View view) {
+        pickDate(view, End, endDateButton);
+        endDate = true;
     }
 }
