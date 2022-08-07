@@ -63,7 +63,8 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void logout()
     {
-        this.finish();
+        Intent intent = getParentActivityIntent();
+        startActivity(intent);
     }
 
     /**
