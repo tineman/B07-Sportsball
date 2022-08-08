@@ -28,7 +28,7 @@ public class CustomerSignUpScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_sign_up_screen);
-        reference = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
+        reference = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
 
         Button createAccountButton = findViewById(R.id.CustomerSignUpScreen_Button_CreateAccount);
         createAccountButton.setOnClickListener(new View.OnClickListener() {
@@ -81,13 +81,13 @@ public class CustomerSignUpScreen extends AppCompatActivity {
         Pattern usernamePattern = Pattern.compile("^[a-zA-Z0-9]+$");
         Matcher matcher = usernamePattern.matcher(username);
 
-        reference.child("Root").child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 List<String> usernameList = new ArrayList();
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                         if(infoSnapshot!=null){
-                        String dataName = infoSnapshot.child("Username").getValue().toString();
+                        String dataName = infoSnapshot.getKey();
                         System.out.println(dataName);
                         usernameList.add((String)dataName);}
                 }
@@ -101,9 +101,9 @@ public class CustomerSignUpScreen extends AppCompatActivity {
                 else if(usernameList.contains(username)==true){
                     Toast.makeText(CustomerSignUpScreen.this, "Username is taken", Toast.LENGTH_SHORT).show();
                 }else{
-                    DatabaseReference commentRef = reference.child("Root").child("Customer").push();
-                    commentRef.child("Username").setValue(username);
-                    commentRef.child("Password").setValue(password);
+                    DatabaseReference commentRef = reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH);
+                    commentRef.child(username);
+                    commentRef.child(username).child(Constants.DATABASE.PASSWORD_KEY).setValue(password);
                     Customer customer = new Customer(username, password, commentRef);
                     openCustomerHomePage();
                 }
