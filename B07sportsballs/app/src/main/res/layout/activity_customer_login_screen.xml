@@ -43,7 +43,7 @@
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerLoginScreen_enter_password"
-        android:inputType="textPersonName"
+        android:inputType="textPersonName|textPassword"
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
