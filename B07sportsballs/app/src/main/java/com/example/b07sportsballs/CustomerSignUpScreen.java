@@ -120,8 +120,7 @@ public class CustomerSignUpScreen extends AppCompatActivity {
      * This method is called when the user wants to go back to the login screen
      * */
     public void openLoginScreen(){
-        Intent intent = new Intent(this, CustomerLoginScreen.class);
-        startActivity(intent);
+        this.finish();
     }
 
     /**

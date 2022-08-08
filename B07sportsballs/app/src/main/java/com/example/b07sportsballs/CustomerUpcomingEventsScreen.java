@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.b07sportsballs.R;
@@ -41,6 +44,36 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
 
         // Fetch data from database.
         setEvents();
+
+        Button backButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToCustomerHomePage();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void backToCustomerHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
     }
 
     private void setAdapter() {

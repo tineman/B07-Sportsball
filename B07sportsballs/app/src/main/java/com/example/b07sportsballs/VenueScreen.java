@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,36 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
 
         listView.setAdapter(arrayAdapter);
 
+
+        Button backButton = findViewById(R.id.VenueScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                back();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.VenueScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void back() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
     }
 
     @Override

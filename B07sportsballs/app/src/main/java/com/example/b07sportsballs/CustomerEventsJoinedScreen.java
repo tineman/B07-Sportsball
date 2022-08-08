@@ -3,7 +3,10 @@ package com.example.b07sportsballs;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -22,6 +25,35 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_joined_screen);
 
+        Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToCustomerHomePage();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void backToCustomerHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
         if(Customer.getJoinedEvents() == null)
@@ -43,7 +75,5 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                 }
             });
         }
-
-
     }
 }

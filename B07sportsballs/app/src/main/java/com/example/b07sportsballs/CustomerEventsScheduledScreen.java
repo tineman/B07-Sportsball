@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
@@ -23,6 +25,35 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
+        Button backButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToCustomerHomePage();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void backToCustomerHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         if(Customer.getScheduledEvents() == null)
@@ -44,6 +75,5 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
                 }
             });
         }
-
     }
 }
