@@ -165,6 +165,8 @@ public class Customer extends User {
     // to set user-input info.
     public static void scheduleEvent(Event e, Updater updater) {
         // Check for duplicate event names inside venue
+        String name = e.getName();
+        String location = e.getLocation();
         DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
                 getReference(Constants.DATABASE.ROOT+"/"+
                         Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
@@ -178,6 +180,8 @@ public class Customer extends User {
                         @Override
                         public void onUpdate() {
                             // Write new event to corresponding venue branch.
+                            e.setName(name);
+                            e.setLocation(location);
                             e.setWriter();
                             Log.i("Customer", snapshot.getRef().toString());
                             e.writeToDatabase();
