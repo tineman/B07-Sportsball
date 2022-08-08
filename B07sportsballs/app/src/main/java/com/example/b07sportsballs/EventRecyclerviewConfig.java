@@ -3,7 +3,6 @@ package com.example.b07sportsballs;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -34,7 +33,8 @@ public class EventRecyclerviewConfig {
         private TextView host;
         private TextView venue;
         private TextView capacity;
-        private TextView duration;
+        private TextView start;
+        private TextView end;
 
         public EventView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.event_list_item, parent, false));
@@ -43,7 +43,8 @@ public class EventRecyclerviewConfig {
             host = (TextView) itemView.findViewById(R.id.textEventHost);
             venue = (TextView) itemView.findViewById(R.id.textEventVenue);
             capacity = (TextView) itemView.findViewById(R.id.textEventCapacity);
-            duration = (TextView) itemView.findViewById(R.id.textEventDuration);
+            start = (TextView) itemView.findViewById(R.id.textEventStart);
+            end = (TextView) itemView.findViewById(R.id.textEventEnd);
 
         }
 
@@ -52,9 +53,9 @@ public class EventRecyclerviewConfig {
             this.name.setText(event.getName());
             host.setText(event.getHost());
             venue.setText(event.getLocation());
-            Log.i("Testing", event.getName());
             capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
-            //duration.setText("Duration: " + new SimpleDateFormat("HH:mm").format(event.getStartTime()) + " - " + new SimpleDateFormat("HH:mm").format(event.getEndTime()));
+            start.setText("Start: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getStartTime()));
+            end.setText("End: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getEndTime()));
         }
 
     }
