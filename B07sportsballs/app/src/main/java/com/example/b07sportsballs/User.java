@@ -42,7 +42,7 @@ public abstract class User {
      */
     public static void collectVenuesNames(ArrayList<String> venuesNames, Updater updater) {
         DatabaseReference venuesRef = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
-                getReference("Tian-Testing/" + Constants.DATABASE.VENUE_PATH);
+                getReference(Constants.DATABASE.ROOT+"/"+Constants.DATABASE.VENUE_PATH);
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,11 +65,9 @@ public abstract class User {
      * @param updater callback to notify data has been retrieved
      */
     public static void collectUpcomingEvents(ArrayList<Event> events, Updater updater) {
-        SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-        timeFormat.setTimeZone(TimeZone.getTimeZone("GMT-4"));
         Date now = new Date();
         DatabaseReference venuesRef = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
-                getReference("Tian-Testing/" + Constants.DATABASE.VENUE_PATH);
+                getReference(Constants.DATABASE.ROOT+"/"+Constants.DATABASE.VENUE_PATH);
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -91,6 +89,8 @@ public abstract class User {
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
+                                e.setName(event.getKey());
+                                e.setLocation(venue.getKey());
                                 if (e.getStartTime().compareTo(now) > 0) {
                                     events.add(e);
                                 }

@@ -102,22 +102,4 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
             }
         });
     }
-
-//    SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-//        try {
-//            events.add(new Event("Tennis", "Australia Open", "Wimbledon",
-//                    timeFormat.parse("4 Aug 2022 08:00 AM"),
-//                    timeFormat.parse("4 Dec 2022 08:00 AM"),
-//                    15, 20));
-//            events.add(new Event("AFC U-23 Asian Cup", "AFC", "Bunyodkor Stadium",
-//                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-//                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-//                    100, 100));
-//            events.add(new Event("sleeping", "me", "my bed",
-//                    timeFormat.parse("30 Aug 2022 12:00 PM"),
-//                    timeFormat.parse(" 20 Dec 2022 12:00 PM"),
-//                    0, 1));
-//        }
-//        catch (ParseException e) {
-//        }
 }
