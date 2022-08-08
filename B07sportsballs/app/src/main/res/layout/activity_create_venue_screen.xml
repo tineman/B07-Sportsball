@@ -1,88 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
-    tools:context=".CreateVenueScreen">
-
-    <TextView
-        android:id="@+id/CreateVenueScreen_TextView_VenueName"
-        android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fillViewport="true"
+>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/CreateVenueScreen_TextView_Venue"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_EditText_VenueName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.833"
-        app:layout_constraintVertical_chainStyle="packed" />
+        android:background="@drawable/background"
+        tools:context=".CreateVenueScreen">
 
-    <EditText
-        android:id="@+id/CreateVenueScreen_EditText_VenueName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="136dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/CreateVenueScreen_EditText_Venue"
-        android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:textColorHint="#78909C"
-        app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_Button_AddVenue"
-        app:layout_constraintEnd_toEndOf="@+id/CreateVenueScreen_TextView_VenueName"
-        app:layout_constraintStart_toStartOf="@+id/CreateVenueScreen_TextView_VenueName"
-        app:layout_constraintTop_toBottomOf="@+id/CreateVenueScreen_TextView_VenueName" />
+        <TextView
+            android:id="@+id/CreateVenueScreen_TextView_VenueName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/CreateVenueScreen_TextView_Venue"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_EditText_VenueName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.833"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <Button
-        android:id="@+id/CreateVenueScreen_Button_Quit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="#FF0000"
-        android:text="@string/Quit_Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <EditText
+            android:id="@+id/CreateVenueScreen_EditText_VenueName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="136dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:hint="@string/CreateVenueScreen_EditText_Venue"
+            android:inputType="textPersonName"
+            android:minHeight="48dp"
+            android:textColorHint="#78909C"
+            app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_Button_AddVenue"
+            app:layout_constraintEnd_toEndOf="@+id/CreateVenueScreen_TextView_VenueName"
+            app:layout_constraintStart_toStartOf="@+id/CreateVenueScreen_TextView_VenueName"
+            app:layout_constraintTop_toBottomOf="@+id/CreateVenueScreen_TextView_VenueName" />
 
-    <Button
-        android:id="@+id/CreateVenueScreen_Button_AddVenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="188dp"
-        android:backgroundTint="#8BC34A"
-        android:text="@string/CreateVenueScreen_Button_AddVenue"
-        app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_Button_Quit"
-        app:layout_constraintEnd_toEndOf="@+id/CreateVenueScreen_TextView_VenueName"
-        app:layout_constraintStart_toStartOf="@+id/CreateVenueScreen_TextView_VenueName"
-        app:layout_constraintTop_toBottomOf="@+id/CreateVenueScreen_EditText_VenueName" />
+        <Button
+            android:id="@+id/CreateVenueScreen_Button_Quit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="#FF0000"
+            android:text="@string/Quit_Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/CreateVenueScreen_Button_ViewVenues"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="4dp"
-        android:backgroundTint="#FF9800"
-        android:text="@string/CreateVenueScreen_Button_ViewVenues"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/CreateVenueScreen_Button_Quit"
-        app:layout_constraintStart_toEndOf="@+id/CreateVenueScreen_Button_Back" />
+        <Button
+            android:id="@+id/CreateVenueScreen_Button_AddVenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="188dp"
+            android:backgroundTint="#8BC34A"
+            android:text="@string/CreateVenueScreen_Button_AddVenue"
+            app:layout_constraintBottom_toTopOf="@+id/CreateVenueScreen_Button_Quit"
+            app:layout_constraintEnd_toEndOf="@+id/CreateVenueScreen_TextView_VenueName"
+            app:layout_constraintStart_toStartOf="@+id/CreateVenueScreen_TextView_VenueName"
+            app:layout_constraintTop_toBottomOf="@+id/CreateVenueScreen_EditText_VenueName" />
 
-    <Button
-        android:id="@+id/CreateVenueScreen_Button_Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        android:text="@string/Back_Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/CreateVenueScreen_Button_ViewVenues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="4dp"
+            android:backgroundTint="#FF9800"
+            android:text="@string/CreateVenueScreen_Button_ViewVenues"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/CreateVenueScreen_Button_Quit"
+            app:layout_constraintStart_toEndOf="@+id/CreateVenueScreen_Button_Back" />
+
+        <Button
+            android:id="@+id/CreateVenueScreen_Button_Back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginBottom="4dp"
+            android:text="@string/Back_Button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
