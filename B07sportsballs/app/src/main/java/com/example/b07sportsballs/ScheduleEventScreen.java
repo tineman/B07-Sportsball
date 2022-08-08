@@ -173,7 +173,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
-        //Input field only accepts numbers so no try-catch statement neccessary here
+        //Input field only accepts numbers so no try-catch statement neccessary here -> NO, DO TRY CATCH
         if(Integer.parseInt(max) <= 0)
         {
             Toast.makeText(ScheduleEventScreen.this, "A maximum occupancy of at least one is required", Toast.LENGTH_LONG).show();
@@ -190,7 +190,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
         //Some sanitation before it gets to customer method
         //Name checking, date checking, and maximum occupancy checking are handled by customer
 
-        Log.i("Event Created", newEvent.getName() + " at " + newEvent.getLocation() + " from " + newEvent.getStartTime() + " to " + newEvent.getEndTime() + " with " + newEvent.getCurrPlayers() + "/" + newEvent.getMaxPlayers());
 
         Customer.scheduleEvent(newEvent, new Updater() {
             @Override

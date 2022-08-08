@@ -35,11 +35,8 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         }
         List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
 
-        //
-
         for(Event event : events)
         {
-            Log.i("Testing", event.getName() + " " + event.getStartTime().getTime());
             event.changeOnUpdate(new Updater() {
                 @Override
                 public void onUpdate() {
@@ -78,6 +75,5 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      */
     public void quitApp() {
         this.finishAffinity();
-
     }
 }

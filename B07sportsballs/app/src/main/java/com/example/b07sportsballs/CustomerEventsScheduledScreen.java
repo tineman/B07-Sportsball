@@ -36,7 +36,6 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
         List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
 
-
         for(Event event : events)
         {
             event.changeOnUpdate(new Updater() {

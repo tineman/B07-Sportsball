@@ -28,8 +28,7 @@ public class EventWriter {
     public void write(DatabaseReference ref, Event event)
     {
 
-        ref.getParent().child(event.getName()).setValue(event);
-        //ref.setValue(event);
+        ref.setValue(event);
 
     }
 
@@ -43,7 +42,7 @@ public class EventWriter {
     {
 
         Map<String, Object> update = new HashMap<>();
-        update.put("currPlayers", ServerValue.increment(1));
+        update.put(Constants.DATABASE.EVENT_CURR_PLAYERS_KEY, ServerValue.increment(1));
         ref.updateChildren(update);
 
     }
