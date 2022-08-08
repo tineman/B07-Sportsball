@@ -141,11 +141,18 @@ public class CustomerLoginScreen extends AppCompatActivity {
                         String dataName = infoSnapshot.child("Username").getValue().toString();
                         System.out.println(dataName);
                         if(username.isEmpty() || password.isEmpty()){
-                            Toast.makeText(CustomerLoginScreen.this, "field must not be empty", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerLoginScreen.this, "Field must not be empty", Toast.LENGTH_SHORT).show();
                             match = true;
                         }else if(dataName.equals(username)){
                             match = true;
                             if(infoSnapshot.child("Password").getValue().toString().equals(password)){
+                                Customer customer = new Customer(username, password, infoSnapshot.getRef());
+//                                Customer.readFromDatabase(new Updater() {
+//                                    @Override
+//                                    public void onUpdate() {
+//                                        openCustomerHomePage();
+//                                    }
+//                                });
                                 openCustomerHomePage();
                             }else{
                                 Toast.makeText(CustomerLoginScreen.this, "Wrong password", Toast.LENGTH_SHORT).show();

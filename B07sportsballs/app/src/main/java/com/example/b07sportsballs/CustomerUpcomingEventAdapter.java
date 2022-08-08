@@ -1,6 +1,7 @@
 package com.example.b07sportsballs;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,12 @@ public class CustomerUpcomingEventAdapter extends
         holder.setDetails(event);
     }
 
+//    public void removeEvent(int position) {
+//        events.remove(position);
+//        notifyItemRemoved(position);
+//        notifyItemRangeChanged(position, events.size());
+//    }
+
     @Override
     public int getItemCount() {
         return events.size();
@@ -64,6 +71,7 @@ public class CustomerUpcomingEventAdapter extends
 
         //TODO: Modify when class Event is finalized.
         void setDetails(Event event) {
+//            Log.i("UserTest", event==null?"y":"n");
             SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
             txtName.setText(event.getName());
             txtOwner.setText(String.format("Created by: %s", event.getHost()));

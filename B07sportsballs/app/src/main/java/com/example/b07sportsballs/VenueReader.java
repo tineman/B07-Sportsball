@@ -1,5 +1,7 @@
 package com.example.b07sportsballs;
 
+import static com.example.b07sportsballs.Venue.allVenues;
+
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +35,7 @@ public class VenueReader extends AppCompatActivity {
                 Log.w("VenueReader warning", "Error while reading venues from database",
                         databaseError.toException());
             }
+
         });
     }
 
@@ -40,19 +43,16 @@ public class VenueReader extends AppCompatActivity {
         readData(new FirebaseCallback(){
             @Override
             public void onCallback(HashSet<String> keys) {
+
+                Venue.allVenues = keys;
+
                 Venue.allVenues.addAll(keys);
+
                 isRunning = false;
-                Venue v = new Venue();
-                v.getAllVenues();
+                Venue.getAllVenues();
             }
         });
     }
-
-
-
-
-
-
 }
 
 
