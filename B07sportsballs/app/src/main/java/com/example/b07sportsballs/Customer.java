@@ -9,10 +9,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Customer extends User {
@@ -42,28 +44,36 @@ public class Customer extends User {
         }
     }
 
-    /**
-     * Reads events the customer joined or scheduled into respective members. Attaches a listener
-     * to each event to keep updated.
-     */
-    public static void readFromDatabase(Updater updater) {
+    private static void readJoinedEventsFromDatabase(Updater updater) {
         DatabaseReference joinedEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
-        ref.addValueEventListener(new ValueEventListener() {
-            //TODO: Find the data of event in the database and fill in the Event object.
+        joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long venuesCount = snapshot.getChildrenCount();
+                long eventsCount = 0L;
                 for (DataSnapshot venue : snapshot.getChildren()) {
+                    venuesCount--;
+                    eventsCount += venue.getChildrenCount();
                     for (DataSnapshot event : venue.getChildren()) {
+                        eventsCount--;
                         Event e = new Event();
                         DatabaseReference ref = FirebaseDatabase.
                                 getInstance(Constants.DATABASE.DB_URL).
-                                getReference(Constants.DATABASE.VENUE_PATH+"/"+
+                                getReference(Constants.DATABASE.ROOT+"/"+
+                                        Constants.DATABASE.VENUE_PATH+"/"+
                                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
                                         event.getValue(String.class));
+                        Log.i("test", ref.toString());
+                        long finalEventsCount = eventsCount;
+                        long finalVenuesCount = venuesCount;
                         e.bindToDatabase(ref, new Updater() {
                             @Override
                             public void onUpdate() {
+                                e.setName(event.getValue(String.class));
+                                e.setLocation(venue.getKey());
                                 joinedEvents.add(e);
+                                if (finalVenuesCount == 0 && finalEventsCount == 0)
+                                    updater.onUpdate();
                             }
                         });
                     }
@@ -74,6 +84,67 @@ public class Customer extends User {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("Customer Warning", "Error while reading joinedEvents from database",
                         error.toException());
+            }
+        });
+    }
+
+    private static void readScheduledEventsFromDatabase(Updater updater) {
+        DatabaseReference scheduledEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
+        scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                long venuesCount = snapshot.getChildrenCount();
+                long eventsCount = 0L;
+                for (DataSnapshot venue : snapshot.getChildren()) {
+                    venuesCount--;
+                    eventsCount += venue.getChildrenCount();
+                    for (DataSnapshot event : venue.getChildren()) {
+                        eventsCount--;
+                        Event e = new Event();
+                        DatabaseReference ref = FirebaseDatabase.
+                                getInstance(Constants.DATABASE.DB_URL).
+                                getReference(Constants.DATABASE.ROOT+"/"+
+                                        Constants.DATABASE.VENUE_PATH+"/"+
+                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
+                                        event.getValue(String.class));
+                        long finalEventsCount = eventsCount;
+                        long finalVenuesCount = venuesCount;
+                        e.bindToDatabase(ref, new Updater() {
+                            @Override
+                            public void onUpdate() {
+                                e.setName(event.getValue(String.class));
+                                e.setLocation(venue.getKey());
+                                scheduledEvents.add(e);
+                                if (finalVenuesCount == 0 && finalEventsCount == 0)
+                                    updater.onUpdate();
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w("Customer Warning", "Error while reading scheduledEvents from database",
+                        error.toException());
+            }
+        });
+    }
+
+    /**
+     * Reads events the customer joined or scheduled into respective members. Attaches a listener
+     * to each event to keep updated.
+     */
+    public static void readFromDatabase(Updater updater) {
+        Customer.readJoinedEventsFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {
+                Customer.readScheduledEventsFromDatabase(new Updater() {
+                    @Override
+                    public void onUpdate() {
+                        updater.onUpdate();
+                    }
+                });
             }
         });
     }

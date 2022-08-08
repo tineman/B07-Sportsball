@@ -85,9 +85,12 @@ public class CustomerUpcomingEventAdapter extends
                 public void onClick(View v) {
                     event.setWriter();
                     Customer.joinEvent(event);
+
                 }
             });
         }
+
+        void removeEvent(Event e) {}
     }
 }
 
