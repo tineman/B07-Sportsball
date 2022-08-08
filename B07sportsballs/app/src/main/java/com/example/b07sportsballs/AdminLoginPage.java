@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class AdminLoginPage extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "";
     public static DatabaseReference ref;
 
     @Override
@@ -26,7 +25,7 @@ public class AdminLoginPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login_page);
         Intent intent2 = getIntent();
-        ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
+        ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
 
         Log.i("AdminLogin", "Startup");
         Log.i("AdminLogin", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
@@ -80,25 +79,21 @@ public class AdminLoginPage extends AppCompatActivity {
         String apassword = editText1.getText().toString();
 
 
-
-
-
-
-        ref.child("Root").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean match = false;
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
-                        String dataName = infoSnapshot.child("Username").getValue().toString();
-    //                    System.out.println(dataName);
+                        String dataName = infoSnapshot.getKey();
                         if(ausername.isEmpty() || apassword.isEmpty()){
                             Toast.makeText(AdminLoginPage.this, "field must not be empty", Toast.LENGTH_LONG).show();
                             match = true;
                         }else if(dataName.equals(ausername)){
                             match = true;
-                            if(infoSnapshot.child("Password").getValue().toString().equals(apassword)){
-         //                       System.out.println("TESTING");
+                            if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).getValue().toString().equals(apassword)){
+                                Admin admin = new Admin(ausername, apassword, ref);
+
                                 goAdminHome();
                             }else{
                                 Toast.makeText(AdminLoginPage.this, "Wrong password", Toast.LENGTH_SHORT).show();
@@ -126,9 +121,6 @@ public class AdminLoginPage extends AppCompatActivity {
 
     public void goAdminHome(){
         Intent intent1 = new Intent(this, AdminHomePage.class);
-        EditText username = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
-        String auser = username.getText().toString();
-        intent1.putExtra(EXTRA_MESSAGE, auser);
         startActivity(intent1);
     }
 
