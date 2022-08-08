@@ -2,8 +2,9 @@
     <string name="app_name">B07sportsballs</string>
 
     <!--Global-->
-    <string name="Quit_Button">Quit</string> <!--Synchronise all quit strings-->
-    <string name="Logout_Button">Log Out</string> <!--Synchronise all logout strings-->
+    <string name="Quit_Button">Quit</string> <!--Synchronise all "Quit" strings-->
+    <string name="Logout_Button">Log Out</string> <!--Synchronise all "Log Out" strings-->
+    <string name="Back_Button">Back</string> <!--Synchronise all "Back" strings-->
 
     <!--AdminHomePage-->
     <string name="AdminHomePage_Title">Admin Home Page</string>
@@ -26,6 +27,7 @@
     <string name="CreateVenueScreen_TextView_Venue">Venue Name</string>
     <string name="CreateVenueScreen_EditText_Venue">Enter Venue Name Here</string>
     <string name="CreateVenueScreen_Button_AddVenue">Add Venue</string>
+    <string name="CreateVenueScreen_Button_ViewVenues">View Venues</string>
 
     <!--CustomerEventsJoinedScreen-->
     <string name="CustomerEventsJoinedScreen_title">Events Joined</string>

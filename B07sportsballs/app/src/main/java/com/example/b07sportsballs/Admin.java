@@ -122,7 +122,7 @@ public class Admin extends User{
 
 
     @Override
-    public boolean Equals(Object obj){
+    public boolean equals(Object obj){
         if(this == obj){
             return true;
         }
