@@ -66,9 +66,11 @@ public class AdminLoginPage extends AppCompatActivity {
 
     }
 
+    /**
+     * This method is called when the user wants to go back to the Customer Login Screen
+     * */
     private void getCustomer() {
-        Intent intent1 = new Intent(this, CustomerLoginScreen.class);
-        startActivity(intent1);
+        this.finish();
     }
 
     public void logInAdmin(){

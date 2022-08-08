@@ -22,7 +22,7 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
             }
         });
 
-        Button quitButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Quit);
+        Button quitButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -35,8 +35,7 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
      * This method is called when the "Back" button is pressed
      */
     public void backToCustomerHomePage() {
-        Intent intent = getParentActivityIntent();
-        startActivity(intent);
+        this.finish();
     }
 
     /**

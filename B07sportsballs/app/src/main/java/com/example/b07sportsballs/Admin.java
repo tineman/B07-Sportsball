@@ -117,7 +117,7 @@ public class Admin extends User{
 
     @Override
     public int hashCode(){
-        return username.hashCode()+ password.hashCode();
+        return username.hashCode() + password.hashCode();
     }
 
 
@@ -133,12 +133,8 @@ public class Admin extends User{
             return false;
         }
         Admin a = (Admin) obj;
-        return a.username == this.username &&
-                a.password == this.password;
+        return this.username.equals(a.username) && this.password.equals(a.password);
     }
-
-
-
 }
 
 

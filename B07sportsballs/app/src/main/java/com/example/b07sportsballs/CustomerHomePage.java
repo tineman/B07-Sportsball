@@ -93,6 +93,7 @@ public class CustomerHomePage extends AppCompatActivity {
         Intent intent = new Intent(this, CustomerEventsScheduledScreen.class);
         startActivity(intent);
     }
+
     public void openUpcomingEvents(){
         Intent intent = new Intent(this, CustomerUpcomingEventsScreen.class);
         startActivity(intent);
@@ -108,8 +109,9 @@ public class CustomerHomePage extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void backToLoginScreen(){
-        Intent intent = getParentActivityIntent();
+    public void backToLoginScreen() {
+        Intent intent = new Intent(this, CustomerLoginScreen.class);
+        this.finish();
         startActivity(intent);
     }
 }

@@ -54,7 +54,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                closeActivity();
+                back();
             }
         });
 
@@ -70,7 +70,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
     /**
      * This method is called when the "Back" button is pressed
      */
-    public void closeActivity() {
+    public void back() {
         this.finish();
     }
 

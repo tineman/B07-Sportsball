@@ -35,8 +35,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      * This method is called when the "Back" button is pressed
      */
     public void backToCustomerHomePage() {
-        Intent intent = getParentActivityIntent();
-        startActivity(intent);
+        this.finish();
     }
 
     /**

@@ -73,8 +73,7 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
      * This method is called when the "Back" button is pressed
      */
     private void backToAdminHomePage() {
-        Intent intent = getParentActivityIntent();
-        startActivity(intent);
+        this.finish();
     }
 
     /**

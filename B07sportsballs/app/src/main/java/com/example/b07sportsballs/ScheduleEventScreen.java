@@ -23,7 +23,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                closeActivity();
+                back();
             }
         });
 
@@ -39,7 +39,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
     /**
      * This method is called when the "Back" button is pressed
      */
-    public void closeActivity() {
+    public void back() {
         this.finish();
     }
 
