@@ -27,10 +27,9 @@ public class AdminHomePage extends AppCompatActivity {
 
         //display username text
         Intent intent1 = getIntent();
-        String message = intent1.getStringExtra(AdminLoginPage.EXTRA_MESSAGE);
 
         TextView text = findViewById(R.id.AdminHomePage_TextView_Username);
-        text.setText(message);
+        text.setText(Admin.username);
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override

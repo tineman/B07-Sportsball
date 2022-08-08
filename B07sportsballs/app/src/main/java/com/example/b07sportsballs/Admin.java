@@ -24,19 +24,17 @@ public class Admin extends User {
     public Admin() {
     }
 
-    public Admin(HashSet<String> venuesCreated, String username, String password, DatabaseReference ref, Venue venue, HashSet<Admin> admins) {
+    public Admin(String username, String password, DatabaseReference ref) {
         super(username, password, ref);
         this.venue = new Venue();
         this.venuesCreated = new HashSet<String>();
-        this.username = username;
-        this.password = password;
         this.admins = new HashSet<Admin>();
     }
 
     public void setReference() {
 //        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
-        adminRef = ref.child("Root").child("Admin");
-        CVRef = adminRef.child("VenuesCreated");
+        adminRef = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH);
+        CVRef = adminRef.child(Constants.DATABASE.ADMIN_CREATED_VENUES_KEY);
     }
 
 
