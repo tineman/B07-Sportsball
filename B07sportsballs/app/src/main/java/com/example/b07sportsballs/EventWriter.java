@@ -11,6 +11,7 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.Transaction;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +28,8 @@ public class EventWriter {
     public void write(DatabaseReference ref, Event event)
     {
 
-        ref.setValue(event);
+        ref.getParent().child(event.getName()).setValue(event);
+        //ref.setValue(event);
 
     }
 

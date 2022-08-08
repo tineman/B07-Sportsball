@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CustomerHomePage extends AppCompatActivity {
 
     @Override
@@ -16,10 +19,10 @@ public class CustomerHomePage extends AppCompatActivity {
         setContentView(R.layout.activity_customer_home_page);
 
         Intent intent = getIntent();
-        String username = intent.getStringExtra(CustomerLoginScreen.EXTRA_MESSAGE);
+        //String username = intent.getStringExtra(CustomerLoginScreen.EXTRA_MESSAGE);
         TextView textView = findViewById(R.id.CustomerHomePage_Username);
-        String[] splitName = username.split("@");
-        textView.setText(splitName[0]);
+        //String[] splitName = username.split("@");
+        //textView.setText(splitName[0]);
 
         Button eventsJoinedButton = findViewById(R.id.CustomerHomePage_EventsJoined);
         Button scheduledEventsButton = findViewById(R.id.CustomerHomePage_EventsScheduled);
@@ -73,6 +76,11 @@ public class CustomerHomePage extends AppCompatActivity {
                 quitApp(view);
             }
         });
+
+        //Get venues for scheduleEventScreen
+        DatabaseReference ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
+        Venue venue = new Venue();
+        venue.readFromDataBase(ref);
     }
 
     public void quitApp(View view) {

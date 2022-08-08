@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class AdminHomePage extends AppCompatActivity {
 
     @Override
@@ -55,6 +58,11 @@ public class AdminHomePage extends AppCompatActivity {
                 quit();
             }
         });
+
+        //Get venue for ScheduleEventScreen
+        DatabaseReference ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
+        Venue venue = new Venue();
+        venue.readFromDataBase(ref);
     }
 
     /**
