@@ -12,13 +12,12 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Admin {
+public class Admin extends User{
     public static Venue venue = new Venue();
-    public static HashSet<String> venuesCreated;
     public static String username;
     public static String password;
+    public static HashSet<String> venuesCreated;
     static HashSet<Admin> admins = new HashSet<>();
-    public static DatabaseReference ref;
     public static DatabaseReference adminRef;
     public static DatabaseReference CVRef;
 //    datastatus status;
@@ -37,32 +36,37 @@ public class Admin {
         adminRef = ref.child("Root").child("Admin");
         CVRef = adminRef.child("VenuesCreated");
     }
-    public String getUsername() {
-        return username;
-    }
+
 
     public void setUsername(String username) {
         this.username = username;
     }
 
-    public HashSet<String> getVenuesCreated() {
-    return venuesCreated;
-}
+    public String getUsername() {
+        return username;
+    }
 
     public void setVenuesCreated(HashSet<String> venuesCreated) {
         venuesCreated = venue.getAllVenues();
         this.venuesCreated = venuesCreated;
     }
-    public String getPassword() {
-        return password;
-    }
+
+    public HashSet<String> getVenuesCreated() {
+        return venuesCreated;
+}
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
-    public void readAdmin(final Statusdemo status) {
+
+
+
+    public void readToDatabase(final Statusdemo status) {
         adminRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -83,7 +87,7 @@ public class Admin {
         });
     }
 
-    public void writeAdmin(Admin admin) {
+    public void writeToDatabase(Admin admin) {
         String key = adminRef.push().getKey();
         adminRef.child(key).setValue(admin);
     }
@@ -109,6 +113,30 @@ public class Admin {
 
 
     }
+
+
+    @Override
+    public int hashCode(){
+        return username.hashCode()+ password.hashCode();
+    }
+
+
+    @Override
+    public boolean Equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(this.getClass() != obj.getClass()){
+            return false;
+        }
+        Admin a = (Admin) obj;
+        return a.username == this.username &&
+                a.password == this.password;
+    }
+
 
 
 }
