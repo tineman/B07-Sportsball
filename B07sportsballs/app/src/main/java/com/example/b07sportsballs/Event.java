@@ -1,8 +1,7 @@
 package com.example.b07sportsballs;
 
 import com.google.firebase.database.DatabaseReference;
-
-import java.util.Date;
+import java.util.*;
 
 public class Event {
 
@@ -99,6 +98,18 @@ public class Event {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return name.equals(event.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
+    }
 
 
 

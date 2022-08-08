@@ -97,7 +97,7 @@ public class Venue
                         return false;
                 }
                 Venue venue = (Venue) obj;
-                return venue.getName() == name && venue.getEvents() == events;
+                return venue.getName().equals(name) && venue.getEvents().equals(events);
         }
 
         @Override
