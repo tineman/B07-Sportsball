@@ -109,6 +109,7 @@ public class Customer extends User {
                         public void onUpdate() {
                             // Write new event to corresponding venue branch.
                             e.setWriter();
+                            Log.i("Customer", snapshot.getRef().toString());
                             e.writeToDatabase();
                             // Write new event to corresponding customer branch.
                             scheduledEvents.add(e);

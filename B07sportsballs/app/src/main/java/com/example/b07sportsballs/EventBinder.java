@@ -10,6 +10,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,7 @@ public class EventBinder {
 
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
-                parent.setData(event);
+                if(event != null) parent.setData(event);
                 onUpdate.onUpdate();
 
             }

@@ -2,6 +2,7 @@ package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -23,39 +25,40 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_screen);
 
+        venues = new ArrayList<>(Venue.getAllVenues());
+
         listView = (ListView) findViewById(R.id.VenueScreen_List);
+        listView.setOnItemClickListener(this::onItemClick);
         arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
 
-        //Placeholder
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
+        if(Venue.getAllVenues() == null)
+        {
+            Toast.makeText(VenueScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(VenueScreen.this, CustomerHomePage.class);
+            startActivity(intent);
+            return;
+        }
 
         listView.setAdapter(arrayAdapter);
 
     }
 
-    //Function called when ListView clicked
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        if(Customer.username == null)
+        {
+            Toast.makeText(VenueScreen.this, "Admins cannot create events", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        //dummy implementation, not yet called
-        Log.i("VenueScreen", ((TextView) view).getText().toString() + " I've been booped!");
+        Intent intent = new Intent(VenueScreen.this, ScheduleEventScreen.class);
+        intent.putExtra("VENUE_PREF", venues.get(i));
+        startActivity(intent);
+        return;
 
     }
 }
