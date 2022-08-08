@@ -25,6 +25,28 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_joined_screen);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
+
+        if(Customer.getJoinedEvents() == null)
+        {
+            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
+            return;
+        }
+        List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
+
+        //
+
+        for(Event event : events)
+        {
+            event.changeOnUpdate(new Updater() {
+                @Override
+                public void onUpdate() {
+                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsJoinedScreen.this, events);
+                }
+            });
+        }
+
         Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,26 +76,6 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      */
     public void quitApp() {
         this.finishAffinity();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
-        if(Customer.getJoinedEvents() == null)
-        {
-            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-            return;
-        }
-        List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
-
-        //
-
-        for(Event event : events)
-        {
-            event.changeOnUpdate(new Updater() {
-                @Override
-                public void onUpdate() {
-                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsJoinedScreen.this, events);
-                }
-            });
-        }
     }
 }

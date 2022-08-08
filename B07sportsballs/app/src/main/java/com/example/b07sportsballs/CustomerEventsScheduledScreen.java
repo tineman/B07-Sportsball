@@ -25,6 +25,28 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+
+        if(Customer.getScheduledEvents() == null)
+        {
+            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
+            return;
+        }
+
+        List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
+
+
+        for(Event event : events)
+        {
+            event.changeOnUpdate(new Updater() {
+                @Override
+                public void onUpdate() {
+                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsScheduledScreen.this, events);
+                }
+            });
+        }
+
         Button backButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,26 +76,6 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
      */
     public void quitApp() {
         this.finishAffinity();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        if(Customer.getScheduledEvents() == null)
-        {
-            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-            return;
-        }
-
-        List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
-
-
-        for(Event event : events)
-        {
-            event.changeOnUpdate(new Updater() {
-                @Override
-                public void onUpdate() {
-                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsScheduledScreen.this, events);
-                }
-            });
-        }
     }
 }

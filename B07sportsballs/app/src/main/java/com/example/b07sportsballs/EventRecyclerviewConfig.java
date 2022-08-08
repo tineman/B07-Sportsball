@@ -1,6 +1,7 @@
 package com.example.b07sportsballs;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,9 @@ public class EventRecyclerviewConfig {
             this.name.setText(event.getName());
             host.setText(event.getHost());
             venue.setText(event.getLocation());
+            Log.i("Testing", event.getName());
             capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
-            duration.setText("Duration: " + new SimpleDateFormat("HH:mm").format(event.getStartTime()) + " - " + new SimpleDateFormat("HH:mm").format(event.getEndTime()));
+            //duration.setText("Duration: " + new SimpleDateFormat("HH:mm").format(event.getStartTime()) + " - " + new SimpleDateFormat("HH:mm").format(event.getEndTime()));
         }
 
     }
