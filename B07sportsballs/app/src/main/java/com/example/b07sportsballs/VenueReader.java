@@ -1,5 +1,7 @@
 package com.example.b07sportsballs;
 
+import static com.example.b07sportsballs.Venue.allVenues;
+
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +23,7 @@ public class VenueReader extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.i("demo", "data changed");
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String key = child.getKey();
                     keys.add(key);
@@ -47,8 +50,7 @@ public class VenueReader extends AppCompatActivity {
                 Venue.allVenues.addAll(keys);
 
                 isRunning = false;
-                Venue v = new Venue();
-                v.getAllVenues();
+                Venue.getAllVenues();
             }
         });
     }

@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.example.b07sportsballs.R;
@@ -41,6 +44,36 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
 
         // Fetch data from database.
         setEvents();
+
+        Button backButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToCustomerHomePage();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void backToCustomerHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
     }
 
     private void setAdapter() {
@@ -69,22 +102,4 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
             }
         });
     }
-
-//    SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
-//        try {
-//            events.add(new Event("Tennis", "Australia Open", "Wimbledon",
-//                    timeFormat.parse("4 Aug 2022 08:00 AM"),
-//                    timeFormat.parse("4 Dec 2022 08:00 AM"),
-//                    15, 20));
-//            events.add(new Event("AFC U-23 Asian Cup", "AFC", "Bunyodkor Stadium",
-//                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-//                    timeFormat.parse("1 Aug 2022 09:00 AM"),
-//                    100, 100));
-//            events.add(new Event("sleeping", "me", "my bed",
-//                    timeFormat.parse("30 Aug 2022 12:00 PM"),
-//                    timeFormat.parse(" 20 Dec 2022 12:00 PM"),
-//                    0, 1));
-//        }
-//        catch (ParseException e) {
-//        }
 }

@@ -17,8 +17,7 @@
             android:exported="false" />
         <activity
             android:name=".AdminHomePage"
-            android:exported="false"
-            android:parentActivityName=".AdminLoginPage" />
+            android:exported="false" />
         <activity
             android:name=".AdminLoginPage"
             android:exported="false" />
@@ -33,8 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".CustomerHomePage"
-            android:exported="false"
-            android:parentActivityName=".CustomerLoginScreen" />
+            android:exported="false" />
         <activity
             android:name=".CustomerSignUpScreen"
             android:exported="false" />
@@ -55,5 +53,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".VenueScreen"
+            android:exported="false" />
     </application>
 </manifest>

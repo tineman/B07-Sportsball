@@ -12,26 +12,14 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-<<<<<<< Updated upstream
-public class Admin {
-    public static Venue venue = new Venue();
-    public static HashSet<String> venuesCreated;
-    public static String username;
-    public static String password;
-    static HashSet<Admin> admins = new HashSet<>();
-    public static DatabaseReference ref;
-    public static DatabaseReference adminRef;
-    public static DatabaseReference CVRef;
-//    datastatus status;
-=======
-public class Admin extends User{
+
+public class Admin extends User {
     static Venue venue;
     static HashSet<String> venuesCreated;
     static HashSet<Admin> admins;
     static DatabaseReference adminRef;
     static DatabaseReference CVRef;
     Statusdemo status;
->>>>>>> Stashed changes
 
     public Admin() {
     }
@@ -45,45 +33,44 @@ public class Admin extends User{
         this.admins = new HashSet<Admin>();
     }
 
-    public void setReference(){
+    public void setReference() {
 //        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
         adminRef = ref.child("Root").child("Admin");
         CVRef = adminRef.child("VenuesCreated");
     }
+
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getUsername() {
         return username;
     }
 
-<<<<<<< Updated upstream
-    public void setUsername(String username) {
-        this.username = username;
-=======
     public void setVenuesCreated(HashSet<String> venuesCreated) {
         venue.readFromDataBase(ref);
         this.venuesCreated = venue.allVenues;
 //        venuesCreated = venue.getAllVenues();
 //        this.venuesCreated = venuesCreated;
->>>>>>> Stashed changes
+
     }
+
 
     public HashSet<String> getVenuesCreated() {
-    return venuesCreated;
-}
-
-    public void setVenuesCreated(HashSet<String> venuesCreated) {
-        venuesCreated = venue.getAllVenues();
-        this.venuesCreated = venuesCreated;
-    }
-    public String getPassword() {
-        return password;
+        return venuesCreated;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
-    public void readAdmin(final Statusdemo status) {
+
+    public void readToDatabase(final Statusdemo status) {
         adminRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -104,7 +91,7 @@ public class Admin extends User{
         });
     }
 
-    public void writeAdmin(Admin admin) {
+    public void writeToDatabase(Admin admin) {
         String key = adminRef.push().getKey();
         adminRef.child(key).setValue(admin);
     }
@@ -132,33 +119,30 @@ public class Admin extends User{
     }
 
 
-<<<<<<< Updated upstream
-=======
     @Override
-    public int hashCode(){
-        return username.hashCode()+ password.hashCode();
+    public int hashCode() {
+        return username.hashCode() + password.hashCode();
     }
 
 
-    //@Override
-    public boolean Equals(Object obj){
-        if(this == obj){
+    @Override
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
             return true;
         }
-        if(obj == null){
+        if (obj == null) {
             return false;
         }
-        if(this.getClass() != obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
         Admin a = (Admin) obj;
-        return a.username == this.username &&
-                a.password == this.password;
+
+        return return this.username.equals(a.username) && this.password.equals(a.password);
     }
 
 
-
->>>>>>> Stashed changes
 }
 
 

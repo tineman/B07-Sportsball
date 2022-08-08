@@ -132,28 +132,31 @@ public class CustomerLoginScreen extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
 
-        reference.child("Root").child("Customer").addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean match = false;
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
-                        String dataName = infoSnapshot.child("Username").getValue().toString();
+//                        String dataName = infoSnapshot.child("Username").getValue().toString();
+                        String dataName = infoSnapshot.getKey();
                         System.out.println(dataName);
                         if(username.isEmpty() || password.isEmpty()){
                             Toast.makeText(CustomerLoginScreen.this, "Field must not be empty", Toast.LENGTH_SHORT).show();
                             match = true;
                         }else if(dataName.equals(username)){
                             match = true;
-                            if(infoSnapshot.child("Password").getValue().toString().equals(password)){
+                            if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).getValue().toString().equals(password)){
                                 Customer customer = new Customer(username, password, infoSnapshot.getRef());
-//                                Customer.readFromDatabase(new Updater() {
-//                                    @Override
-//                                    public void onUpdate() {
-//                                        openCustomerHomePage();
-//                                    }
-//                                });
-                                openCustomerHomePage();
+                                Customer.readFromDatabase(new Updater() {
+                                    @Override
+                                    public void onUpdate() {
+//                                        Log.i("test", String.format("size of joinedEvents: %d", Customer.joinedEvents.size()));
+//                                        Log.i("test", String.format("size of scheduledEvents: %d", Customer.scheduledEvents.size()));
+                                        openCustomerHomePage();
+                                    }
+                                });
+//                                openCustomerHomePage();
                             }else{
                                 Toast.makeText(CustomerLoginScreen.this, "Wrong password", Toast.LENGTH_SHORT).show();
                             }

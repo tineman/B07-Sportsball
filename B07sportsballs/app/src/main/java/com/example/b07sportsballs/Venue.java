@@ -7,6 +7,7 @@ import com.google.firebase.database.DatabaseReference;
 
 
 import java.util.HashSet;
+import java.util.Objects;
 
 public class Venue
 {
@@ -15,7 +16,7 @@ public class Venue
         private DatabaseReference ref;
         private VenueWriter venuewriter;
         private VenueReader venuereader;
-        public static HashSet<String> allVenues;
+        public static HashSet<String> allVenues = new HashSet<String>();
 
         //Empty constructor
         public Venue() { }
@@ -69,6 +70,7 @@ public class Venue
                 venuewriter.write(ref,this);
         }
 
+
         //return a HashSet of all venues that exist
         public static HashSet<String> getAllVenues()
         {
@@ -78,6 +80,32 @@ public class Venue
                 }
                 return allVenues;
         }
+
+
+        @Override
+        public boolean equals(Object obj) {
+                if (this == obj)
+                {
+                        return true;
+                }
+                if (obj == null)
+                {
+                        return false;
+                }
+                if (this.getClass() != obj.getClass())
+                {
+                        return false;
+                }
+                Venue venue = (Venue) obj;
+                return venue.getName().equals(name) && venue.getEvents().equals(events);
+        }
+
+        @Override
+        public int hashCode() {
+                return Objects.hash(name, events);
+        }
+
+
 }
 
 

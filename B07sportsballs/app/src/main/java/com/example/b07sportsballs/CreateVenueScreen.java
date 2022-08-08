@@ -17,15 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.HashSet;
-import java.util.List;
-
 public class CreateVenueScreen extends AppCompatActivity {
-
-
-    public static Button addVenue;
-    public static Button Quit;
-    public static Button venueList;
     public static DatabaseReference ref;
 
     @Override
@@ -37,27 +29,8 @@ public class CreateVenueScreen extends AppCompatActivity {
         Log.i("CreateVenue", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
 
 
-        addVenue = (Button) findViewById(R.id.button6);
-
-        Quit = (Button) findViewById(R.id.button5);
-
-        venueList = (Button) findViewById(R.id.button7);
-
-        venueList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                listVenue();
-            }
-        });
-
-        Quit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Quitcreate();
-            }
-        });
-
-        addVenue.setOnClickListener(new View.OnClickListener() {
+        Button addVenueButton = findViewById(R.id.CreateVenueScreen_Button_AddVenue);
+        addVenueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 EditText VenueName = (EditText) findViewById(R.id.CreateVenueScreen_EditText_VenueName);
@@ -125,16 +98,50 @@ public class CreateVenueScreen extends AppCompatActivity {
             }
         });
 
+        Button backButton = findViewById(R.id.CreateVenueScreen_Button_Back);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToAdminHomePage();
+            }
+        });
+
+        Button viewVenuesButton = findViewById(R.id.CreateVenueScreen_Button_ViewVenues);
+        viewVenuesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listVenue();
+            }
+        });
+
+        Button quitButton = findViewById(R.id.CreateVenueScreen_Button_Quit);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
     }
 
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    private void backToAdminHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "View Venues" button is pressed
+     */
     private void listVenue() {
         Intent intent = new Intent(this, VenueScreen.class);
         startActivity(intent);
     }
 
-    private void Quitcreate() {
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    private void quitApp() {
         this.finishAffinity();
     }
-
-
 }
