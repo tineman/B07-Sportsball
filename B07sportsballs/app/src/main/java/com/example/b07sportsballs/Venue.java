@@ -60,7 +60,7 @@ public class Venue
         public void readFromDataBase(DatabaseReference ref)
         {
                 setReader(new VenueReader());
-                VenueReader.ref = ref.child("Root").child("Venues");
+                VenueReader.ref = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH);
                 venuereader.read(ref);
         }
 
