@@ -84,7 +84,7 @@ public class AdminLoginPage extends AppCompatActivity {
 
 
 
-        ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.child("Root").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean match = false;

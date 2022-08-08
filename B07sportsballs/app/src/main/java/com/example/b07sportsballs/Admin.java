@@ -96,14 +96,17 @@ public class Admin extends User {
         adminRef.child(key).setValue(admin);
     }
 
+//    public void
+
 
     public void createVenue(String venue) {
 
         Venue avenue = new Venue();
         avenue.setName(venue);
         venuesCreated.add(venue);
-        String key = CVRef.push().getKey();
-        CVRef.child(key).setValue(venue);
+        avenue.writeToDataBase(ref);
+//        String key = CVRef.push().getKey();
+//        CVRef.child(key).setValue(venue);
 //        if (venuesCreated.contains(venue)) {
 //            status.duplicate();
 //        }

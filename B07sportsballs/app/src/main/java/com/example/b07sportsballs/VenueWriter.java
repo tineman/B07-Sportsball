@@ -15,7 +15,7 @@ public class VenueWriter extends AppCompatActivity
     public void write(DatabaseReference ref, Venue venue)
     {
         String venue_name = venue.getName();
-        ref.child("Root").child("Venues").child(venue_name).child("Events").setValue("");
+        ref.child(Constants.DATABASE.ROOT).child("Venues").child(venue_name).child("Events").setValue("");
         ref.child("Root").child("Admin").child("VenuesCreated").child(venue_name);
         Venue.allVenues.add(venue_name);
 
