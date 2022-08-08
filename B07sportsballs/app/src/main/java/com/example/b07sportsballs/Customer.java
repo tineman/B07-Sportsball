@@ -165,15 +165,13 @@ public class Customer extends User {
     // to set user-input info.
     public static void scheduleEvent(Event e, Updater updater) {
         // Check for duplicate event names inside venue
-        DatabaseReference venueRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
-                getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
-                        Constants.DATABASE.VENUE_EVENTS_KEY);
         DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
                 getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+e.getName());
         eventRoot.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // No event with such name is located at the same venue.
                 if (!snapshot.exists()) {
                     e.bindToDatabase(snapshot.getRef(), new Updater() {
                         @Override
