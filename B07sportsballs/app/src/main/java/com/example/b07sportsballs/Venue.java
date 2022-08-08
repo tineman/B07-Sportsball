@@ -77,15 +77,8 @@ public class Venue
                 if (!VenueReader.isRunning)
                 {
                         Log.i("demo", "allVenues: " + allVenues);
-                        getHashSet(allVenues); //MODIFIED CODE
                 }
                 return allVenues;
-        }
-
-        //NEW METHOD
-        public static void getHashSet(HashSet<String> venues)
-        {
-                allVenues = venues;
         }
 
 

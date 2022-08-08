@@ -23,6 +23,7 @@ public class VenueReader extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.i("demo", "data changed");
+
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String key = child.getKey();
                     keys.add(key);

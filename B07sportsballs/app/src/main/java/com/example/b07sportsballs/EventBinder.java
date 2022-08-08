@@ -53,7 +53,7 @@ public class EventBinder {
 
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
-                parent.setData(event);
+                if(event != null) parent.setData(event);
                 onUpdate.onUpdate();
 
             }

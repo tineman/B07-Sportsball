@@ -51,14 +51,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_event_screen);
 
-
-        //Hello! This is the part I'm having trouble with
-        DatabaseReference ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Root/Venues");
-        Venue venue = new Venue();
-        venue.readFromDataBase(ref);
-
-
-        if(Venue.allVenues == null)
+        if(Venue.getAllVenues() == null)
         {
             Toast.makeText(ScheduleEventScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ScheduleEventScreen.this, CustomerHomePage.class);
@@ -66,7 +59,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
-        venueName = new ArrayList<>(Venue.allVenues);
+        venueName = new ArrayList<>(Venue.getAllVenues());
 
         Log.i("There are ", venueName.size() + " venues");
 
@@ -96,7 +89,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
         endDate = false;
 
     }
-
 
     /*
     Called when the submit button is pressed. Used to show Event
@@ -169,8 +161,12 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
         Log.i("Event Created", newEvent.getName() + " at " + newEvent.getLocation() + " from " + newEvent.getStartTime() + " to " + newEvent.getEndTime() + " with " + newEvent.getCurrPlayers() + "/" + newEvent.getMaxPlayers());
 
-
-        //Customer.scheduleEvent();
+        Customer.scheduleEvent(newEvent, new Updater() {
+            @Override
+            public void onUpdate() {
+                //Dummy implementation, next user should update as required
+            }
+        });
     }
 
     public void pickTime(View view, Date date, Button button)
@@ -197,7 +193,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                date.setYear(year - 1900);
+                date.setYear(year);
                 date.setMonth(month);
                 date.setDate(day);
                 button.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));

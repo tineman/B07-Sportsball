@@ -25,18 +25,14 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_screen);
+
+        venues = new ArrayList<>(Venue.getAllVenues());
 
         listView = (ListView) findViewById(R.id.VenueScreen_List);
         listView.setOnItemClickListener(this::onItemClick);
-        arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
-
-        /*
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_venue_screen);
-
-        listView = (ListView) findViewById(R.id.VenueScreen_List);
         arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
 
         if(Venue.getAllVenues() == null)
@@ -46,28 +42,6 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
             startActivity(intent);
             return;
         }
-
-        venues = new ArrayList<>(Venue.getAllVenues());
-        listView.setAdapter(arrayAdapter);
-         */
-
-
-        //Placeholder
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
-        venues.add("blargghhhh!");
-        venues.add("yarghhhh!");
-        venues.add("bleughhhh!");
 
         listView.setAdapter(arrayAdapter);
 

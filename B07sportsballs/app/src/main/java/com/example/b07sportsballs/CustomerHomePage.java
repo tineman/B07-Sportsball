@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CustomerHomePage extends AppCompatActivity {
 
     @Override
@@ -73,6 +76,11 @@ public class CustomerHomePage extends AppCompatActivity {
                 quitApp(view);
             }
         });
+
+        //Get venues for scheduleEventScreen
+        DatabaseReference ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
+        Venue venue = new Venue();
+        venue.readFromDataBase(ref);
     }
 
     public void quitApp(View view) {
