@@ -61,6 +61,7 @@ public class Customer extends User {
                                 getInstance(Constants.DATABASE.DB_URL).
                                 getReference(Constants.DATABASE.ROOT+"/"+
                                         Constants.DATABASE.VENUE_PATH+"/"+
+                                        venue.getKey()+"/"+
                                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
                                         event.getValue(String.class));
                         Log.i("test", ref.toString());
@@ -69,8 +70,6 @@ public class Customer extends User {
                         e.bindToDatabase(ref, new Updater() {
                             @Override
                             public void onUpdate() {
-                                e.setName(event.getValue(String.class));
-                                e.setLocation(venue.getKey());
                                 joinedEvents.add(e);
                                 if (finalVenuesCount == 0 && finalEventsCount == 0)
                                     updater.onUpdate();
@@ -105,6 +104,7 @@ public class Customer extends User {
                                 getInstance(Constants.DATABASE.DB_URL).
                                 getReference(Constants.DATABASE.ROOT+"/"+
                                         Constants.DATABASE.VENUE_PATH+"/"+
+                                        venue.getKey()+"/"+
                                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
                                         event.getValue(String.class));
                         long finalEventsCount = eventsCount;
@@ -112,8 +112,6 @@ public class Customer extends User {
                         e.bindToDatabase(ref, new Updater() {
                             @Override
                             public void onUpdate() {
-                                e.setName(event.getValue(String.class));
-                                e.setLocation(venue.getKey());
                                 scheduledEvents.add(e);
                                 if (finalVenuesCount == 0 && finalEventsCount == 0)
                                     updater.onUpdate();
@@ -139,6 +137,15 @@ public class Customer extends User {
         Customer.readJoinedEventsFromDatabase(new Updater() {
             @Override
             public void onUpdate() {
+                for (Event e:joinedEvents) {
+                    Log.i("ReadCustomer", "name: "+e.getName());
+                    Log.i("ReadCustomer", "host: "+e.getHost());
+                    Log.i("ReadCustomer", "location: "+e.getLocation());
+                    Log.i("ReadCustomer", "startTime: "+e.getStartTime());
+                    Log.i("ReadCustomer", "endTime: "+e.getEndTime());
+                    Log.i("ReadCustomer", "maxPlayers: "+e.getMaxPlayers());
+                    Log.i("ReadCustomer", "currPlayers: "+e.getCurrPlayers());
+                }
                 Customer.readScheduledEventsFromDatabase(new Updater() {
                     @Override
                     public void onUpdate() {
@@ -180,8 +187,6 @@ public class Customer extends User {
                         @Override
                         public void onUpdate() {
                             // Write new event to corresponding venue branch.
-                            e.setName(name);
-                            e.setLocation(location);
                             e.setWriter();
                             Log.i("Customer", snapshot.getRef().toString());
                             e.writeToDatabase();

@@ -156,10 +156,6 @@ public class Event implements Serializable{
 
     public void setBinder(EventBinder binder) {this.binder = binder;}
 
-    public void setName(String name) {this.name = name;}
-
-    public void setLocation(String location) {this.location = location;}
-
     //Sets name, host, location, starttime, endrime, currplayers, maxplayers to those in events
     public void setData(Event event)
     {

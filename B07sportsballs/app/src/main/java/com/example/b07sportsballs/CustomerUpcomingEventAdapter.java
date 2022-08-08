@@ -38,7 +38,6 @@ public class CustomerUpcomingEventAdapter extends
     @Override
     public void onBindViewHolder
             (@NonNull CustomerUpcomingEventAdapter.EventHolder holder, int position) {
-//        Event event = events.get(position);
         holder.setDetails(position);
     }
 
