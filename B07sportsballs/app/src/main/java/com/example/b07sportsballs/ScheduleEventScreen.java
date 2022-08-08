@@ -17,10 +17,14 @@ import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 
 public class ScheduleEventScreen extends AppCompatActivity {
@@ -47,11 +51,14 @@ public class ScheduleEventScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_event_screen);
 
-        /*
-        Access list of venues from customer
-         */
 
-        if(Venue.getAllVenues() == null)
+        //Hello! This is the part I'm having trouble with
+        DatabaseReference ref = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference("Root/Venues");
+        Venue venue = new Venue();
+        venue.readFromDataBase(ref);
+
+
+        if(Venue.allVenues == null)
         {
             Toast.makeText(ScheduleEventScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(ScheduleEventScreen.this, CustomerHomePage.class);
@@ -59,7 +66,15 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
-        venueName = new ArrayList<>(Venue.getAllVenues());
+        venueName = new ArrayList<>(Venue.allVenues);
+
+        Log.i("There are ", venueName.size() + " venues");
+
+        for(String string : venueName)
+        {
+            Log.i("Test", string);
+        }
+
         venueSpinner = (Spinner) findViewById(R.id.ScheduleEventScreen_Spinner_Venue);
         ArrayAdapter<String> adapter = new ArrayAdapter(ScheduleEventScreen.this, android.R.layout.simple_spinner_item, venueName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
