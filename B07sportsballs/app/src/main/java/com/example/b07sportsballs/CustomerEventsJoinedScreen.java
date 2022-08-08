@@ -48,6 +48,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         }
 
         Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
+
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
