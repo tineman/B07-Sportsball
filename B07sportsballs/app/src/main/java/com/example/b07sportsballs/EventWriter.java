@@ -28,7 +28,8 @@ public class EventWriter {
     public void write(DatabaseReference ref, Event event)
     {
 
-        ref.setValue(event);
+        ref.getParent().child(event.getName()).setValue(event);
+        //ref.setValue(event);
 
     }
 
