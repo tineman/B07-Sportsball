@@ -139,7 +139,7 @@ public class Admin extends User {
         }
         Admin a = (Admin) obj;
 
-        return return this.username.equals(a.username) && this.password.equals(a.password);
+        return this.username.equals(a.username) && this.password.equals(a.password);
     }
 
 
