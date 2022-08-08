@@ -4,26 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/design4"
     tools:context=".AdminLoginPage">
-
-    <ImageView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:src="@drawable/design4"
-        android:scaleType="centerCrop"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
+        android:layout_marginStart="-50dp"
         android:text="@string/AdminLoginPage_TextView_Username"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_EditText_Username"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Title" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Password"
@@ -34,7 +28,9 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_EditText_Password"
-        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Username" />
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Username" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Title"
@@ -62,6 +58,8 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#78909C"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/AdminLoginPage_TextView_Username"
         app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Title" />
 
@@ -83,7 +81,7 @@
     <Button
         android:id="@+id/AdminLoginPage_Button_Login"
         android:layout_width="320dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#D5461A"
         android:minHeight="60dp"

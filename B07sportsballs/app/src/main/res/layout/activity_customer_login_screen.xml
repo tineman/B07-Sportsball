@@ -4,17 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/design4"
     tools:context=".CustomerLoginScreen">
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scaleType="centerCrop"
-        android:src="@drawable/design4"
-        tools:layout_editor_absoluteX="-43dp"
-        tools:layout_editor_absoluteY="0dp"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/CustomerLoginScreen_TextView_Title"
@@ -48,7 +39,7 @@
     <EditText
         android:id="@+id/CustomerLoginScreen_EditText_Password"
         android:layout_width="225dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerLoginScreen_enter_password"
@@ -62,7 +53,7 @@
     <EditText
         android:id="@+id/CustomerLoginScreen_EditText_Username"
         android:layout_width="225dp"
-        android:layout_height="45dp"
+        android:layout_height="48dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerLoginScreen_enter_username"
@@ -91,7 +82,7 @@
     <Button
         android:id="@+id/CustomerLoginScreen_Button_Login"
         android:layout_width="320dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="#D5461A"
         android:text="@string/CustomerLoginScreen_login"
@@ -103,17 +94,17 @@
         android:id="@+id/CustomerLoginScreen_Button_GoToAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CustomerLoginScreen_login_as_an_admin"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#D5461A"
-        app:layout_constraintBaseline_toBaselineOf="@+id/CustomerLoginScreen_Button_Quit"
-        app:layout_constraintEnd_toStartOf="@+id/CustomerLoginScreen_Button_Quit"
-        app:layout_constraintHorizontal_bias="0.025"
+        android:text="@string/CustomerLoginScreen_login_as_an_admin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/CustomerLoginScreen_Button_Register"
         android:layout_width="0dp"
-        android:layout_height="42dp"
+        android:layout_height="48dp"
         android:layout_marginEnd="32dp"
         android:background="@android:color/transparent"
         android:text="@string/CustomerLoginScreen_register_customer_account"
@@ -125,7 +116,8 @@
         android:id="@+id/CustomerLoginScreen_Button_Quit"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
         android:backgroundTint="#C50505"
         android:text="@string/Quit_Button"
         app:layout_constraintBottom_toBottomOf="parent"
