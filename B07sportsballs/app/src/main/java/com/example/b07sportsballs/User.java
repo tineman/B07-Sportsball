@@ -91,6 +91,7 @@ public abstract class User {
                             public void onUpdate() {
                                 e.setName(event.getKey());
                                 e.setLocation(venue.getKey());
+                                Log.i("test", e.getStartTime().toString());
                                 if (e.getStartTime().compareTo(now) > 0) {
                                     events.add(e);
                                 }

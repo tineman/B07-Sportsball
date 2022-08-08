@@ -31,16 +31,16 @@ public class Customer extends User {
     /**
      * Writes all events joined and scheduled by the customer to respective branch of database.
      */
-    public static void writeToDatabase() {
-        DatabaseReference joinedEventsRoot = ref.child
-                (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
-        for (Event event : joinedEvents) {
-            joinedEventsRoot.child(event.getLocation()).push().setValue(event.getName());
+    public static void writeToDatabase(Event e, boolean toJoinedEvents, boolean toScheduledEvents) {
+        if (toJoinedEvents) {
+            DatabaseReference joinedEventsRoot = ref.child
+                    (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
+            joinedEventsRoot.child(e.getLocation()).push().setValue(e.getName());
         }
-        DatabaseReference scheduledEventsRoot = ref.child
-                (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
-        for (Event event : scheduledEvents) {
-            scheduledEventsRoot.child(event.getLocation()).push().setValue(event.getName());
+        if (toScheduledEvents) {
+            DatabaseReference scheduledEventsRoot = ref.child
+                    (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
+            scheduledEventsRoot.child(e.getLocation()).push().setValue(e.getName());
         }
     }
 
@@ -157,7 +157,7 @@ public class Customer extends User {
     public static void joinEvent(Event e) {
         if (e.increment()) {
             joinedEvents.add(e);
-            writeToDatabase();
+            writeToDatabase(e, true, false);
         }
     }
 
@@ -183,7 +183,7 @@ public class Customer extends User {
                             e.writeToDatabase();
                             // Write new event to corresponding customer branch.
                             scheduledEvents.add(e);
-                            writeToDatabase();
+                            writeToDatabase(e, false, true);
                         }
                     });
                 }
