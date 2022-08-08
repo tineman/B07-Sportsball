@@ -20,8 +20,8 @@
 
     <Spinner
         android:id="@+id/spinnerVenue"
-        android:layout_width="377dp"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,8 +29,13 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/upcoming_events"
-        android:layout_width="409dp"
-        android:layout_height="564dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/AdminUpcomingEventsScreen_Button_Quit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerVenue" />
