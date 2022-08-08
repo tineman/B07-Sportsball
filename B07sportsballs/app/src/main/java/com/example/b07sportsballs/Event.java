@@ -107,12 +107,12 @@ public class Event implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return name.equals(event.name);
+        return this.name.equals(event.getName()) && this.location.equals(event.getLocation());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name) + Objects.hash(location);
     }
 
 

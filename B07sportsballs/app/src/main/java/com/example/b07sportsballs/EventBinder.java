@@ -53,7 +53,14 @@ public class EventBinder {
 
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
-                if(event != null) parent.setData(event);
+                if(event != null)
+                {
+                    parent.setData(event);
+                }
+                else
+                {
+                    Log.i("Event Binder Error", "Tried to bind to empty node at " + ref.toString());
+                }
                 onUpdate.onUpdate();
 
             }

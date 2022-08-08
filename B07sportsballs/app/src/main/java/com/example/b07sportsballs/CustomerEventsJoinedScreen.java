@@ -39,6 +39,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
         for(Event event : events)
         {
+            Log.i("Testing", event.getName() + " " + event.getStartTime().getTime());
             event.changeOnUpdate(new Updater() {
                 @Override
                 public void onUpdate() {
