@@ -72,11 +72,15 @@ public class AdminLoginPage extends AppCompatActivity {
     }
 
     public void logInAdmin(){
-//        Intent intent1 = new Intent(this, AdminHomePage.class);
         EditText editText = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
         EditText editText1 = (EditText) findViewById(R.id.AdminLoginPage_EditText_Password);
         String ausername = editText.getText().toString();
         String apassword = editText1.getText().toString();
+
+
+
+
+
 
         ref.child("Root").child("Admin").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -119,8 +123,11 @@ public class AdminLoginPage extends AppCompatActivity {
 
 
     public void goAdminHome(){
-        Intent intent3 = new Intent(this, AdminHomePage.class);
-        startActivity(intent3);
+        Intent intent1 = new Intent(this, AdminHomePage.class);
+        EditText username = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
+        String auser = username.getText().toString();
+        intent1.putExtra(EXTRA_MESSAGE, auser);
+        startActivity(intent1);
     }
 
     public void quitAdmin(){

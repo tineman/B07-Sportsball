@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class AdminHomePage extends AppCompatActivity {
 
@@ -20,6 +21,13 @@ public class AdminHomePage extends AppCompatActivity {
         Button view_all_venues = (Button) findViewById(R.id.AdminHomePage_Button_ViewVenues);
         Button display_upcoming_events = (Button) findViewById(R.id.AdminHomePage_Button_DisplayEvents);
         Button quit_button = (Button) findViewById(R.id.AdminHomePage_Button_Quit);
+
+        //display username text
+        Intent intent1 = getIntent();
+        String message = intent1.getStringExtra(AdminLoginPage.EXTRA_MESSAGE);
+
+        TextView text = findViewById(R.id.AdminHomePage_TextView_Username);
+        text.setText(message);
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override

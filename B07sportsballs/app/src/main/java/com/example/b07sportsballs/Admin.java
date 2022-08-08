@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+<<<<<<< Updated upstream
 public class Admin {
     public static Venue venue = new Venue();
     public static HashSet<String> venuesCreated;
@@ -22,18 +23,30 @@ public class Admin {
     public static DatabaseReference adminRef;
     public static DatabaseReference CVRef;
 //    datastatus status;
+=======
+public class Admin extends User{
+    static Venue venue;
+    static HashSet<String> venuesCreated;
+    static HashSet<Admin> admins;
+    static DatabaseReference adminRef;
+    static DatabaseReference CVRef;
+    Statusdemo status;
+>>>>>>> Stashed changes
 
     public Admin() {
     }
 
-    public Admin(HashSet<String> venuesCreated, String username, String password) {
-        this.venuesCreated = venuesCreated;
+    public Admin(HashSet<String> venuesCreated, String username, String password, DatabaseReference ref, Venue venue, HashSet<Admin> admins) {
+        super(username, password, ref);
+        this.venue = new Venue();
+        this.venuesCreated = new HashSet<String>();
         this.username = username;
         this.password = password;
+        this.admins = new HashSet<Admin>();
     }
 
     public void setReference(){
-        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
+//        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
         adminRef = ref.child("Root").child("Admin");
         CVRef = adminRef.child("VenuesCreated");
     }
@@ -41,8 +54,16 @@ public class Admin {
         return username;
     }
 
+<<<<<<< Updated upstream
     public void setUsername(String username) {
         this.username = username;
+=======
+    public void setVenuesCreated(HashSet<String> venuesCreated) {
+        venue.readFromDataBase(ref);
+        this.venuesCreated = venue.allVenues;
+//        venuesCreated = venue.getAllVenues();
+//        this.venuesCreated = venuesCreated;
+>>>>>>> Stashed changes
     }
 
     public HashSet<String> getVenuesCreated() {
@@ -111,6 +132,33 @@ public class Admin {
     }
 
 
+<<<<<<< Updated upstream
+=======
+    @Override
+    public int hashCode(){
+        return username.hashCode()+ password.hashCode();
+    }
+
+
+    //@Override
+    public boolean Equals(Object obj){
+        if(this == obj){
+            return true;
+        }
+        if(obj == null){
+            return false;
+        }
+        if(this.getClass() != obj.getClass()){
+            return false;
+        }
+        Admin a = (Admin) obj;
+        return a.username == this.username &&
+                a.password == this.password;
+    }
+
+
+
+>>>>>>> Stashed changes
 }
 
 
