@@ -166,7 +166,8 @@ public class Customer extends User {
     public static void scheduleEvent(Event e, Updater updater) {
         // Check for duplicate event names inside venue
         DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
-                getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
+                getReference(Constants.DATABASE.ROOT+"/"+
+                        Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+e.getName());
         eventRoot.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
