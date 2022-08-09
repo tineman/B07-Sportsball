@@ -1,0 +1,59 @@
+Name: Tian
+	
+What did I do since yesterday?
+	Implement CustomerEventsJoinedScreen and CustomerEventsScheduledScreen to incorporate Customer
+	Implement ScheduleEventScreen to incorporate Cistomer, Venue, and to allow for dates to be implemented
+	Implement VenueScreen
+What am I going to do?
+	Test all the screens I created before I push it to main
+What I need help with?
+	Using venue
+  
+Name: Austin
+What did I do since yesterday?
+	Finished reformatting many frontend classes to make them more user-friendly
+	Fixed some bugs
+What am I going to do?
+	Add a back button to some screens, make sure all screens are linked
+What I need help with?
+	Nothing - so far
+
+
+Name: George
+	
+What did I do since yesterday?
+	Completed and Tested AdminLogin activity with the help of Login method
+	Implementing and finalizing Admin class and CreateVenue activity, building connections between Admin CreateVenue method with Venue class related methods
+	
+What am I going to do?
+	Completed Admin class and CreateVenue activity and do emulator testings
+	
+What I need help with?
+	Nothing so far
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Created equals and hashCode methods for Venue
+	Fixed getAllVenues() in the Venue class so all of the venue names could be stored in a hashset
+	Pushed all of the Venue classes to main
+	Wrote test cases for Venue
+What am I going to do?
+	Continue testing
+What I need help with?
+	Nothing right now
+
+Name: Chau
+	
+What did I do since yesterday?
+Merged my working branch to main
+What am I going to do?
+What I need help with?
+
+Name: Frans
+	
+What did I do since yesterday?
+	Write final json database
+What am I going to do?
+	Fix login to conform with new database
+What I need help with?
