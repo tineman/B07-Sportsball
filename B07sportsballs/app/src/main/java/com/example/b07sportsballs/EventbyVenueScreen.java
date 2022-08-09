@@ -53,6 +53,38 @@ public class EventbyVenueScreen extends AppCompatActivity {
         //Initialise events list
         events = new ArrayList<Event>();
 
+
+        //Back button
+        Button backButton = findViewById(R.id.EventVenueBack_Button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backToHomePage();
+            }
+        });
+
+        //Quit button
+        Button quitButton = findViewById(R.id.EventVenueQuit_Button);
+        quitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                quitApp();
+            }
+        });
+    }
+
+    /**
+     * This method is called when the "Back" button is pressed
+     */
+    public void backToHomePage() {
+        this.finish();
+    }
+
+    /**
+     * This method is called when the "Quit" button is pressed
+     */
+    public void quitApp() {
+        this.finishAffinity();
     }
 
     /**
