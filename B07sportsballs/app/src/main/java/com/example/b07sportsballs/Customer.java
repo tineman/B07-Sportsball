@@ -15,7 +15,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class Customer extends User {
     static HashSet<Event> joinedEvents;
@@ -33,14 +35,28 @@ public class Customer extends User {
      */
     public static void writeToDatabase(Event e, boolean toJoinedEvents, boolean toScheduledEvents) {
         if (toJoinedEvents) {
-            DatabaseReference joinedEventsRoot = ref.child
-                    (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
-            joinedEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+            if (Customer.joinedEvents.size() == 0) {
+                Map<Integer, String> joinedEventsData = new HashMap<Integer, String>();
+                joinedEventsData.put(0, e.getName());
+                ref.setValue(joinedEventsData);
+            }
+            else {
+                DatabaseReference joinedEventsRoot = ref.child
+                        (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
+                joinedEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+            }
         }
         if (toScheduledEvents) {
-            DatabaseReference scheduledEventsRoot = ref.child
-                    (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
-            scheduledEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+            if (Customer.scheduledEvents.size() == 0) {
+                Map<Integer, String> scheduledEventsData = new HashMap<Integer, String>();
+                scheduledEventsData.put(0, e.getName());
+                ref.setValue(scheduledEventsData);
+            }
+            else {
+                DatabaseReference scheduledEventsRoot = ref.child
+                        (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
+                scheduledEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+            }
         }
     }
 
