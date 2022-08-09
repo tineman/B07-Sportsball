@@ -4,6 +4,7 @@ package com.example.b07sportsballs;
 import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.HashSet;
@@ -11,12 +12,13 @@ import java.util.Objects;
 
 public class Venue
 {
-        private String name;
+        private String name = "";
         private HashSet<Event> events;
         private DatabaseReference ref;
         private VenueWriter venuewriter;
         private VenueReader venuereader;
         public static HashSet<String> allVenues = new HashSet<String>();
+        public HashSet<String> allEvents = new HashSet<String>();
 
         //Empty constructor
         public Venue() { }
@@ -59,6 +61,7 @@ public class Venue
         //read the venues stored in the database
         public void readFromDataBase(DatabaseReference ref)
         {
+                getAllEvents();
                 setReader(new VenueReader());
                 VenueReader.ref = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH);
                 venuereader.read(ref);
@@ -80,6 +83,24 @@ public class Venue
                 }
                 return allVenues;
         }
+
+        public void getAllEvents()
+        {
+                VenueGetEventsReader eventsReader = new VenueGetEventsReader();
+                DatabaseReference ref2 = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
+                if (!name.equals(null))
+                {
+                        ref2 = ref2.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH).child(name).child("events");
+                        eventsReader.read(ref2, this);
+                }
+        }
+
+        public void storeAllEvents(HashSet<String> keys)
+        {
+                this.allEvents = keys;
+                Log.i("demo", "all events for current Venue: "+ this.allEvents);
+        }
+
 
 
         @Override
