@@ -151,6 +151,7 @@ public class EventbyVenueScreen extends AppCompatActivity {
         }
 
         Intent intent = new Intent(EventbyVenueScreen.this, ScheduleEventScreen.class);
+        venue = spinner.getSelectedItem().toString();
         intent.putExtra(VenueScreen.CUSTOMVENUE, venue);
         startActivity(intent);
         return;
