@@ -66,6 +66,14 @@ public class ScheduleEventScreen extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         venueSpinner.setAdapter(adapter);
 
+        //Set Spinner to the incoming venue name if coming from VenueScreen
+        Intent intent = getIntent();
+        String incomingVenue = intent.getStringExtra(VenueScreen.CUSTOMVENUE);
+        if(incomingVenue != null)
+        {
+            venueSpinner.setSelection(venueName.indexOf(incomingVenue));
+        }
+
         nameText = (EditText) findViewById(R.id.ScheduleEventScreen_EditText_Name);
         startButton = (Button) findViewById(R.id.ScheduleEventScreen_EditText_StartTime);
         endButton = (Button) findViewById(R.id.ScheduleEventScreen_EditText_EndTime);

@@ -53,7 +53,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:ems="10"
-        android:inputType="time"
         android:onClick="pickStartTime"
         android:text="@string/ScheduleEventScreen_EditText_End"
         app:layout_constraintBottom_toTopOf="@+id/ScheduleEventScreen_Text_End"

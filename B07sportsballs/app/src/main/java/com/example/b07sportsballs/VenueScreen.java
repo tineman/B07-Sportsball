@@ -22,6 +22,8 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
     ArrayAdapter arrayAdapter;
     ArrayList<String> venues = new ArrayList<String>();
 
+    public static final String CUSTOMVENUE = "VENUE_PREF";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
         }
 
         Intent intent = new Intent(VenueScreen.this, ScheduleEventScreen.class);
-        intent.putExtra("VENUE_PREF", venues.get(i));
+        intent.putExtra(CUSTOMVENUE, venues.get(i));
         startActivity(intent);
         return;
 
