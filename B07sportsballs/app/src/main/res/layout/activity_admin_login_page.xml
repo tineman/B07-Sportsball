@@ -11,46 +11,49 @@
         android:id="@+id/AdminLoginPage_TextView_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-50dp"
+        android:layout_marginEnd="-40dp"
         android:text="@string/AdminLoginPage_TextView_Username"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_EditText_Username"
-        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Title" />
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_TextView_Password"
+        app:layout_constraintEnd_toStartOf="@+id/AdminLoginPage_TextView_Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.925" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Password"
-        android:layout_width="wrap_content"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
         android:text="@string/AdminLoginPage_TextView_Password"
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_EditText_Password"
-        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Username"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_TextView_Username" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/AdminLoginPage_EditText_Password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="192dp"
         android:text="@string/AdminLoginPage_TextView_Title"
         android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_TextView_Username"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.918" />
 
     <EditText
         android:id="@+id/AdminLoginPage_EditText_Username"
         android:layout_width="222dp"
         android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="15dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/AdminLoginPage_EditText_Username"
@@ -58,10 +61,8 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#78909C"
-        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_TextView_Title"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/AdminLoginPage_TextView_Username"
-        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_TextView_Title" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_TextView_Username"
+        app:layout_constraintStart_toEndOf="@+id/AdminLoginPage_TextView_Username" />
 
     <EditText
         android:id="@+id/AdminLoginPage_EditText_Password"
@@ -74,9 +75,8 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#78909C"
-        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_EditText_Username"
-        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_EditText_Username"
-        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_EditText_Username" />
+        app:layout_constraintBaseline_toBaselineOf="@+id/AdminLoginPage_TextView_Password"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_EditText_Username" />
 
     <Button
         android:id="@+id/AdminLoginPage_Button_Login"
@@ -87,7 +87,6 @@
         android:minHeight="60dp"
         android:text="@string/AdminLoginPage_Button_Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_EditText_Password" />
 
@@ -95,12 +94,14 @@
         android:id="@+id/AdminLoginPage_Button_LogInAsCustomer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:backgroundTint="#D5461A"
         android:text="@string/AdminLoginPage_Button_GoToCustomerLoginPage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_Button_Login" />
+        app:layout_constraintBottom_toTopOf="@+id/AdminLoginPage_Button_Quit"
+        app:layout_constraintEnd_toEndOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintStart_toStartOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintTop_toBottomOf="@+id/AdminLoginPage_Button_Login"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/AdminLoginPage_Button_Quit"
