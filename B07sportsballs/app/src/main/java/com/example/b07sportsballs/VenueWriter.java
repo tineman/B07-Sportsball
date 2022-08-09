@@ -16,9 +16,10 @@ public class VenueWriter extends AppCompatActivity
     {
         String venue_name = venue.getName();
         ref.child(Constants.DATABASE.ROOT).child("Venues").child(venue_name).child("Events").setValue("");
-        ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH).child(Admin.username).child(Constants.DATABASE.VENUE_PATH).child(venue_name);
-        Venue.allVenues.add(venue_name);
 
+        String size = String.valueOf(venue.allVenues.size());
+        ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH).child(Admin.username).child(Constants.DATABASE.ADMIN_CREATED_VENUES_KEY).child(size).setValue(venue_name);
+        Venue.allVenues.add(venue_name);
     }
 }
 
