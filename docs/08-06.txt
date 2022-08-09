@@ -53,8 +53,8 @@ What I need help with?
 Name: Frans
 	
 What did I do since yesterday?
-	Write final json database
+	Fix constraints for customer and admin login page
 What am I going to do?
-	Fix login to conform with new database
+	Finalize json database
 What I need help with?
 
