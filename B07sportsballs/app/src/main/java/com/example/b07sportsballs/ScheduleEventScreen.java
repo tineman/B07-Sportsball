@@ -42,17 +42,16 @@ public class ScheduleEventScreen extends AppCompatActivity {
     Button startDateButton;
     Button endDateButton;
 
-    int startHour, startMinute, endHour, endMinute; //set to negative 1
-
     Date Start, End;
-    Boolean startTime, startDate, endTime, endDate; //Have they picked the start time and date yet?
-
+    //Checks if the user has picked a date or not
+    Boolean startTime, startDate, endTime, endDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_event_screen);
 
+        //If no venues
         if(Venue.getAllVenues() == null)
         {
             Toast.makeText(ScheduleEventScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
@@ -62,14 +61,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
         }
 
         venueName = new ArrayList<>(Venue.getAllVenues());
-
-        Log.i("There are ", venueName.size() + " venues");
-
-        for(String string : venueName)
-        {
-            Log.i("Test", string);
-        }
-
         venueSpinner = (Spinner) findViewById(R.id.ScheduleEventScreen_Spinner_Venue);
         ArrayAdapter<String> adapter = new ArrayAdapter(ScheduleEventScreen.this, android.R.layout.simple_spinner_item, venueName);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -121,12 +112,16 @@ public class ScheduleEventScreen extends AppCompatActivity {
         this.finishAffinity();
     }
 
-    /*
-    Called when the submit button is pressed. Used to show Event
+    /**
+     * Called when AdminLoginPage_Button_Login is pressed
+     * Adds a new event if it can be verified
      */
     public void onSubmit(View view)
     {
 
+        /*
+         * Name cannot be empty and cannot contain slashes
+         */
         String name = nameText.getText().toString();
 
         if(name.isEmpty())
@@ -140,6 +135,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
+        /*
+         * Venue must be selected
+         */
         String venue = venueSpinner.getSelectedItem().toString();
 
         if(venue.isEmpty())
@@ -148,6 +146,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
+        /*
+         * Dates Start and End must be selected and Start must come before End
+         */
         if(!startTime)
         {
             Toast.makeText(ScheduleEventScreen.this, "A start time must be selected", Toast.LENGTH_LONG).show();
@@ -157,6 +158,18 @@ public class ScheduleEventScreen extends AppCompatActivity {
         if(!endTime)
         {
             Toast.makeText(ScheduleEventScreen.this, "An end time must be selected", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(!startDate)
+        {
+            Toast.makeText(ScheduleEventScreen.this, "A start date must be selected", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(!endDate)
+        {
+            Toast.makeText(ScheduleEventScreen.this, "An end date must be selected", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -173,32 +186,50 @@ public class ScheduleEventScreen extends AppCompatActivity {
             return;
         }
 
-        //Input field only accepts numbers so no try-catch statement neccessary here -> NO, DO TRY CATCH
-        if(Integer.parseInt(max) <= 0)
+        /*
+         * Ensures maxPlayer is a positive natural number
+         */
+
+        int maxPlayer = 0;
+
+        try
+        {
+            maxPlayer = Integer.parseInt(max);
+        }
+        catch(NumberFormatException e)
+        {
+            Toast.makeText(ScheduleEventScreen.this, "The maximum integer must be a natural number. In this case, the natural numbers do not include 0 :)", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(maxPlayer <= 0)
         {
             Toast.makeText(ScheduleEventScreen.this, "A maximum occupancy of at least one is required", Toast.LENGTH_LONG).show();
             return;
         }
 
-        int maxPlayer = Integer.parseInt(max);
 
-        //Get Customer
+
+        //Writing to database
         String host = Customer.username;
 
         Event newEvent = new Event(null, null, name, host, venue, Start, End, 0, maxPlayer, null);
 
-        //Some sanitation before it gets to customer method
-        //Name checking, date checking, and maximum occupancy checking are handled by customer
-
-
         Customer.scheduleEvent(newEvent, new Updater() {
             @Override
             public void onUpdate() {
-                //Dummy implementation, next user should update as required
             }
         });
+
+        Toast.makeText(ScheduleEventScreen.this, "Event created", Toast.LENGTH_LONG).show();
+
     }
 
+    /**
+     * Facade to update date and ensure the TimePickerDialog shows the correct time
+     * @param date The date to be updated
+     * @param button The button whose text is to be updated
+     */
     public void pickTime(View view, Date date, Button button)
     {
         TimePickerDialog.OnTimeSetListener startListener = new TimePickerDialog.OnTimeSetListener()
@@ -217,6 +248,11 @@ public class ScheduleEventScreen extends AppCompatActivity {
         startDialog.show();
     }
 
+    /**
+     * Facade to update date and ensure the DatePickerDialog shows the correct date
+     * @param date The date to be updated
+     * @param button The button whose text is to be updated
+     */
     public void pickDate(View view, Date date, Button button)
     {
         DatePickerDialog.OnDateSetListener DateListener = new DatePickerDialog.OnDateSetListener()
@@ -236,7 +272,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
         dateDialog.show();
     }
 
-
+    /**
+     * Called when ScheduleEventScreen_EditText_StartTime is pressed
+     */
     public void pickStartTime(View view) {
 
         pickTime(view, Start, startButton);
@@ -244,6 +282,9 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
     }
 
+    /**
+     * Called when ScheduleEventScreen_EditText_EndTime is pressed
+     */
     public void pickEndTime(View view) {
 
         pickTime(view, End, endButton);
@@ -251,12 +292,18 @@ public class ScheduleEventScreen extends AppCompatActivity {
 
     }
 
+    /**
+     * Called when ScheduleEventScreen_StartDate is pressed
+     */
     public void pickStartDate(View view) {
         pickDate(view, Start, startDateButton);
         startDate = true;
 
     }
 
+    /**
+     * Called when ScheduleEventScreen_EndDate is pressed
+     */
     public void pickEndDate(View view) {
         pickDate(view, End, endDateButton);
         endDate = true;

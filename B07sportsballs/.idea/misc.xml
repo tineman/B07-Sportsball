@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/activity_customer_upcoming_events_screen.xml" value="0.1483539974348012" />
+        <entry key="app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.25116082735331363" />
         <entry key="app/src/main/res/layout/admin_upcoming_event_layout_item.xml" value="0.1483539974348012" />
         <entry key="app/src/main/res/layout/customer_upcoming_event_layout_item.xml" value="0.2298939144269887" />
         <entry key="app/src/main/res/layout/event_list_item.xml" value="0.269421807493395" />

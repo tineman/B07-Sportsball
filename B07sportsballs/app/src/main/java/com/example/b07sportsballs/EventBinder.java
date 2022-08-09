@@ -16,7 +16,7 @@ import java.util.List;
 
 public class EventBinder {
 
-    private Event parent;
+    private Event parent; //the parent the binder is attached to
     private ValueEventListener listener;
 
     /**

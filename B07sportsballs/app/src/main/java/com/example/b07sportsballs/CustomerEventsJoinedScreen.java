@@ -27,14 +27,17 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
+        //Remove view to prevent a non-fatal error
         if(Customer.getJoinedEvents() == null)
         {
             Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
             ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
             return;
         }
+
         List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
 
+        //Updating the recyclerview
         for(Event event : events)
         {
             event.changeOnUpdate(new Updater() {
@@ -45,8 +48,10 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
             });
         }
 
-        Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
 
+
+        //Back button
+        Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +59,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
             }
         });
 
+        //Quit button
         Button quitButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override

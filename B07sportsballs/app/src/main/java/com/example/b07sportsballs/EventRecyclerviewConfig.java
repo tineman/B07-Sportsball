@@ -17,6 +17,13 @@ public class EventRecyclerviewConfig {
 
     private Context context;
     private EventAdapter adapter;
+
+    /**
+     * A Facade for the recycler configuration
+     * @param recyclerView the recyclerview to be setup
+     * @param context the context the recycler is in
+     * @param events the list of events to display
+     */
     public void setConfig(RecyclerView recyclerView, Context context, List<Event> events)
     {
          this.context = context;
@@ -27,6 +34,9 @@ public class EventRecyclerviewConfig {
 
     }
 
+    /**
+     * Creates a template for each event. The recyclerview contains a list of EventViews
+     */
     class EventView extends RecyclerView.ViewHolder
     {
         private TextView name;
@@ -48,6 +58,9 @@ public class EventRecyclerviewConfig {
 
         }
 
+        /**
+         * Updates the EventView with the Event information
+         */
         public void bind(Event event, String name)
         {
             this.name.setText(event.getName());
@@ -60,6 +73,9 @@ public class EventRecyclerviewConfig {
 
     }
 
+    /**
+     * An Adapter between Events and RecyclerView
+     */
     class EventAdapter extends RecyclerView.Adapter<EventView>
     {
           private List<Event> events;

@@ -21,12 +21,12 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
+        //Remove view to prevent a non-fatal error
         if(Customer.getScheduledEvents() == null)
         {
             Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
@@ -36,6 +36,7 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
         List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
 
+        //Update the recyclerview with constantly updating events
         for(Event event : events)
         {
             event.changeOnUpdate(new Updater() {
@@ -46,6 +47,9 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
             });
         }
 
+
+
+        //Back button
         Button backButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,6 +58,7 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
             }
         });
 
+        //Quit button
         Button quitButton = findViewById(R.id.CustomerEventsScheduledScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override

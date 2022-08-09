@@ -20,22 +20,20 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
 
     ListView listView;
     ArrayAdapter arrayAdapter;
-
-    //Placeholder
     ArrayList<String> venues = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_screen);
 
         venues = new ArrayList<>(Venue.getAllVenues());
-
         listView = (ListView) findViewById(R.id.VenueScreen_List);
         listView.setOnItemClickListener(this::onItemClick);
         arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
+        listView.setAdapter(arrayAdapter);
 
+        //If there are no venues
         if(Venue.getAllVenues() == null)
         {
             Toast.makeText(VenueScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
@@ -44,9 +42,9 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
             return;
         }
 
-        listView.setAdapter(arrayAdapter);
 
 
+        //Back button
         Button backButton = findViewById(R.id.VenueScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +53,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
             }
         });
 
+        //Quit button
         Button quitButton = findViewById(R.id.VenueScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +77,10 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
         this.finishAffinity();
     }
 
+    /**
+     * Checks if User is Admin
+     * If not, sends Customer to the ScheduleEventScreen
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         if(Customer.username == null)

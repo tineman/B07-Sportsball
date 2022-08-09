@@ -18,8 +18,9 @@ public class Event implements Serializable{
     private transient DatabaseReference ref;
 
     /**
-     * When using the empty constructor, call bindToDatabase to initialise the values. Call setWriter()
-     * before calling writeToDatabase() or increment()
+     * When using the empty constructor, call bindToDatabase afterwards to initialise the values and
+     * the reference.
+     * Call setWriter() before calling writeToDatabase() or increment()
      */
 
     public Event()
@@ -72,7 +73,6 @@ public class Event implements Serializable{
     /**
      * Call setWriter on an event before writing to it
      */
-
     public void setWriter()
     {
         if (this.writer == null) this.writer = new EventWriter();
@@ -102,6 +102,10 @@ public class Event implements Serializable{
 
     }
 
+    /**
+     * An event is defined as equalling another event when it has the same name and location
+     * This is to ensure only one event at a venue can have a certain name
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -121,7 +125,7 @@ public class Event implements Serializable{
 
     //Helper functions
 
-    //Getters
+    //Getters & setters
     public String getName() {
         return name;
     }
@@ -156,7 +160,7 @@ public class Event implements Serializable{
 
     public void setBinder(EventBinder binder) {this.binder = binder;}
 
-    //Sets name, host, location, starttime, endrime, currplayers, maxplayers to those in events
+    //Sets name, host, location, starttime, endtime, currplayers, maxplayers to those in events
     public void setData(Event event)
     {
         this.name = event.getName();
