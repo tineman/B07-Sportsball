@@ -71,7 +71,7 @@
     <!--VenueScreen-->
     <string name="VenueScreen_Title">Please Select a Venue</string>
     <string name="EventbyVenueScreen_Title">Please Select a Venue</string>
-    <string name="EventbyVenueScreen_Update">Update</string>
+    <string name="EventbyVenueScreen_Update">Select Venue</string>
     <string name="EventbyVenueScreen_Schedule">Schedule Event Here</string>
 
     <!--ScheduleEventScreen-->
