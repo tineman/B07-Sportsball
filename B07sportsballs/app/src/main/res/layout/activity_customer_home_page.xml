@@ -1,143 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:fillViewport="true"
->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+    android:background="@drawable/background"
+    tools:context=".CustomerHomePage">
+
+    <TextView
+        android:id="@+id/CustomerHomePage_TextView_Title"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background"
-        tools:context=".CustomerHomePage">
+        android:layout_marginTop="52dp"
+        android:text="@string/CustomerHomePage_Title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_HelloText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.487"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/CustomerHomePage_TextView_Title"
-            android:layout_width="354dp"
-            android:layout_height="46dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/CustomerHomePage_Title"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.487"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.101" />
+    <TextView
+        android:id="@+id/CustomerHomePage_Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="108dp"
+        android:hint="@string/CustomerHomePage_Username"
+        android:text="@string/CustomerHomePage_Username"
+        android:textSize="26sp"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/CustomerHomePage_HelloText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toEndOf="@+id/CustomerHomePage_HelloText" />
 
-        <TextView
-            android:id="@+id/CustomerHomePage_Username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="108dp"
-            android:hint="@string/CustomerHomePage_Username"
-            android:text="@string/CustomerHomePage_Username"
-            android:textSize="26sp"
-            android:textStyle="italic"
-            app:layout_constraintBaseline_toBaselineOf="@+id/CustomerHomePage_HelloText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.866"
-            app:layout_constraintStart_toEndOf="@+id/CustomerHomePage_HelloText" />
+    <TextView
+        android:id="@+id/CustomerHomePage_HelloText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="6dp"
+        android:hint="@string/CustomerHomePage_HelloText"
+        android:text="@string/CustomerHomePage_HelloText"
+        android:textSize="26sp"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_EventsJoined"
+        app:layout_constraintEnd_toStartOf="@+id/CustomerHomePage_Username"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.089" />
 
-        <TextView
-            android:id="@+id/CustomerHomePage_HelloText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="108dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="6dp"
-            android:hint="@string/CustomerHomePage_HelloText"
-            android:text="@string/CustomerHomePage_HelloText"
-            android:textSize="26sp"
-            android:textStyle="italic"
-            app:layout_constraintEnd_toStartOf="@+id/CustomerHomePage_Username"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_TextView_Title" />
+    <Button
+        android:id="@+id/CustomerHomePage_EventsJoined"
+        android:layout_width="225dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#D5461A"
+        android:hint="@string/CustomerHomePage_EventsJoined"
+        android:text="@string/CustomerHomePage_EventsJoined"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_ScheduleEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_EventsJoined"
-            android:layout_width="225dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="92dp"
-            android:backgroundTint="#D5461A"
-            android:hint="@string/CustomerHomePage_EventsJoined"
-            android:text="@string/CustomerHomePage_EventsJoined"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_HelloText" />
+    <Button
+        android:id="@+id/CustomerHomePage_EventsScheduled"
+        android:layout_width="225dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#D5461A"
+        android:hint="@string/CustomerHomePage_EventsScheduled"
+        android:text="@string/CustomerHomePage_EventsScheduled"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_EventsJoined" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_EventsScheduled"
-            android:layout_width="225dp"
-            android:layout_height="48dp"
-            android:backgroundTint="#D5461A"
-            android:hint="@string/CustomerHomePage_EventsScheduled"
-            android:text="@string/CustomerHomePage_EventsScheduled"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_EventsJoined" />
+    <Button
+        android:id="@+id/CustomerHomePage_UpcomingEvents"
+        android:layout_width="225dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#D5461A"
+        android:hint="@string/CustomerHomePage_UpcomingEvents"
+        android:text="@string/CustomerHomePage_UpcomingEvents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_EventsScheduled" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_UpcomingEvents"
-            android:layout_width="225dp"
-            android:layout_height="48dp"
-            android:backgroundTint="#D5461A"
-            android:hint="@string/CustomerHomePage_UpcomingEvents"
-            android:text="@string/CustomerHomePage_UpcomingEvents"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_EventsScheduled" />
+    <Button
+        android:id="@+id/CustomerHomePage_ViewVenues"
+        android:layout_width="225dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#D5461A"
+        android:hint="@string/CustomerHomePage_ViewVenues"
+        android:text="@string/CustomerHomePage_ViewVenues"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_UpcomingEvents" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_ViewVenues"
-            android:layout_width="225dp"
-            android:layout_height="48dp"
-            android:backgroundTint="#D5461A"
-            android:hint="@string/CustomerHomePage_ViewVenues"
-            android:text="@string/CustomerHomePage_ViewVenues"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_UpcomingEvents" />
+    <Button
+        android:id="@+id/CustomerHomePage_ScheduleEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#D5461A"
+        android:hint="@string/CustomerHomePage_ScheduleEvent"
+        android:text="@string/CustomerHomePage_ScheduleEvent"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_QuitButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.769" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_ScheduleEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#D5461A"
-            android:hint="@string/CustomerHomePage_ScheduleEvent"
-            android:text="@string/CustomerHomePage_ScheduleEvent"
-            app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_QuitButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_ViewVenues" />
+    <Button
+        android:id="@+id/CustomerHomePage_QuitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C50505"
+        android:hint="@string/Quit_Button"
+        android:text="@string/Quit_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/CustomerHomePage_QuitButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="#C50505"
-            android:hint="@string/Quit_Button"
-            android:text="@string/Quit_Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/CustomerHomePage_LogOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="#C50505"
-            android:text="@string/Logout_Button"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+    <Button
+        android:id="@+id/CustomerHomePage_LogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C50505"
+        android:text="@string/Logout_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
