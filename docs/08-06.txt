@@ -49,3 +49,12 @@ What am I going to do?
   Continue testing and updating Customer and Admin/CustomerUpcomingEventsScreen.
 What I need help with?
   Reading Event is not working as intended.
+  
+Name: Frans
+	
+What did I do since yesterday?
+	Write final json database
+What am I going to do?
+	Fix login to conform with new database
+What I need help with?
+
