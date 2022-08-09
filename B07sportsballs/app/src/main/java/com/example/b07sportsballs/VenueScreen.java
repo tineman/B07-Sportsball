@@ -83,7 +83,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
      */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(Customer.username == null)
+        if(User.ref.toString().contains(Constants.DATABASE.ADMIN_PATH)) //ask about User type field
         {
             Toast.makeText(VenueScreen.this, "Admins cannot create events", Toast.LENGTH_LONG).show();
             return;

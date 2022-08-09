@@ -268,7 +268,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                date.setYear(year);
+                date.setYear(year - 1900);
                 date.setMonth(month);
                 date.setDate(day);
                 button.setText(new SimpleDateFormat("dd/MM/yyyy").format(date));
@@ -277,6 +277,7 @@ public class ScheduleEventScreen extends AppCompatActivity {
         };
 
         DatePickerDialog dateDialog = new DatePickerDialog(ScheduleEventScreen.this, DateListener, date.getYear(), date.getMonth(), date.getDate());
+        dateDialog.getDatePicker().setMinDate(date.getTime());
         dateDialog.setTitle("Select Time");
         dateDialog.show();
     }
