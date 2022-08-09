@@ -21,7 +21,7 @@ import java.util.List;
 
 public class CustomerLoginScreen extends AppCompatActivity {
 
-    public static final String EXTRA_MESSAGE = "";
+
     DatabaseReference reference;
 
     //TEST COMMENT
@@ -88,7 +88,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
 
         EditText editText = findViewById(R.id.CustomerLoginScreen_EditText_Username);
         String username = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, username);
+
 
 
         startActivity(intent);
@@ -138,7 +138,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
                 boolean match = false;
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
-//                        String dataName = infoSnapshot.child("Username").getValue().toString();
                         String dataName = infoSnapshot.getKey();
                         System.out.println(dataName);
                         if(username.isEmpty() || password.isEmpty()){

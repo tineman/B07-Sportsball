@@ -13,22 +13,21 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashSet;
 
 public class VenueReader extends AppCompatActivity {
-    public static HashSet<String> keys = new HashSet<String>();
+    private static HashSet<String> keys = new HashSet<String>();
     public static DatabaseReference ref;
     public static boolean isRunning = true;
     public VenueReader() {}
 
-    public void readData(FirebaseCallback myCallback) {
+    public void readData(Updater updater) {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 Log.i("demo", "data changed");
-
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String key = child.getKey();
                     keys.add(key);
                 }
-                myCallback.onCallback(keys);
+                updater.onUpdate();
             }
 
             @Override
@@ -41,16 +40,14 @@ public class VenueReader extends AppCompatActivity {
     }
 
     public void read(DatabaseReference ref) {
-        readData(new FirebaseCallback(){
+        readData(new Updater(){
             @Override
-            public void onCallback(HashSet<String> keys) {
-
-                Venue.allVenues = keys;
-
+            public void onUpdate()
+            {
                 Venue.allVenues.addAll(keys);
-
                 isRunning = false;
                 Venue.getAllVenues();
+
             }
         });
     }

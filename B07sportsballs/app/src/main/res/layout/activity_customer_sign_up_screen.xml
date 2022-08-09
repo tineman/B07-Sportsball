@@ -22,7 +22,6 @@
         android:id="@+id/CustomerSignUpScreen_TextView_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:text="@string/CustomerSignUpScreen_title"
         android:textColor="@color/black"
         android:textSize="32sp"
@@ -31,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_bias="0.6" />
 
     <TextView
         android:id="@+id/CustomerSignUpScreen_TextView_Password"
@@ -41,17 +40,17 @@
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
         app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
-        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_EditText_Username" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
 
     <EditText
         android:id="@+id/CustomerSignUpScreen_EditText_Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="80dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerSignUpScreen_enter_password"
@@ -59,9 +58,8 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
         app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_EditText_Username"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_EditText_Username"
         app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Password" />
 
@@ -69,7 +67,6 @@
         android:id="@+id/CustomerSignUpScreen_EditText_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="30dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/CustomerSignUpScreen_enter_username"
@@ -77,9 +74,7 @@
         android:minWidth="300dp"
         android:minHeight="48dp"
         android:textColorHint="#757575"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Password"
         app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
         app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Username" />
 
@@ -87,18 +82,17 @@
         android:id="@+id/CustomerSignUpScreen_TextView_Username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="-15dp"
+        android:layout_marginBottom="60dp"
         android:text="@string/CustomerSignUpScreen_username"
         android:textAllCaps="false"
         android:textColor="#000000"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_EditText_Username"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Password"
         app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Title"
-        app:layout_constraintHorizontal_bias="0.531"
         app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Title"
-        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Title"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/CustomerSignUpScreen_Button_CreateAccount"
@@ -106,10 +100,12 @@
         android:layout_height="wrap_content"
         android:minHeight="60dp"
         android:text="@string/CustomerSignUpScreen_create_account"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_BackToLogin"
-        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Title"
-        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Title"
-        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_EditText_Password" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.679" />
 
     <Button
         android:id="@+id/CustomerSignUpScreen_Button_BackToLogin"
@@ -119,7 +115,9 @@
         android:text="@string/CustomerSignUpScreen_back_to_login"
         app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_Quit"
         app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
-        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_Button_CreateAccount" />
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
