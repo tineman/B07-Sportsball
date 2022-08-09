@@ -65,13 +65,18 @@ public class Customer extends User {
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (!snapshot.exists()) updater.onUpdate();
-                else {
-                    Log.i("customerJoinedEvents", "data changed, now have "
-                            + snapshot.getChildrenCount() + " events");
-                    // Store all events that have been removed. Could be empty.
-                    HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
-                    joinedEvents.clear();
+                Log.i("customerJoinedEvents", "data changed, now have "
+                        + snapshot.getChildrenCount() + " events");
+                // Store all events that have been removed. Could be empty.
+                HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
+                joinedEvents.clear();
+                if (!snapshot.exists()) {
+                    for (Event removedEvent : joinedEventsOG) {
+                        Log.i("CustomerTest", removedEvent.getName());
+                        removeJoinedEvent(removedEvent);
+                    }
+                    updater.onUpdate();
+                } else {
                     long venuesCount = snapshot.getChildrenCount();
                     long eventsCount = 0L;
                     for (DataSnapshot venue : snapshot.getChildren()) {
@@ -94,11 +99,12 @@ public class Customer extends User {
                                 public void onUpdate() {
                                     Log.i("CustomerTest", e.collectRef().toString());
                                     joinedEvents.add(e);
-//                                if (!joinedEventsOG.contains(e)) joinEvent(e);
+//                               if (!joinedEventsOG.contains(e)) joinEvent(e);
                                     joinedEventsOG.remove(e);
                                     if (finalVenuesCount == 0 && finalEventsCount == 0) {
                                         // Decrement currPlayers of events that have been removed.
                                         for (Event removedEvent : joinedEventsOG) {
+                                            Log.i("CustomerTest", removedEvent.getName());
                                             removeJoinedEvent(removedEvent);
                                         }
                                         updater.onUpdate();
@@ -123,12 +129,12 @@ public class Customer extends User {
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.i("customerScheduledEvents", "data changed, now have " +
+                        snapshot.getChildrenCount() + " events");
+                HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
+                scheduledEvents.clear();
                 if (!snapshot.exists()) updater.onUpdate();
                 else {
-                    Log.i("customerScheduledEvents", "data changed, now have " +
-                            snapshot.getChildrenCount() + " events");
-                    HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
-                    scheduledEvents.clear();
                     long venuesCount = snapshot.getChildrenCount();
                     long eventsCount = 0L;
                     for (DataSnapshot venue : snapshot.getChildren()) {
