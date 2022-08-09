@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -23,6 +24,12 @@ public class AdminHomePage extends AppCompatActivity {
         Button view_all_venues = (Button) findViewById(R.id.AdminHomePage_Button_ViewVenues);
         Button display_upcoming_events = (Button) findViewById(R.id.AdminHomePage_Button_DisplayEvents);
         Button quit_button = (Button) findViewById(R.id.AdminHomePage_Button_Quit);
+
+        //display username text
+        Intent intent1 = getIntent();
+
+        TextView text = findViewById(R.id.AdminHomePage_TextView_Username);
+        text.setText(Admin.username);
 
         logout_button.setOnClickListener(new View.OnClickListener() {
             @Override
