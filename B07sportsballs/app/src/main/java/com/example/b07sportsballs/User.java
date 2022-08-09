@@ -89,7 +89,6 @@ public abstract class User {
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
-                                Log.i("test", e.getStartTime().toString());
                                 if (e.getStartTime().compareTo(now) > 0) {
                                     events.add(e);
                                 }

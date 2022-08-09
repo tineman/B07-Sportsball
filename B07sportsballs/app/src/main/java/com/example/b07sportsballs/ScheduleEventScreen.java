@@ -230,16 +230,13 @@ public class ScheduleEventScreen extends AppCompatActivity {
                             "An event with the same name already exists at this venue.",
                             Toast.LENGTH_LONG).show();
                 else {
-                    Log.i("test", newEvent.collectRef().toString());
+                    Toast.makeText(ScheduleEventScreen.this, "Event created", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(ScheduleEventScreen.this,
                             CustomerEventsScheduledScreen.class);
                     startActivity(intent);
                 }
             }
         });
-
-        Toast.makeText(ScheduleEventScreen.this, "Event created", Toast.LENGTH_LONG).show();
-
     }
 
     /**

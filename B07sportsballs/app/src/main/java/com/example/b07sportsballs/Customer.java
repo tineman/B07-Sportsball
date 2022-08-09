@@ -45,12 +45,15 @@ public class Customer extends User {
     }
 
     private static void readJoinedEventsFromDatabase(Updater updater) {
-        HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
-        joinedEvents.clear();
         DatabaseReference joinedEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.i("customerJoinedEvents", "data changed, now have "
+                        +snapshot.getChildrenCount()+" events");
+                // Store all events that have been removed. Could be empty.
+                HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
+                joinedEvents.clear();
                 long venuesCount = snapshot.getChildrenCount();
                 long eventsCount = 0L;
                 for (DataSnapshot venue : snapshot.getChildren()) {
@@ -66,21 +69,22 @@ public class Customer extends User {
                                         venue.getKey()+"/"+
                                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
                                         event.getValue(String.class));
-                        Log.i("test", ref.toString());
                         long finalEventsCount = eventsCount;
                         long finalVenuesCount = venuesCount;
                         e.bindToDatabase(ref, new Updater() {
                             @Override
                             public void onUpdate() {
+                                Log.i("CustomerTest", e.collectRef().toString());
                                 joinedEvents.add(e);
+//                                if (!joinedEventsOG.contains(e)) joinEvent(e);
                                 joinedEventsOG.remove(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0)
+                                if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                    // Decrement currPlayers of events that have been removed.
                                     for (Event removedEvent : joinedEventsOG) {
-                                        e.setCurrPlayers(e.getCurrPlayers()-1);
-                                        e.setWriter();
-                                        e.writeToDatabase();
+                                        removeJoinedEvent(removedEvent);
                                     }
                                     updater.onUpdate();
+                                }
                             }
                         });
                     }
@@ -96,12 +100,14 @@ public class Customer extends User {
     }
 
     private static void readScheduledEventsFromDatabase(Updater updater) {
-        HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
-        scheduledEvents.clear();
         DatabaseReference scheduledEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Log.i("customerScheduledEvents", "data changed, now have "+
+                        snapshot.getChildrenCount()+" events");
+                HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
+                scheduledEvents.clear();
                 long venuesCount = snapshot.getChildrenCount();
                 long eventsCount = 0L;
                 for (DataSnapshot venue : snapshot.getChildren()) {
@@ -126,7 +132,7 @@ public class Customer extends User {
                                 scheduledEventsOG.remove(e);
                                 if (finalVenuesCount == 0 && finalEventsCount == 0) {
                                     for (Event removedEvent : scheduledEventsOG) {
-                                        e.collectRef().setValue(null);
+                                        ref.setValue(null);
                                     }
                                     updater.onUpdate();
                                 }
@@ -152,15 +158,6 @@ public class Customer extends User {
         Customer.readJoinedEventsFromDatabase(new Updater() {
             @Override
             public void onUpdate() {
-                for (Event e:joinedEvents) {
-                    Log.i("ReadCustomer", "name: "+e.getName());
-                    Log.i("ReadCustomer", "host: "+e.getHost());
-                    Log.i("ReadCustomer", "location: "+e.getLocation());
-                    Log.i("ReadCustomer", "startTime: "+e.getStartTime());
-                    Log.i("ReadCustomer", "endTime: "+e.getEndTime());
-                    Log.i("ReadCustomer", "maxPlayers: "+e.getMaxPlayers());
-                    Log.i("ReadCustomer", "currPlayers: "+e.getCurrPlayers());
-                }
                 Customer.readScheduledEventsFromDatabase(new Updater() {
                     @Override
                     public void onUpdate() {
@@ -177,10 +174,17 @@ public class Customer extends User {
      * @param e the event to join
      */
     public static void joinEvent(Event e) {
+        e.setWriter();
         if (e.increment()) {
             joinedEvents.add(e);
             writeToDatabase(e, true, false);
         }
+    }
+
+    public static void removeJoinedEvent(Event e) {
+        e.setCurrPlayers(e.getCurrPlayers()-1);
+        e.setWriter();
+        e.writeToDatabase();
     }
 
     // Assume that location is valid (ie. venue exists). Assume that setData() has been called on e
