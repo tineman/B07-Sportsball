@@ -38,62 +38,6 @@ public class CreateVenueScreen extends AppCompatActivity {
                 Venue venue = new Venue();
                 venue.setName(avenuename);
                 venue.writeToDataBase(ref);
-//                ref.child("Root").child("Venue").addValueEventListener(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        for(DataSnapshot infoSnapshot : snapshot.getChildren()){
-//                            if(infoSnapshot!=null){
-//                                String vname = infoSnapshot.child("VenuesName").getValue().toString();
-//                                if(avenuename.isEmpty()){
-//                                    Toast.makeText(CreateVenueScreen.this, "Venue name cannot be empty", Toast.LENGTH_SHORT).show();
-//                                }
-//                                if(vname.equals(avenuename)){
-//                                    Toast.makeText(CreateVenueScreen.this, "This venue already exists, please try input other venues", Toast.LENGTH_SHORT).show();
-//                                }
-//                                if (!vname.equals(avenuename)){
-//                                    Venue venue = new Venue();
-//                                    venue.setName(avenuename);
-//                                    venue.writeToDataBase(ref);
-//                                    Admin admin = new Admin();
-//                                    admin.createVenue(avenuename);
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-//                Venue venue = new Venue(VenueName.getText().toString(), new HashSet<Event>());
-//                DatabaseReference ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
-//                venue.writeToDataBase(ref);
-//                venue.setName(VenueName.getText().toString());
-//                venue.setEvents(new HashSet<Event>());
-//                new AdminVenueWriter().addVenue(venue, new AdminVenueWriter.datastatus() {
-//                    @Override
-//                    public void isLoaded(List<Admin> admins, List<String> keys) {
-//
-//                    }
-//
-//                    @Override
-//                    public void isInserted() {
-//                        Toast.makeText(CreateVenueScreen.this, "This venue has been inserted successfully",
-//                        Toast.LENGTH_LONG).show();
-//                    }
-//
-//                    @Override
-//                    public void isDeleted() {
-//
-//                    }
-//
-//                    @Override
-//                    public void isUpdated() {
-//
-//                    }
-//                });
-
 
             }
         });
