@@ -1,6 +1,7 @@
 package com.example.b07sportsballs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,8 +81,10 @@ public class CustomerUpcomingEventAdapter extends
                     event.setWriter();
                     Customer.joinEvent(event);
                     adapter.events.remove(event);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, adapter.events.size());
+                    adapter.notifyItemRemoved(position);
+//                    notifyItemRangeChanged(position, adapter.events.size());
+                    Intent intent = new Intent(adapter.context, CustomerEventsJoinedScreen.class);
+                    context.startActivity(intent);
                 }
             });
         }

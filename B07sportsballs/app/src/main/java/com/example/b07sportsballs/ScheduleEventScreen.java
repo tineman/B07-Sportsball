@@ -118,7 +118,6 @@ public class ScheduleEventScreen extends AppCompatActivity {
      */
     public void onSubmit(View view)
     {
-
         /*
          * Name cannot be empty and cannot contain slashes
          */
@@ -218,6 +217,16 @@ public class ScheduleEventScreen extends AppCompatActivity {
         Customer.scheduleEvent(newEvent, new Updater() {
             @Override
             public void onUpdate() {
+                if (newEvent.collectRef() == null)
+                    Toast.makeText(ScheduleEventScreen.this,
+                            "An event with the same name already exists at this venue.",
+                            Toast.LENGTH_LONG).show();
+                else {
+                    Log.i("test", newEvent.collectRef().toString());
+                    Intent intent = new Intent(ScheduleEventScreen.this,
+                            CustomerEventsScheduledScreen.class);
+                    startActivity(intent);
+                }
             }
         });
 

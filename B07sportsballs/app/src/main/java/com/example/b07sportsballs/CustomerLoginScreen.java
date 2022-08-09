@@ -151,12 +151,9 @@ public class CustomerLoginScreen extends AppCompatActivity {
                                 Customer.readFromDatabase(new Updater() {
                                     @Override
                                     public void onUpdate() {
-//                                        Log.i("test", String.format("size of joinedEvents: %d", Customer.joinedEvents.size()));
-//                                        Log.i("test", String.format("size of scheduledEvents: %d", Customer.scheduledEvents.size()));
                                         openCustomerHomePage();
                                     }
                                 });
-//                                openCustomerHomePage();
                             }else{
                                 Toast.makeText(CustomerLoginScreen.this, "Wrong password", Toast.LENGTH_SHORT).show();
                             }

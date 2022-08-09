@@ -45,6 +45,8 @@ public class Customer extends User {
     }
 
     private static void readJoinedEventsFromDatabase(Updater updater) {
+        HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
+        joinedEvents.clear();
         DatabaseReference joinedEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
@@ -71,7 +73,13 @@ public class Customer extends User {
                             @Override
                             public void onUpdate() {
                                 joinedEvents.add(e);
+                                joinedEventsOG.remove(e);
                                 if (finalVenuesCount == 0 && finalEventsCount == 0)
+                                    for (Event removedEvent : joinedEventsOG) {
+                                        e.setCurrPlayers(e.getCurrPlayers()-1);
+                                        e.setWriter();
+                                        e.writeToDatabase();
+                                    }
                                     updater.onUpdate();
                             }
                         });
@@ -88,6 +96,8 @@ public class Customer extends User {
     }
 
     private static void readScheduledEventsFromDatabase(Updater updater) {
+        HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
+        scheduledEvents.clear();
         DatabaseReference scheduledEventsRoot = ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
@@ -113,8 +123,13 @@ public class Customer extends User {
                             @Override
                             public void onUpdate() {
                                 scheduledEvents.add(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0)
+                                scheduledEventsOG.remove(e);
+                                if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                    for (Event removedEvent : scheduledEventsOG) {
+                                        e.collectRef().setValue(null);
+                                    }
                                     updater.onUpdate();
+                                }
                             }
                         });
                     }
@@ -172,8 +187,6 @@ public class Customer extends User {
     // to set user-input info.
     public static void scheduleEvent(Event e, Updater updater) {
         // Check for duplicate event names inside venue
-        String name = e.getName();
-        String location = e.getLocation();
         DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
                 getReference(Constants.DATABASE.ROOT+"/"+
                         Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+

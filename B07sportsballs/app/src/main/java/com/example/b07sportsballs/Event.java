@@ -154,6 +154,10 @@ public class Event implements Serializable{
         return maxPlayers;
     }
 
+    public DatabaseReference collectRef() {
+        return ref;
+    }
+
     public void setCurrPlayers(int currPlayers) {
         this.currPlayers = currPlayers;
     }
