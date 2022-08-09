@@ -1,17 +1,9 @@
 package com.example.b07sportsballs;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.Transaction;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 

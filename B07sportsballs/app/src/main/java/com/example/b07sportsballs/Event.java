@@ -5,7 +5,6 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.Date;
 import java.util.Objects;
 import java.io.Serializable;
-import java.util.*;
 
 public class Event implements Serializable{
 

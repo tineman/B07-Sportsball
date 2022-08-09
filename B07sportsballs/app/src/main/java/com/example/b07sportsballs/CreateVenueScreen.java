@@ -134,7 +134,7 @@ public class CreateVenueScreen extends AppCompatActivity {
      * This method is called when the "View Venues" button is pressed
      */
     private void listVenue() {
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, EventbyVenueScreen.class);
         startActivity(intent);
     }
 

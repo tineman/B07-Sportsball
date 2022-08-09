@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -135,6 +134,9 @@ public class EventbyVenueScreen extends AppCompatActivity {
             }
         });
 
+        //Updates EventRecycler one last time in case events is empty
+        new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
+
     }
 
     /**
@@ -142,7 +144,7 @@ public class EventbyVenueScreen extends AppCompatActivity {
      */
     public void ScheduleEvent(View view) {
 
-        if(User.ref.toString().contains(Constants.DATABASE.ADMIN_PATH)) //ask about User type field
+        if(User.usertype == Constants.DATABASE.ADMIN_TYPE)
         {
             Toast.makeText(EventbyVenueScreen.this, "Admins cannot create events", Toast.LENGTH_LONG).show();
             return;

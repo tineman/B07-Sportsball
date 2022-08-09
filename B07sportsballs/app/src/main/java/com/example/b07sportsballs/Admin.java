@@ -25,7 +25,7 @@ public class Admin extends User {
     }
 
     public Admin(String username, String password, DatabaseReference ref) {
-        super(username, password, ref);
+        super(username, password, ref, Constants.DATABASE.ADMIN_TYPE);
         this.venue = new Venue();
         this.venuesCreated = new HashSet<String>();
         this.admins = new HashSet<Admin>();

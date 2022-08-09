@@ -26,5 +26,9 @@ public class Constants {
         public final static String EVENT_END_TIME_KEY = "endTime";
         public final static String EVENT_CURR_PLAYERS_KEY = "currPlayers";
         public final static String EVENT_MAX_PLAYERS_KEY = "maxPlayers";
+
+        /* User type. */
+        public final static String ADMIN_TYPE = "ADMIN";
+        public final static String CUSTOMER_TYPE = "CUSTOMER";
     }
 }

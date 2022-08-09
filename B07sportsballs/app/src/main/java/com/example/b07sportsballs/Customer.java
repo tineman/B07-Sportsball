@@ -23,7 +23,7 @@ public class Customer extends User {
 
     // This constructor is called only once when the user logs in/signs up successfully.
     public Customer(String username, String password, DatabaseReference ref) {
-        super(username, password, ref);
+        super(username, password, ref, Constants.DATABASE.CUSTOMER_TYPE);
         joinedEvents = new HashSet<Event>();
         scheduledEvents = new HashSet<Event>();
     }
