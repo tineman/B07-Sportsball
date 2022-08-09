@@ -23,9 +23,9 @@
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Password"
-        android:layout_width="88dp"
+        android:layout_width="95dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="12dp"
         android:text="@string/AdminLoginPage_TextView_Password"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -33,7 +33,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/AdminLoginPage_EditText_Password"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.447" />
+        app:layout_constraintVertical_bias="0.45" />
 
     <TextView
         android:id="@+id/AdminLoginPage_TextView_Title"
