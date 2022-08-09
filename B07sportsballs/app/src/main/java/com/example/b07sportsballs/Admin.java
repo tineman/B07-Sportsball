@@ -12,29 +12,29 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-public class Admin extends User{
-    public static Venue venue = new Venue();
-    public static String username;
-    public static String password;
-    public static HashSet<String> venuesCreated;
-    static HashSet<Admin> admins = new HashSet<>();
-    public static DatabaseReference adminRef;
-    public static DatabaseReference CVRef;
-//    datastatus status;
+
+public class Admin extends User {
+    static Venue venue;
+    static HashSet<String> venuesCreated;
+    static HashSet<Admin> admins;
+    static DatabaseReference adminRef;
+    static DatabaseReference CVRef;
+    Statusdemo status;
 
     public Admin() {
     }
 
-    public Admin(HashSet<String> venuesCreated, String username, String password) {
-        this.venuesCreated = venuesCreated;
-        this.username = username;
-        this.password = password;
+    public Admin(String username, String password, DatabaseReference ref) {
+        super(username, password, ref);
+        this.venue = new Venue();
+        this.venuesCreated = new HashSet<String>();
+        this.admins = new HashSet<Admin>();
     }
 
-    public void setReference(){
-        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
-        adminRef = ref.child("Root").child("Admin");
-        CVRef = adminRef.child("VenuesCreated");
+    public void setReference() {
+//        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
+        adminRef = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH);
+        CVRef = adminRef.child(Constants.DATABASE.ADMIN_CREATED_VENUES_KEY);
     }
 
 
@@ -47,13 +47,17 @@ public class Admin extends User{
     }
 
     public void setVenuesCreated(HashSet<String> venuesCreated) {
-        venuesCreated = venue.getAllVenues();
-        this.venuesCreated = venuesCreated;
+        venue.readFromDataBase(ref);
+        this.venuesCreated = venue.allVenues;
+//        venuesCreated = venue.getAllVenues();
+//        this.venuesCreated = venuesCreated;
+
     }
+
 
     public HashSet<String> getVenuesCreated() {
         return venuesCreated;
-}
+    }
 
     public void setPassword(String password) {
         this.password = password;
@@ -62,8 +66,6 @@ public class Admin extends User{
     public String getPassword() {
         return password;
     }
-
-
 
 
     public void readToDatabase(final Statusdemo status) {
@@ -92,14 +94,17 @@ public class Admin extends User{
         adminRef.child(key).setValue(admin);
     }
 
+//    public void
+
 
     public void createVenue(String venue) {
 
         Venue avenue = new Venue();
         avenue.setName(venue);
         venuesCreated.add(venue);
-        String key = CVRef.push().getKey();
-        CVRef.child(key).setValue(venue);
+        avenue.writeToDataBase(ref);
+//        String key = CVRef.push().getKey();
+//        CVRef.child(key).setValue(venue);
 //        if (venuesCreated.contains(venue)) {
 //            status.duplicate();
 //        }
@@ -116,25 +121,29 @@ public class Admin extends User{
 
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return username.hashCode() + password.hashCode();
     }
 
 
     @Override
-    public boolean equals(Object obj){
-        if(this == obj){
+    public boolean equals(Object obj) {
+
+        if (this == obj) {
             return true;
         }
-        if(obj == null){
+        if (obj == null) {
             return false;
         }
-        if(this.getClass() != obj.getClass()){
+        if (this.getClass() != obj.getClass()) {
             return false;
         }
         Admin a = (Admin) obj;
+
         return this.username.equals(a.username) && this.password.equals(a.password);
     }
+
+
 }
 
 

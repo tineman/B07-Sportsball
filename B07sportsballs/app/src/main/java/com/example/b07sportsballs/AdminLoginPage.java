@@ -73,11 +73,11 @@ public class AdminLoginPage extends AppCompatActivity {
     }
 
     public void logInAdmin(){
-//        Intent intent1 = new Intent(this, AdminHomePage.class);
         EditText editText = (EditText) findViewById(R.id.AdminLoginPage_EditText_Username);
         EditText editText1 = (EditText) findViewById(R.id.AdminLoginPage_EditText_Password);
         String ausername = editText.getText().toString();
         String apassword = editText1.getText().toString();
+
 
         ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -92,6 +92,8 @@ public class AdminLoginPage extends AppCompatActivity {
                         }else if(dataName.equals(ausername)){
                             match = true;
                             if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).getValue().toString().equals(apassword)){
+                                Admin admin = new Admin(ausername, apassword, ref);
+
                                 goAdminHome();
                             }else{
                                 Toast.makeText(AdminLoginPage.this, "Wrong password", Toast.LENGTH_SHORT).show();
@@ -118,8 +120,8 @@ public class AdminLoginPage extends AppCompatActivity {
 
 
     public void goAdminHome(){
-        Intent intent3 = new Intent(this, AdminHomePage.class);
-        startActivity(intent3);
+        Intent intent1 = new Intent(this, AdminHomePage.class);
+        startActivity(intent1);
     }
 
     public void quitAdmin(){
