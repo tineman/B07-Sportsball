@@ -98,7 +98,6 @@ public class Venue
         public void storeAllEvents(HashSet<String> keys)
         {
                 this.allEvents = keys;
-                Log.i("demo", "all events for current Venue: "+ this.allEvents);
         }
 
 

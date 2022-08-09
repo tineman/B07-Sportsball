@@ -22,7 +22,6 @@ public class VenueReader extends AppCompatActivity {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.i("demo", "data changed");
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String key = child.getKey();
                     keys.add(key);
@@ -47,7 +46,6 @@ public class VenueReader extends AppCompatActivity {
                 Venue.allVenues.addAll(keys);
                 isRunning = false;
                 Venue.getAllVenues();
-
             }
         });
     }
