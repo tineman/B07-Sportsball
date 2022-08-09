@@ -12,14 +12,12 @@ import java.util.HashSet;
 public class VenueGetEventsReader {
     private static HashSet<String> events = new HashSet<String>();
     public DatabaseReference ref;
-    public static boolean isRunning = true;
     public VenueGetEventsReader() {}
 
     public void readData(Updater updater) {
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-                Log.i("demo", "data changed");
                 for (DataSnapshot child : snapshot.getChildren()) {
                     String key = child.getKey();
                     events.add(key);
@@ -41,7 +39,6 @@ public class VenueGetEventsReader {
             @Override
             public void onUpdate()
             {
-                isRunning = false;
                 v.storeAllEvents(events);
             }
         });
