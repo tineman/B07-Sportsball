@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -63,12 +64,18 @@ public class EventRecyclerviewConfig {
          */
         public void bind(Event event, String name)
         {
-            this.name.setText(event.getName());
-            host.setText(event.getHost());
-            venue.setText(event.getLocation());
-            capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
-            start.setText("Start: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getStartTime()));
-            end.setText("End: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getEndTime()));
+            try {
+                this.name.setText(event.getName());
+                host.setText(event.getHost());
+                venue.setText(event.getLocation());
+                capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
+                start.setText("Start: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getStartTime()));
+                end.setText("End: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getEndTime()));
+            }
+            catch(NullPointerException e)
+            {
+                //Toast.makeText(venue.getContext(), "Error loading events. Please check your connection", Toast.LENGTH_LONG).show();
+            }
         }
 
     }

@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,8 +13,11 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,23 +60,48 @@ public class EventbyVenueScreen extends AppCompatActivity {
      */
     public void UpdateRecycler(View view) {
 
+        //Get desired venue
         venue = spinner.getSelectedItem().toString();
-
-        /*get list of events*/
-
+        //Clear previous screen
         events.clear();
-        events = new ArrayList<>(Customer.getJoinedEvents());
 
-        //Updating the recyclerview
-        for(Event event : events)
-        {
-            event.changeOnUpdate(new Updater() {
-                @Override
-                public void onUpdate() {
-                    new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
+        //Temporary measure
+        DatabaseReference ref = FirebaseDatabase.
+                getInstance(Constants.DATABASE.DB_URL).
+                getReference(Constants.DATABASE.ROOT+"/"+
+                        Constants.DATABASE.VENUE_PATH+"/"+
+                        venue+"/"+
+                        Constants.DATABASE.VENUE_EVENTS_KEY);
+
+        //Gets events by venue and adds them to recyclerview
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot event : dataSnapshot.getChildren()) {
+
+                    String eventName = event.getKey();
+                    Event e = new Event();
+                    events.add(e);
+                    e.bindToDatabase(FirebaseDatabase.
+                            getInstance(Constants.DATABASE.DB_URL).
+                            getReference(Constants.DATABASE.ROOT + "/" +
+                                    Constants.DATABASE.VENUE_PATH + "/" +
+                                    venue + "/" +
+                                    Constants.DATABASE.VENUE_EVENTS_KEY + "/" +
+                            eventName), new Updater() {
+                        @Override
+                        public void onUpdate() {
+                            new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
+                        }
+                    });
                 }
-            });
-        }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.i("EventbyVenueScreen", databaseError.toString());
+            }
+        });
 
     }
 
