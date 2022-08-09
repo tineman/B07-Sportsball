@@ -106,7 +106,7 @@ public class CustomerHomePage extends AppCompatActivity {
     }
 
     public void openVenues(){
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, EventbyVenueScreen.class); //TEMP CHANGE
         startActivity(intent);
     }
 
