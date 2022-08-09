@@ -49,44 +49,47 @@ public class Customer extends User {
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("customerJoinedEvents", "data changed, now have "
-                        +snapshot.getChildrenCount()+" events");
-                // Store all events that have been removed. Could be empty.
-                HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
-                joinedEvents.clear();
-                long venuesCount = snapshot.getChildrenCount();
-                long eventsCount = 0L;
-                for (DataSnapshot venue : snapshot.getChildren()) {
-                    venuesCount--;
-                    eventsCount += venue.getChildrenCount();
-                    for (DataSnapshot event : venue.getChildren()) {
-                        eventsCount--;
-                        Event e = new Event();
-                        DatabaseReference ref = FirebaseDatabase.
-                                getInstance(Constants.DATABASE.DB_URL).
-                                getReference(Constants.DATABASE.ROOT+"/"+
-                                        Constants.DATABASE.VENUE_PATH+"/"+
-                                        venue.getKey()+"/"+
-                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
-                                        event.getValue(String.class));
-                        long finalEventsCount = eventsCount;
-                        long finalVenuesCount = venuesCount;
-                        e.bindToDatabase(ref, new Updater() {
-                            @Override
-                            public void onUpdate() {
-                                Log.i("CustomerTest", e.collectRef().toString());
-                                joinedEvents.add(e);
+                if (!snapshot.exists()) updater.onUpdate();
+                else {
+                    Log.i("customerJoinedEvents", "data changed, now have "
+                            + snapshot.getChildrenCount() + " events");
+                    // Store all events that have been removed. Could be empty.
+                    HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
+                    joinedEvents.clear();
+                    long venuesCount = snapshot.getChildrenCount();
+                    long eventsCount = 0L;
+                    for (DataSnapshot venue : snapshot.getChildren()) {
+                        venuesCount--;
+                        eventsCount += venue.getChildrenCount();
+                        for (DataSnapshot event : venue.getChildren()) {
+                            eventsCount--;
+                            Event e = new Event();
+                            DatabaseReference ref = FirebaseDatabase.
+                                    getInstance(Constants.DATABASE.DB_URL).
+                                    getReference(Constants.DATABASE.ROOT + "/" +
+                                            Constants.DATABASE.VENUE_PATH + "/" +
+                                            venue.getKey() + "/" +
+                                            Constants.DATABASE.VENUE_EVENTS_KEY + "/" +
+                                            event.getValue(String.class));
+                            long finalEventsCount = eventsCount;
+                            long finalVenuesCount = venuesCount;
+                            e.bindToDatabase(ref, new Updater() {
+                                @Override
+                                public void onUpdate() {
+                                    Log.i("CustomerTest", e.collectRef().toString());
+                                    joinedEvents.add(e);
 //                                if (!joinedEventsOG.contains(e)) joinEvent(e);
-                                joinedEventsOG.remove(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0) {
-                                    // Decrement currPlayers of events that have been removed.
-                                    for (Event removedEvent : joinedEventsOG) {
-                                        removeJoinedEvent(removedEvent);
+                                    joinedEventsOG.remove(e);
+                                    if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                        // Decrement currPlayers of events that have been removed.
+                                        for (Event removedEvent : joinedEventsOG) {
+                                            removeJoinedEvent(removedEvent);
+                                        }
+                                        updater.onUpdate();
                                     }
-                                    updater.onUpdate();
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             }
@@ -104,40 +107,43 @@ public class Customer extends User {
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("customerScheduledEvents", "data changed, now have "+
-                        snapshot.getChildrenCount()+" events");
-                HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
-                scheduledEvents.clear();
-                long venuesCount = snapshot.getChildrenCount();
-                long eventsCount = 0L;
-                for (DataSnapshot venue : snapshot.getChildren()) {
-                    venuesCount--;
-                    eventsCount += venue.getChildrenCount();
-                    for (DataSnapshot event : venue.getChildren()) {
-                        eventsCount--;
-                        Event e = new Event();
-                        DatabaseReference ref = FirebaseDatabase.
-                                getInstance(Constants.DATABASE.DB_URL).
-                                getReference(Constants.DATABASE.ROOT+"/"+
-                                        Constants.DATABASE.VENUE_PATH+"/"+
-                                        venue.getKey()+"/"+
-                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
-                                        event.getValue(String.class));
-                        long finalEventsCount = eventsCount;
-                        long finalVenuesCount = venuesCount;
-                        e.bindToDatabase(ref, new Updater() {
-                            @Override
-                            public void onUpdate() {
-                                scheduledEvents.add(e);
-                                scheduledEventsOG.remove(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0) {
-                                    for (Event removedEvent : scheduledEventsOG) {
-                                        ref.setValue(null);
+                if (!snapshot.exists()) updater.onUpdate();
+                else {
+                    Log.i("customerScheduledEvents", "data changed, now have " +
+                            snapshot.getChildrenCount() + " events");
+                    HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
+                    scheduledEvents.clear();
+                    long venuesCount = snapshot.getChildrenCount();
+                    long eventsCount = 0L;
+                    for (DataSnapshot venue : snapshot.getChildren()) {
+                        venuesCount--;
+                        eventsCount += venue.getChildrenCount();
+                        for (DataSnapshot event : venue.getChildren()) {
+                            eventsCount--;
+                            Event e = new Event();
+                            DatabaseReference ref = FirebaseDatabase.
+                                    getInstance(Constants.DATABASE.DB_URL).
+                                    getReference(Constants.DATABASE.ROOT + "/" +
+                                            Constants.DATABASE.VENUE_PATH + "/" +
+                                            venue.getKey() + "/" +
+                                            Constants.DATABASE.VENUE_EVENTS_KEY + "/" +
+                                            event.getValue(String.class));
+                            long finalEventsCount = eventsCount;
+                            long finalVenuesCount = venuesCount;
+                            e.bindToDatabase(ref, new Updater() {
+                                @Override
+                                public void onUpdate() {
+                                    scheduledEvents.add(e);
+                                    scheduledEventsOG.remove(e);
+                                    if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                        for (Event removedEvent : scheduledEventsOG) {
+                                            ref.setValue(null);
+                                        }
+                                        updater.onUpdate();
                                     }
-                                    updater.onUpdate();
                                 }
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             }
