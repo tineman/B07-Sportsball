@@ -26,16 +26,9 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
-        //Remove view to prevent a non-fatal error
         Customer.readFromDatabase(new Updater() {
             @Override
             public void onUpdate() {
-                if (Customer.getScheduledEvents() == null)
-                {
-                    Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-                    ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-                    return;
-                }
 
                 List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
 
@@ -70,6 +63,13 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
                 quitApp();
             }
         });
+
+        if (Customer.getScheduledEvents() == null || Customer.getJoinedEvents().isEmpty())
+        {
+            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
     }
 
     /**
