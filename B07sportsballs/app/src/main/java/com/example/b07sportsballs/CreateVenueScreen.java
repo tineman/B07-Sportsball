@@ -44,9 +44,9 @@ public class CreateVenueScreen extends AppCompatActivity {
                     String vName = venue.getName();
                     venue.readFromDataBase(ref);
                     if(venue.allVenues.contains(vName)){
-                        Toast.makeText(CreateVenueScreen.this, "This venue already exists, please try input other venues", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateVenueScreen.this, "A venue with this venue name already exists, please try another venue name", Toast.LENGTH_LONG).show();
                     }else{
-                        Toast.makeText(CreateVenueScreen.this, "New venue has inserted", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateVenueScreen.this, "\"" + avenuename + "\" has been added", Toast.LENGTH_LONG).show();
                         venue.writeToDataBase(ref);
                     }
 
