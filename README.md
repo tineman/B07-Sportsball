@@ -4,7 +4,7 @@ Welcome to Sportsball Corner!
 
 To use, please create a Customer Account or use the following credentials to login in as an admin.
 
-Usernmae: adminName
+Username: adminName
 
 Password: adminPassword
 
