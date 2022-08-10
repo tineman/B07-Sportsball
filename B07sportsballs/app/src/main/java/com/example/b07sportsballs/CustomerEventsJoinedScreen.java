@@ -68,7 +68,6 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
         if (Customer.getScheduledEvents() == null || Customer.getJoinedEvents().isEmpty())
         {
             Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            return;
         }
 
     }
