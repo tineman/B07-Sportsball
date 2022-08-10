@@ -46,6 +46,13 @@ public class EventbyVenueScreen extends AppCompatActivity {
         //Set up spinner
         spinner = (Spinner) findViewById(R.id.EventVenueSpinner);
         venues = new ArrayList<>(Venue.getAllVenues());
+
+        if(venues == null || venues.isEmpty())
+        {
+            Toast.makeText(EventbyVenueScreen.this, "No venues found!", Toast.LENGTH_LONG).show();
+            return;
+        }
+
         arrayAdapter = new ArrayAdapter(EventbyVenueScreen.this, android.R.layout.simple_spinner_item, venues);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(arrayAdapter);
@@ -136,8 +143,10 @@ public class EventbyVenueScreen extends AppCompatActivity {
         });
 
         //Updates EventRecycler one last time in case events is empty
-        new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
-
+        if(events.isEmpty()) {
+            Toast.makeText(EventbyVenueScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+            new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
+        }
     }
 
     /**

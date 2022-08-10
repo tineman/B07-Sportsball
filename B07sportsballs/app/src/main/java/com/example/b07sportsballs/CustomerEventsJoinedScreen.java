@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.ViewGroup;
@@ -26,16 +27,10 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
+
         Customer.readFromDatabase(new Updater() {
             @Override
             public void onUpdate() {
-                //Remove view to prevent a non-fatal error
-                if(Customer.getJoinedEvents() == null)
-                {
-                    Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-                    ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-                    return;
-                }
 
                 List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
 
@@ -69,15 +64,21 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                 quitApp();
             }
         });
+
+        if (Customer.getScheduledEvents() == null || Customer.getJoinedEvents().isEmpty())
+        {
+            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+        }
+
     }
 
     /**
      * This method is called when the "Back" button is pressed
      */
     public void backToCustomerHomePage() {
-//        this.finish();
-        Intent intent = new Intent(this, CustomerHomePage.class);
-        startActivity(intent);
+        this.finish();
+        //Intent intent = new Intent(this, CustomerHomePage.class);
+        //startActivity(intent);
     }
 
     /**
