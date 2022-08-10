@@ -35,30 +35,67 @@ public class Customer extends User {
     /**
      * Writes all events joined and scheduled by the customer to respective branch of database.
      */
+    public static void writeToDatabase() {
+        ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).setValue(null);
+        for (Event e:joinedEvents) {
+            ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation()).push().
+                    setValue(e.getName());
+        }
+        ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).setValue(null);
+        for (Event e:scheduledEvents) {
+            ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).child(e.getLocation()).push().
+                    setValue(e.getName());
+        }
+    }
+
+    /**
+     * Write a specific event to a specific location.
+     * @param e event to be written
+     * @param toJoinedEvents true if event is to be added to joinedEvents
+     * @param toScheduledEvents true if event is to be added to scheduledEvents
+     */
     public static void writeToDatabase(Event e, boolean toJoinedEvents, boolean toScheduledEvents) {
         if (toJoinedEvents) {
-            if (Customer.joinedEvents.size() == 0) {
-                Map<String, String> joinedEventsData = new HashMap<String, String>();
-                joinedEventsData.put(String.valueOf(0), e.getName());
-                ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation()).setValue(joinedEventsData);
-            }
-            else {
-                DatabaseReference joinedEventsRoot = ref.child
-                        (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
-                joinedEventsRoot.child(e.getLocation()).push().setValue(e.getName());
-            }
+            DatabaseReference joinedEventsRoot = ref.child
+                    (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation());
+            joinedEventsRoot.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    for (DataSnapshot event:task.getResult().getChildren())
+                        if (event.getValue(String.class) == e.getName()) return;
+                    if (Customer.joinedEvents.size() == 0) {
+                        Map<String, String> joinedEventsData = new HashMap<String, String>();
+                        joinedEventsData.put(String.valueOf(0), e.getName());
+                        ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation()).setValue(joinedEventsData);
+                    }
+                    else {
+                        DatabaseReference joinedEventsRoot = ref.child
+                                (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
+                        joinedEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+                    }
+                }
+            });
         }
         if (toScheduledEvents) {
-            if (Customer.scheduledEvents.size() == 0) {
-                Map<String, String> scheduledEventsData = new HashMap<String, String>();
-                scheduledEventsData.put(String.valueOf(0), e.getName());
-                ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).child(e.getLocation()).setValue(scheduledEventsData);
-            }
-            else {
-                DatabaseReference scheduledEventsRoot = ref.child
-                        (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
-                scheduledEventsRoot.child(e.getLocation()).push().setValue(e.getName());
-            }
+            DatabaseReference scheduledEventsRoot = ref.child
+                    (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation());
+            scheduledEventsRoot.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    for (DataSnapshot event:task.getResult().getChildren())
+                        if (event.getValue(String.class) == e.getName()) return;
+                    if (Customer.scheduledEvents.size() == 0) {
+                        Map<String, String> scheduledEventsData = new HashMap<String, String>();
+                        scheduledEventsData.put(String.valueOf(0), e.getName());
+                        ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).child(e.getLocation()).setValue(scheduledEventsData);
+                    }
+                    else {
+                        DatabaseReference scheduledEventsRoot = ref.child
+                                (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
+                        scheduledEventsRoot.child(e.getLocation()).push().setValue(e.getName());
+                    }
+                }
+            });
         }
     }
 
@@ -70,13 +107,9 @@ public class Customer extends User {
                 // Store all events that have been removed. Could be empty.
                 Log.i("Customer", String.format("data changed, now have %d joined events",
                         snapshot.getChildrenCount()));
-                HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
+//                HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
                 joinedEvents.clear();
                 if (!snapshot.exists()) {
-                    for (Event removedEvent : joinedEventsOG) {
-                        Log.i("CustomerTest", removedEvent.getName());
-                        removeJoinedEvent(removedEvent);
-                    }
                     updater.onUpdate();
                 } else {
                     long venuesCount = snapshot.getChildrenCount();
@@ -102,13 +135,8 @@ public class Customer extends User {
                                     Log.i("CustomerTest", e.collectRef().toString());
                                     Log.i("CustomerJoin", "added "+e.getName());
                                     joinedEvents.add(e);
-                                    joinedEventsOG.remove(e);
+//                                    joinedEventsOG.remove(e);
                                     if (finalVenuesCount == 0 && finalEventsCount == 0) {
-                                        // Decrement currPlayers of events that have been removed.
-                                        for (Event removedEvent : joinedEventsOG) {
-                                            Log.i("CustomerTest", removedEvent.getName());
-                                            removeJoinedEvent(removedEvent);
-                                        }
                                         updater.onUpdate();
                                     }
                                 }
@@ -209,16 +237,17 @@ public class Customer extends User {
     public static void joinEvent(Event e) {
         e.setWriter();
         if (!joinedEvents.contains(e) && e.increment()) {
-//            joinedEvents.add(e);
-            writeToDatabase(e, true, false);
+            joinedEvents.add(e);
+//            writeToDatabase(e, true, false);
+            writeToDatabase();
         }
     }
 
-    public static void removeJoinedEvent(Event e) {
-        e.setCurrPlayers(e.getCurrPlayers()-1);
-        e.setWriter();
-        e.writeToDatabase();
-    }
+//    public static void removeJoinedEvent(Event e) {
+//        e.setCurrPlayers(e.getCurrPlayers()-1);
+//        e.setWriter();
+//        e.writeToDatabase();
+//    }
 
     // Assume that location is valid (ie. venue exists). Assume that setData() has been called on e
     // to set user-input info.
@@ -242,7 +271,9 @@ public class Customer extends User {
                             e.writeToDatabase();
                             // Write new event to corresponding customer branch.
                             if (!scheduledEvents.contains(e))
-                                writeToDatabase(e, false, true);
+                                scheduledEvents.add(e);
+//                                writeToDatabase(e, false, true);
+                                writeToDatabase();
                         }
                     });
                 }
