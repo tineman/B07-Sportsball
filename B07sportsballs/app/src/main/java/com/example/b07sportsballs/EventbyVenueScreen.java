@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -60,6 +61,18 @@ public class EventbyVenueScreen extends AppCompatActivity {
         //Initialise events list
         events = new ArrayList<Event>();
 
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                UpdateRecycler();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
 
         //Back button
         Button backButton = findViewById(R.id.EventVenueBack_Button);
@@ -97,7 +110,7 @@ public class EventbyVenueScreen extends AppCompatActivity {
     /**
      * Gets the current venue selected by spinner and sets up the recyclerview
      */
-    public void UpdateRecycler(View view) {
+    public void UpdateRecycler() {
 
         //Get desired venue
         venue = spinner.getSelectedItem().toString();
@@ -134,6 +147,12 @@ public class EventbyVenueScreen extends AppCompatActivity {
                         }
                     });
                 }
+                if(events == null || events.isEmpty())
+                {
+                    Toast.makeText(EventbyVenueScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+                    //To clear the EventRecycler
+                    new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
+                }
             }
 
             @Override
@@ -142,11 +161,6 @@ public class EventbyVenueScreen extends AppCompatActivity {
             }
         });
 
-        //Updates EventRecycler one last time in case events is empty
-        if(events.isEmpty()) {
-            Toast.makeText(EventbyVenueScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            new EventRecyclerviewConfig().setConfig(recyclerView, EventbyVenueScreen.this, events);
-        }
     }
 
     /**
