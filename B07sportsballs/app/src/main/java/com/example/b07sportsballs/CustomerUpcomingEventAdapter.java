@@ -77,13 +77,11 @@ public class CustomerUpcomingEventAdapter extends
             txtNumPlayers.setText(String.format("Players: %d/%d",
                     event.getCurrPlayers(), event.getMaxPlayers()));
             buttonJoin.setOnClickListener(new View.OnClickListener() {
-                //TODO: Delete event.
                 public void onClick(View v) {
                     event.setWriter();
                     Customer.joinEvent(event);
                     adapter.events.remove(event);
                     adapter.notifyItemRemoved(position);
-//                    notifyItemRangeChanged(position, adapter.events.size());
                     Toast.makeText(adapter.context, "Event joined.", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(adapter.context, CustomerEventsJoinedScreen.class);
                     context.startActivity(intent);

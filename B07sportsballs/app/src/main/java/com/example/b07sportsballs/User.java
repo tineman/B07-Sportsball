@@ -48,7 +48,7 @@ public abstract class User {
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                venuesNames.clear();
+//                venuesNames.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     venuesNames.add(data.getKey());
                 }
@@ -87,7 +87,7 @@ public abstract class User {
                             venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildren()) {
                         eventsCount--;
                         Event e = new Event();
-                        Log.i("UserTest", event.getRef().toString());
+                        Log.i("UserTest", "Upcoming event: "+event.getRef().toString());
                         long finalEventsCount = eventsCount;
                         long finalVenuesCount = venuesCount;
                         e.bindToDatabase(event.getRef(), new Updater() {
