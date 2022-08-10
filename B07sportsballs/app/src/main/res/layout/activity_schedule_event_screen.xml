@@ -64,7 +64,7 @@
         android:id="@+id/ScheduleEventScreen_Text_Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/ScheduleEventScreen_EditText_Start"
+        android:text="@string/ScheduleEventScreen_Text_Start"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
