@@ -89,19 +89,20 @@ public class AdminLoginPage extends AppCompatActivity {
                         if(ausername.isEmpty() || apassword.isEmpty()){
                             Toast.makeText(AdminLoginPage.this, "field must not be empty", Toast.LENGTH_LONG).show();
                             match = true;
+                            break;
                         }else if(dataName.equals(ausername)){
                             match = true;
                             if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).getValue().toString().equals(apassword)){
                                 Admin admin = new Admin(ausername, apassword, ref);
-
                                 goAdminHome();
                             }else{
                                 Toast.makeText(AdminLoginPage.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                                break;
                             }
                         }
                     }
                 }
-                if(match==false) {Toast.makeText(AdminLoginPage.this, "Username not found", Toast.LENGTH_SHORT).show();}
+                if(!match) {Toast.makeText(AdminLoginPage.this, "Username not found", Toast.LENGTH_SHORT).show();}
             }
 
             @Override

@@ -139,11 +139,11 @@ public class CustomerLoginScreen extends AppCompatActivity {
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
                         String dataName = infoSnapshot.getKey();
-                        System.out.println(dataName);
                         if(username.isEmpty() || password.isEmpty()){
                             Toast.makeText(CustomerLoginScreen.this,
                                     "Field must not be empty", Toast.LENGTH_SHORT).show();
                             match = true;
+                            break;
                         }else if(dataName.equals(username)){
                             match = true;
                             if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).
@@ -154,11 +154,12 @@ public class CustomerLoginScreen extends AppCompatActivity {
                             }else{
                                 Toast.makeText(CustomerLoginScreen.this,
                                         "Wrong password", Toast.LENGTH_SHORT).show();
+                                break;
                             }
                         }
                     }
                 }
-                if(match==false) {Toast.makeText(CustomerLoginScreen.this,
+                if(!match) {Toast.makeText(CustomerLoginScreen.this,
                         "Username not found", Toast.LENGTH_SHORT).show();}
             }
 
