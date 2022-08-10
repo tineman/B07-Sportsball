@@ -8,6 +8,16 @@
     tools:context=".CustomerEventsJoinedScreen">
 
     <TextView
+        android:id="@+id/customerEventJoinedScreen_View_NoEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_events"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/recyclerView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/CustomerEventsJoinedScreen_TextView_Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

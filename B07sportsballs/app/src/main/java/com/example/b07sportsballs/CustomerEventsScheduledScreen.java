@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    private View noEvents;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -25,6 +28,8 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        noEvents = findViewById(R.id.CustomerEventsScheduledScreen_View_NoEvents);
+        noEvents.setVisibility(View.VISIBLE);
 
         Customer.readFromDatabase(new Updater() {
             @Override
@@ -35,6 +40,9 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
                 //Update the recyclerview with constantly updating events
                 for(Event event : events)
                 {
+                    //Notifes user of no events. Cannot use toast because loading a list of events
+                    //is asynchronous
+                    noEvents.setVisibility(View.GONE);
                     event.changeOnUpdate(new Updater() {
                         @Override
                         public void onUpdate() {
@@ -63,11 +71,6 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
                 quitApp();
             }
         });
-
-        if (Customer.getScheduledEvents() == null || Customer.getJoinedEvents().isEmpty())
-        {
-            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-        }
 
     }
 
