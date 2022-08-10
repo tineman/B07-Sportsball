@@ -77,17 +77,13 @@ public class Venue
         //return a HashSet of all venues that exist
         public static HashSet<String> getAllVenues()
         {
-                if (!VenueReader.isRunning)
-                {
-                        Log.i("demo", "allVenues: " + allVenues);
-                }
                 return allVenues;
         }
 
         public void getAllEvents()
         {
                 VenueGetEventsReader eventsReader = new VenueGetEventsReader();
-                DatabaseReference ref2 = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
+                DatabaseReference ref2 = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
                 if (!name.equals(null))
                 {
                         ref2 = ref2.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH).child(name).child("events");
