@@ -1,0 +1,77 @@
+Name: AustinX
+	
+What did I do since yesterday?
+	Helped some teammates fix bugs
+	Ran some simple Espresso tests for the first few user stories - they all passed
+What am I going to do?
+	If my teammates need any help fixing bugs, they can message me on Discord and I can try to help them
+What I need help with?
+	Nothing
+Name: Tian
+	
+What did I do since yesterday?
+	Created and tested EventbyVenueScreen
+	Backend testing
+What am I going to do?
+	Final testing
+Nothing what I need help with?
+
+Name: Frans
+	
+What did I do since yesterday?
+	Finding and fixing bugs
+	UI testing
+	
+What am I going to do?
+	More testing to find bugs
+	Improve UI design of some pages
+What I need help with?
+
+
+
+Name: George
+	
+What did I do since yesterday?
+	Fixed bugs in CreateVenue activity to prevent erase events or having duplicate venue names inside the realtime database
+	Improve layout for CreateVenue screen and EventsbyVenue screen
+	Conducted several test cases to check any existing errors
+	
+What am I going to do?
+	Making some improvements on CreateVenue activity to make it more user-friendly
+	Continue testing the entire app to check for any left errors
+	
+What I need help with?
+	Nothing for now
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Tested classes and screens
+	Searched for and fixed bugs
+	Implemented VenueGetEventsReader class to get all events for a given venue
+What am I going to do?
+	Continue searching for and fixing bugs
+What I need help with?
+	Nothing right now
+
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Tested classes and screens
+	Searched for and fixed bugs
+	Implemented VenueGetEventsReader class to get all events for a given venue
+What am I going to do?
+	Continue searching for and fixing bugs
+What I need help with?
+	Nothing right now
+
+Name: Chau
+	
+What did I do since yesterday?
+	Fixed bugs in Customer. Fixed screen redirection. Fixed update from database.
+
+What am I going to do?
+	Continue searching for and fixing bugs. Clean code.
+What I need help with?
+	Find bugs. Clean code.
