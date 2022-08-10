@@ -1,0 +1,7 @@
+Name: Swetha
+
+Things done
+	Created the Admin Home Page Screen and linked the buttons to their respective pages
+	Developed classes for Venue (Venue, VenueReader, VenueWriter, VenueGetEventsReader) by creating methods that could be used by other group members
+	Created methods in Venue that stored the venue names and the names of events in each venue inside of a hashset
+	Tested most of the methods in each class and ran the app to search for bugs
