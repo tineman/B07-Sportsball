@@ -66,8 +66,8 @@ public class EventRecyclerviewConfig {
         {
             try {
                 this.name.setText(event.getName());
-                host.setText(event.getHost());
-                venue.setText(event.getLocation());
+                host.setText("Host: " + event.getHost());
+                venue.setText("Venue: " + event.getLocation());
                 capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
                 start.setText("Start: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getStartTime()));
                 end.setText("End: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getEndTime()));
