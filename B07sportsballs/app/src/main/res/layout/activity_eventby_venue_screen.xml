@@ -73,7 +73,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:onClick="UpdateRecycler"
-        android:text="@string/EventbyVenueScreen_Update"
+        android:text="View Venue's events"
         app:layout_constraintEnd_toStartOf="@+id/EventVenueQuit_Button"
         app:layout_constraintStart_toEndOf="@+id/EventVenueBack_Button"
         app:layout_constraintTop_toTopOf="@+id/EventVenueBack_Button" />
