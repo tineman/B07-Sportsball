@@ -120,7 +120,7 @@ public class Customer extends User {
                         for (DataSnapshot event : venue.getChildren()) {
                             eventsCount--;
                             Event e = new Event();
-                            DatabaseReference ref = FirebaseDatabase.
+                            DatabaseReference eventRef = FirebaseDatabase.
                                     getInstance(Constants.DATABASE.DB_URL).
                                     getReference(Constants.DATABASE.ROOT + "/" +
                                             Constants.DATABASE.VENUE_PATH + "/" +
@@ -129,7 +129,7 @@ public class Customer extends User {
                                             event.getValue(String.class));
                             long finalEventsCount = eventsCount;
                             long finalVenuesCount = venuesCount;
-                            e.bindToDatabase(ref, new Updater() {
+                            e.bindToDatabase(eventRef, new Updater() {
                                 @Override
                                 public void onUpdate() {
                                     Log.i("CustomerTest", e.collectRef().toString());
@@ -159,7 +159,7 @@ public class Customer extends User {
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
+//                HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
                 scheduledEvents.clear();
                 if (!snapshot.exists()) updater.onUpdate();
                 else {
@@ -175,7 +175,7 @@ public class Customer extends User {
                             eventsCount--;
                             Log.i("Customer", String.format("events count: %d", eventsCount));
                             Event e = new Event();
-                            DatabaseReference ref = FirebaseDatabase.
+                            DatabaseReference eventRef = FirebaseDatabase.
                                     getInstance(Constants.DATABASE.DB_URL).
                                     getReference(Constants.DATABASE.ROOT + "/" +
                                             Constants.DATABASE.VENUE_PATH + "/" +
@@ -184,16 +184,16 @@ public class Customer extends User {
                                             event.getValue(String.class));
                             long finalEventsCount = eventsCount;
                             long finalVenuesCount = venuesCount;
-                            e.bindToDatabase(ref, new Updater() {
+                            e.bindToDatabase(eventRef, new Updater() {
                                 @Override
                                 public void onUpdate() {
                                     scheduledEvents.add(e);
                                     Log.i("CustomerSchedule", "added "+e.getName());
-                                    scheduledEventsOG.remove(e);
+//                                    scheduledEventsOG.remove(e);
                                     if (finalVenuesCount == 0 && finalEventsCount == 0) {
-                                        for (Event removedEvent : scheduledEventsOG) {
-                                            ref.setValue(null);
-                                        }
+//                                        for (Event removedEvent : scheduledEventsOG) {
+//                                            ref.setValue(null);
+//                                        }
                                         updater.onUpdate();
                                     }
                                 }

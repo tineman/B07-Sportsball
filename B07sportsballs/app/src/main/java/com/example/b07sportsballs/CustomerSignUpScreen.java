@@ -101,8 +101,8 @@ public class CustomerSignUpScreen extends AppCompatActivity {
                 else if(usernameList.contains(username)==true){
                     Toast.makeText(CustomerSignUpScreen.this, "Username is taken", Toast.LENGTH_SHORT).show();
                 }else{
-                    DatabaseReference commentRef = reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH);
-                    commentRef = commentRef.child(username);
+                    DatabaseReference commentRef = reference.child(Constants.DATABASE.ROOT).
+                            child(Constants.DATABASE.CUSTOMER_PATH).child(username);
                     commentRef.child(Constants.DATABASE.PASSWORD_KEY).setValue(password);
                     Customer customer = new Customer(username, password, commentRef);
                     openCustomerHomePage();
