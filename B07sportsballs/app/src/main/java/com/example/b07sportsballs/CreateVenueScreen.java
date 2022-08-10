@@ -35,9 +35,20 @@ public class CreateVenueScreen extends AppCompatActivity {
             public void onClick(View view) {
                 EditText VenueName = (EditText) findViewById(R.id.CreateVenueScreen_EditText_VenueName);
                 String avenuename = VenueName.getText().toString();
-                Venue venue = new Venue();
-                venue.setName(avenuename);
-                venue.writeToDataBase(ref);
+                if(avenuename.isEmpty()){
+                    Toast.makeText(CreateVenueScreen.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Venue venue = new Venue();
+                    venue.setName(avenuename);
+                    venue.writeToDataBase(ref);
+                    Toast.makeText(CreateVenueScreen.this, "New venue has inserted. Please note, duplicate venues will not be stored", Toast.LENGTH_LONG).show();
+                }
+
+
+
+
+
 
             }
         });
