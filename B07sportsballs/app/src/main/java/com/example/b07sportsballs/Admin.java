@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Admin extends User {
@@ -96,22 +97,13 @@ public class Admin extends User {
 
     public void createVenue(String venue) {
 
-        Venue avenue = new Venue();
-        avenue.setName(venue);
-        venuesCreated.add(venue);
-        avenue.writeToDataBase(ref);
-//        String key = CVRef.push().getKey();
-//        CVRef.child(key).setValue(venue);
-//        if (venuesCreated.contains(venue)) {
-//            status.duplicate();
-//        }
-//        if (!venuesCreated.contains(venue)) {
-//            venuesCreated.add(venue);
-//            avenue.writeToDataBase(ref);
-//            DatabaseReference cvenueRef = ref.child("Root").child("Admin").child("VenuesCreated");
-//            String key = cvenueRef.push().getKey();
-//            cvenueRef.child(key).setValue(avenue.name);
-//        }
+        if(!venuesCreated.contains(venue)){
+            Venue avenue = new Venue();
+            avenue.setName(venue);
+            venuesCreated.add(venue);
+            avenue.writeToDataBase(ref);
+        }
+
 
 
     }
@@ -119,7 +111,7 @@ public class Admin extends User {
 
     @Override
     public int hashCode() {
-        return username.hashCode() + password.hashCode();
+        return Objects.hash(username) + Objects.hash(password);
     }
 
 
