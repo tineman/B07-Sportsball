@@ -31,6 +31,7 @@
 
     <!--CustomerEventsJoinedScreen-->
     <string name="CustomerEventsJoinedScreen_title">Events Joined</string>
+    <string name="no_events">No Events Found!</string>
 
     <!--CustomerEventsScheduledScreen-->
     <string name="CustomerEventsScheduledScreen_title">Events Scheduled</string>

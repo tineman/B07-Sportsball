@@ -19,6 +19,8 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    private View noEvents;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,6 +29,8 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
 
+        noEvents = findViewById(R.id.customerEventJoinedScreen_View_NoEvents);
+        noEvents.setVisibility(View.VISIBLE);
 
         Customer.readFromDatabase(new Updater() {
             @Override
@@ -37,6 +41,9 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                 //Updating the recyclerview
                 for(Event event : events)
                 {
+                    //Notifes user of no events. Cannot use toast because loading a list of events
+                    //is asynchronous
+                    noEvents.setVisibility(View.GONE);
                     event.changeOnUpdate(new Updater() {
                         @Override
                         public void onUpdate() {
@@ -44,6 +51,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                         }
                     });
                 }
+
             }
         });
 
@@ -65,11 +73,6 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
             }
         });
 
-        if (Customer.getScheduledEvents() == null || Customer.getJoinedEvents().isEmpty())
-        {
-            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-        }
-
     }
 
     /**
@@ -77,8 +80,8 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      */
     public void backToCustomerHomePage() {
         this.finish();
-        //Intent intent = new Intent(this, CustomerHomePage.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, CustomerHomePage.class);
+        startActivity(intent);
     }
 
     /**
