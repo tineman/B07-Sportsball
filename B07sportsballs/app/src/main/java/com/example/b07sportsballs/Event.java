@@ -52,10 +52,12 @@ public class Event implements Serializable{
      */
     public void bindToDatabase(DatabaseReference ref, Updater onUpdate)
     {
-        this.ref = ref;
-        EventBinder binder = new EventBinder(this);
-        this.binder = binder;
-        this.binder.bind(this.ref, onUpdate);
+        if (this.ref == null) {
+            this.ref = ref;
+            EventBinder binder = new EventBinder(this);
+            this.binder = binder;
+            this.binder.bind(this.ref, onUpdate);
+        }
     }
 
     /**

@@ -150,12 +150,7 @@ public class CustomerLoginScreen extends AppCompatActivity {
                                     getValue().toString().equals(password)){
                                 Customer customer = new Customer(username, password,
                                         infoSnapshot.getRef());
-                                Customer.readFromDatabase(new Updater() {
-                                    @Override
-                                    public void onUpdate() {
-                                        openCustomerHomePage();
-                                    }
-                                });
+                                openCustomerHomePage();
                             }else{
                                 Toast.makeText(CustomerLoginScreen.this,
                                         "Wrong password", Toast.LENGTH_SHORT).show();

@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,9 +38,9 @@ public class Customer extends User {
     public static void writeToDatabase(Event e, boolean toJoinedEvents, boolean toScheduledEvents) {
         if (toJoinedEvents) {
             if (Customer.joinedEvents.size() == 0) {
-                Map<Integer, String> joinedEventsData = new HashMap<Integer, String>();
-                joinedEventsData.put(0, e.getName());
-                ref.setValue(joinedEventsData);
+                Map<String, String> joinedEventsData = new HashMap<String, String>();
+                joinedEventsData.put(String.valueOf(0), e.getName());
+                ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation()).setValue(joinedEventsData);
             }
             else {
                 DatabaseReference joinedEventsRoot = ref.child
@@ -48,9 +50,9 @@ public class Customer extends User {
         }
         if (toScheduledEvents) {
             if (Customer.scheduledEvents.size() == 0) {
-                Map<Integer, String> scheduledEventsData = new HashMap<Integer, String>();
-                scheduledEventsData.put(0, e.getName());
-                ref.setValue(scheduledEventsData);
+                Map<String, String> scheduledEventsData = new HashMap<String, String>();
+                scheduledEventsData.put(String.valueOf(0), e.getName());
+                ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).child(e.getLocation()).setValue(scheduledEventsData);
             }
             else {
                 DatabaseReference scheduledEventsRoot = ref.child
@@ -65,9 +67,9 @@ public class Customer extends User {
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("customerJoinedEvents", "data changed, now have "
-                        + snapshot.getChildrenCount() + " events");
                 // Store all events that have been removed. Could be empty.
+                Log.i("Customer", String.format("data changed, now have %d joined events",
+                        snapshot.getChildrenCount()));
                 HashSet<Event> joinedEventsOG = new HashSet<Event>(joinedEvents);
                 joinedEvents.clear();
                 if (!snapshot.exists()) {
@@ -98,8 +100,8 @@ public class Customer extends User {
                                 @Override
                                 public void onUpdate() {
                                     Log.i("CustomerTest", e.collectRef().toString());
+                                    Log.i("CustomerJoin", "added "+e.getName());
                                     joinedEvents.add(e);
-//                               if (!joinedEventsOG.contains(e)) joinEvent(e);
                                     joinedEventsOG.remove(e);
                                     if (finalVenuesCount == 0 && finalEventsCount == 0) {
                                         // Decrement currPlayers of events that have been removed.
@@ -129,19 +131,21 @@ public class Customer extends User {
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Log.i("customerScheduledEvents", "data changed, now have " +
-                        snapshot.getChildrenCount() + " events");
                 HashSet<Event> scheduledEventsOG = new HashSet<Event>(scheduledEvents);
                 scheduledEvents.clear();
                 if (!snapshot.exists()) updater.onUpdate();
                 else {
                     long venuesCount = snapshot.getChildrenCount();
+                    Log.i("Customer", String.format("venues count: %d", venuesCount));
                     long eventsCount = 0L;
                     for (DataSnapshot venue : snapshot.getChildren()) {
                         venuesCount--;
+                        Log.i("Customer", String.format("venues left: %d", venuesCount));
                         eventsCount += venue.getChildrenCount();
+                        Log.i("Customer", String.format("events count: %d", eventsCount));
                         for (DataSnapshot event : venue.getChildren()) {
                             eventsCount--;
+                            Log.i("Customer", String.format("events count: %d", eventsCount));
                             Event e = new Event();
                             DatabaseReference ref = FirebaseDatabase.
                                     getInstance(Constants.DATABASE.DB_URL).
@@ -156,6 +160,7 @@ public class Customer extends User {
                                 @Override
                                 public void onUpdate() {
                                     scheduledEvents.add(e);
+                                    Log.i("CustomerSchedule", "added "+e.getName());
                                     scheduledEventsOG.remove(e);
                                     if (finalVenuesCount == 0 && finalEventsCount == 0) {
                                         for (Event removedEvent : scheduledEventsOG) {
@@ -203,8 +208,8 @@ public class Customer extends User {
      */
     public static void joinEvent(Event e) {
         e.setWriter();
-        if (e.increment()) {
-            joinedEvents.add(e);
+        if (!joinedEvents.contains(e) && e.increment()) {
+//            joinedEvents.add(e);
             writeToDatabase(e, true, false);
         }
     }
@@ -236,8 +241,8 @@ public class Customer extends User {
                             Log.i("Customer", snapshot.getRef().toString());
                             e.writeToDatabase();
                             // Write new event to corresponding customer branch.
-                            scheduledEvents.add(e);
-                            writeToDatabase(e, false, true);
+                            if (!scheduledEvents.contains(e))
+                                writeToDatabase(e, false, true);
                         }
                     });
                 }

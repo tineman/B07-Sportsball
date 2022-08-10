@@ -3,6 +3,7 @@ package com.example.b07sportsballs;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,32 +20,37 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_scheduled_screen);
 
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         //Remove view to prevent a non-fatal error
-        if(Customer.getScheduledEvents() == null)
-        {
-            Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-            return;
-        }
-
-        List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
-
-        //Update the recyclerview with constantly updating events
-        for(Event event : events)
-        {
-            event.changeOnUpdate(new Updater() {
-                @Override
-                public void onUpdate() {
-                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsScheduledScreen.this, events);
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {
+                if (Customer.getScheduledEvents() == null)
+                {
+                    Toast.makeText(CustomerEventsScheduledScreen.this, "No events found!", Toast.LENGTH_LONG).show();
+                    ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
+                    return;
                 }
-            });
-        }
 
+                List<Event> events = new ArrayList<>(Customer.getScheduledEvents());
+
+                //Update the recyclerview with constantly updating events
+                for(Event event : events)
+                {
+                    event.changeOnUpdate(new Updater() {
+                        @Override
+                        public void onUpdate() {
+                            new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsScheduledScreen.this, events);
+                        }
+                    });
+                }
+            }
+        });
 
 
         //Back button
@@ -71,6 +77,8 @@ public class CustomerEventsScheduledScreen extends AppCompatActivity {
      */
     public void backToCustomerHomePage() {
         this.finish();
+        Intent intent = new Intent(this, CustomerHomePage.class);
+        startActivity(intent);
     }
 
     /**

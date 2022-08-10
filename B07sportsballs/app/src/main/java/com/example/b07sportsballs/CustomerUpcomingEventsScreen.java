@@ -36,6 +36,10 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {}
+        });
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upcoming_events_screen);
 
@@ -45,6 +49,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
         setAdapter();
 
         // Fetch data from database.
+//        events.clear();
         setEvents();
 
         Button backButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Back);
@@ -86,6 +91,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
     }
 
     private void setEvents() {
+        events.clear();
         Customer.collectUpcomingEvents(events, new Updater() { 
             @Override
             public void onUpdate() {

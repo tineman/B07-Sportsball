@@ -76,6 +76,11 @@ public class CustomerHomePage extends AppCompatActivity {
             }
         });
 
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {}
+        });
+
         //Get venues for scheduleEventScreen
         DatabaseReference ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
         Venue venue = new Venue();
