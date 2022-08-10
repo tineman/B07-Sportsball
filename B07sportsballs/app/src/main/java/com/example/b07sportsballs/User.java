@@ -48,6 +48,7 @@ public abstract class User {
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                venuesNames.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     venuesNames.add(data.getKey());
                 }
@@ -73,6 +74,7 @@ public abstract class User {
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                events.clear();
                 // venuesCount and eventsCount keep track of the number of venues/events left
                 // to check. Once there are no venues and events left, onUpdate() is called to
                 // let the calling function know that reading is done.
@@ -91,7 +93,7 @@ public abstract class User {
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
-                                if (e.getStartTime().compareTo(now) > 0 && !events.contains(e)) {
+                                if (e.getStartTime().compareTo(now) > 0) {
                                     events.add(e);
                                 }
                                 if (finalVenuesCount == 0 && finalEventsCount == 0) {
