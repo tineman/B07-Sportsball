@@ -1,0 +1,55 @@
+Name: Austin
+	
+What did I do since yesterday?
+	Fixed some bugs
+	Added some new frontend features
+What am I going to do?
+	Help teammates fix bugs
+What I need help with?
+	Nothing
+  
+Name: George
+What did I do since yesterday?
+	Fixed bugs in createVenue activity and tested on emulator that add the new venue into the realtime database properly
+What am I going to do?
+	Doing improvements for createVenue activity to let the created venues to assign with a unique key in the realtime database 
+	Conduct test cases to test backend classes and frontend activities
+What I need help with?
+	Some verifications with the admin class
+
+Name: Tian
+	
+What did I do since yesterday?
+	Fixed CustomerJoinedEvent and CustomerScheduledEvent bug
+	Quashed other bugs (e.g. ScheduleEvent calendarpicker shows January 1900)
+	Quality of life improvements (e.g. ScheduleEvent remembers information from VenueScreen)
+What am I going to do?
+	Add screen to sort events by venues
+	More testing (of the pages I implemented)
+What I need help with?
+	Nothing
+  
+Name: Chau
+What did I do since yesterday?
+	Fixed bugs in Customer class (reading and writing).
+What am I going to do?
+	Continue fixing bugs in Customer.
+What I need help with?
+	Start activity does not work as intended.
+  
+Name: Swetha
+What did I do since yesterday?
+	Wrote test cases
+	Replace interface for VenueReader with an existing one
+What am I going to do?
+	Continue writing test cases
+What I need help with?
+	Nothing right now
+
+Name: Frans
+What did I do since yesterday?
+	Fix customer sign up and login to follow new database, recolor buttons and did some testing
+What am I going to do?
+	Do more testing
+What I need help with?
+	Nothing so far
