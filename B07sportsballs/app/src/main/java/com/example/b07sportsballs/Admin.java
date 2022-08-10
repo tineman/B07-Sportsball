@@ -32,7 +32,6 @@ public class Admin extends User {
     }
 
     public void setReference() {
-//        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
         adminRef = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH);
         CVRef = adminRef.child(Constants.DATABASE.ADMIN_CREATED_VENUES_KEY);
     }
@@ -46,11 +45,17 @@ public class Admin extends User {
         return username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setVenuesCreated(HashSet<String> venuesCreated) {
         venue.readFromDataBase(ref);
         this.venuesCreated = venue.allVenues;
-//        venuesCreated = venue.getAllVenues();
-//        this.venuesCreated = venuesCreated;
 
     }
 
@@ -59,13 +64,6 @@ public class Admin extends User {
         return venuesCreated;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 
 
     public void readToDatabase(final Statusdemo status) {
@@ -94,7 +92,6 @@ public class Admin extends User {
         adminRef.child(key).setValue(admin);
     }
 
-//    public void
 
 
     public void createVenue(String venue) {
