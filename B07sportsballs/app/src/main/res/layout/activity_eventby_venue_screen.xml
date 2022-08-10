@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventbyVenueScreen">
+    tools:context=".EventbyVenueScreen"
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/EventVenueBack_Button"
@@ -22,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="4dp"
-        android:backgroundTint="#FF0000"
+        android:backgroundTint="#C50505"
         android:text="@string/Quit_Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -73,6 +74,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:onClick="UpdateRecycler"
+        android:backgroundTint="#D5461A"
         android:text="View Venue's events"
         app:layout_constraintBottom_toBottomOf="@+id/EventVenueBack_Button"
         app:layout_constraintEnd_toStartOf="@+id/EventVenueQuit_Button"
@@ -84,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:onClick="ScheduleEvent"
+        android:backgroundTint="#D5461A"
         android:text="@string/EventbyVenueScreen_Schedule"
         app:layout_constraintBottom_toTopOf="@+id/EventVenueUpdate_Button"
         app:layout_constraintEnd_toEndOf="parent"

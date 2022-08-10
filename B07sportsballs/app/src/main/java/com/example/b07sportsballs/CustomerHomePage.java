@@ -20,7 +20,8 @@ public class CustomerHomePage extends AppCompatActivity {
 
         Intent intent = getIntent();
         TextView textView = findViewById(R.id.CustomerHomePage_Username);
-        textView.setText(Customer.username);
+        String usernameHello = "Hello, " + Customer.username;
+        textView.setText(usernameHello);
 
         Button eventsJoinedButton = findViewById(R.id.CustomerHomePage_EventsJoined);
         Button scheduledEventsButton = findViewById(R.id.CustomerHomePage_EventsScheduled);

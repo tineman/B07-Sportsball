@@ -3,6 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_admin_home_page.xml" value="0.2" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_admin_login_page.xml" value="0.1" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_admin_upcoming_events_screen.xml" value="0.268" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_create_venue_screen.xml" value="0.1" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.1" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.268" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_home_page.xml" value="0.4" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_login_screen.xml" value="0.1" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_sign_up_screen.xml" value="0.1" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_customer_upcoming_events_screen.xml" value="0.268" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_eventby_venue_screen.xml" value="0.2446043165467626" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.2" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/activity_venue_screen.xml" value="0.2" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/admin_upcoming_event_layout_item.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/customer_upcoming_event_layout_item.xml" value="0.11574074074074074" />
+        <entry key="..\:/Users/frans/OneDrive/Desktop/bigUIchanges/B07-Sportsball/B07sportsballs/app/src/main/res/layout/event_list_item.xml" value="0.11574074074074074" />
         <entry key="app/src/main/res/layout/activity_admin_upcoming_events_screen.xml" value="0.25116082735331363" />
         <entry key="app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.25116082735331363" />
         <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.18" />

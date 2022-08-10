@@ -55,6 +55,7 @@
         android:ems="10"
         android:onClick="pickStartTime"
         android:text="@string/ScheduleEventScreen_EditText_End"
+        android:backgroundTint="#D5461A"
         app:layout_constraintBottom_toTopOf="@+id/ScheduleEventScreen_Text_End"
         app:layout_constraintStart_toStartOf="@+id/ScheduleEventScreen_Text_Title"
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_Text_Start" />
@@ -124,7 +125,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="#3EAE42"
         android:onClick="onSubmit"
         android:text="@string/ScheduleEventScreen_Button_Submit"
         app:layout_constraintBaseline_toBaselineOf="@+id/ScheduleEventScreen_Button_Quit"
@@ -139,6 +140,7 @@
         android:layout_marginTop="12dp"
         android:ems="10"
         android:text="@string/ScheduleEventScreen_EditText_End"
+        android:backgroundTint="#D5461A"
         app:layout_constraintBottom_toTopOf="@+id/ScheduleEventScreen_Text_MaxPlayer"
         app:layout_constraintStart_toStartOf="@+id/ScheduleEventScreen_Text_Title"
         app:layout_constraintTop_toBottomOf="@+id/ScheduleEventScreen_Text_End" />
@@ -183,6 +185,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Select Date"
+        android:backgroundTint="#D5461A"
         app:layout_constraintStart_toEndOf="@+id/ScheduleEventScreen_EditText_StartTime"
         app:layout_constraintTop_toTopOf="@+id/ScheduleEventScreen_EditText_StartTime" />
 
@@ -193,6 +196,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Select Date"
+        android:backgroundTint="#D5461A"
         app:layout_constraintStart_toEndOf="@+id/ScheduleEventScreen_EditText_EndTime"
         app:layout_constraintTop_toTopOf="@+id/ScheduleEventScreen_EditText_EndTime" />
 

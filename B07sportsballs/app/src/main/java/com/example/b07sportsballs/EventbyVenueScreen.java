@@ -1,6 +1,7 @@
 package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -41,7 +42,7 @@ public class EventbyVenueScreen extends AppCompatActivity {
 
         //Set up recyclerview
         recyclerView = (RecyclerView) findViewById(R.id.EventVenueRecyclerView);
-
+        recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(), DividerItemDecoration.VERTICAL));
         //Set up spinner
         spinner = (Spinner) findViewById(R.id.EventVenueSpinner);
         venues = new ArrayList<>(Venue.getAllVenues());

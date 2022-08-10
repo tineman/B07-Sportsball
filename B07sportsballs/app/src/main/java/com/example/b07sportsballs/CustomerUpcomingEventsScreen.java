@@ -2,6 +2,7 @@ package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +41,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
 
         // Set up layout elements.
         eventsView = findViewById(R.id.upcoming_events);
+        eventsView.addItemDecoration(new DividerItemDecoration(eventsView.getContext(), DividerItemDecoration.VERTICAL));
         setAdapter();
 
         // Fetch data from database.
