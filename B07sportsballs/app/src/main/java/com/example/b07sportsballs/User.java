@@ -91,7 +91,7 @@ public abstract class User {
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
-                                if (e.getStartTime().compareTo(now) > 0) {
+                                if (e.getStartTime().compareTo(now) > 0 && !events.contains(e)) {
                                     events.add(e);
                                 }
                                 if (finalVenuesCount == 0 && finalEventsCount == 0) {

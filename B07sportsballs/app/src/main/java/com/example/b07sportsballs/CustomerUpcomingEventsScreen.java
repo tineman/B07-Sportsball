@@ -40,6 +40,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
             @Override
             public void onUpdate() {}
         });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upcoming_events_screen);
 
@@ -49,7 +50,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
         setAdapter();
 
         // Fetch data from database.
-//        events.clear();
+        events.clear();
         setEvents();
 
         Button backButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Back);
