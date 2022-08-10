@@ -1,0 +1,9 @@
+Name: George(Xiaotong Ye)
+
+Things done
+	Formatted the Admin Login screen and finalize the AdminLogin activity by applying login method developed from other group members.
+	Finalized the CreateVenue activity by calling the methods from the Venue class which developed by other group members. Within the VenueWriter class which developed from other group members, making some adjustments to add the created venue into the correct node inside the realtime database, which customers could schedule events
+	Developed Admin class to support the displays of username in Admin Home Screen
+	Improved frontend layouts for EventbyVenue Screen and CreateVenue Screen
+	Helped group members to find the cause of bugs when running the app on the emulator.
+	Testing & debugging

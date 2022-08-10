@@ -1,7 +1,53 @@
-Name: 
+Name: Xiaotong Ye(George)
+What did I do since yesterday?
+    Learned basic operations of GitHub
+    Setted for Jira
+    Designed the layout of Admin Login Page
+    Created basic structure of Java classes
+What I plan on doing?
+    Developing the backend of Admin Login activity
+    Developing the interaction between different activities/pages
+What I need help with?
+    Fixing possible errors when developing backend of Admin Login activity
+    Building connections between any pages/activities which have relationships with Admin Login activity
+
+Name: Tian
 What I did since yesterday
-    - 
+    Created VenueScreen
 What I plan on doing
-    - 
-WHat I need help with
-    - 
+    Another screen
+    Practice with firebase
+What I need help with
+    Familiarity in firebase
+
+Name: Austin
+What I did since yesterday
+    Created CustomerLoginScreen
+What I plan on doing
+    CustomerSignUpScreen
+What I need help with
+    Some Firebase specifics
+    Android specifics
+
+Name: Swetha
+What I did since yesterday
+    Learned how to read with firebase, created the admin home page
+What I plan on doing
+    Create another screen
+What I need help with
+    Working with android studio, writing with Firebase
+    
+Name: Frans
+What did I do since yesterday?
+	Design the customer home page and having trouble with GitHub
+What am I going to do?
+	Linked the page from the login screen, add back button
+What I need help with?
+	Still a bit confused with how to work with github
+Name: Chau
+What did I do since yesterday?
+    Learn how to read from and write to Firebase database; make changes to the back-end diagram of classes and methods
+What am I going to do?
+    Complete front-end screen for upcoming event view
+What I need help with?
+    Finalize back-end diagram

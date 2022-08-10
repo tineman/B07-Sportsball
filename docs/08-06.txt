@@ -1,0 +1,60 @@
+Name: Austin
+	
+What did I do since yesterday?
+	Received input from friends and classmates about how to make the layout more user-friendly
+	Finished reformatting many frontend classes to make them more user-friendly
+	Finished researching many background images for the app
+	Watched CSCB07 Testing lecture, finished researching about Android Testcases
+What am I going to do?
+	Add the perfect background image for our app and merge it into the main branch tomorrow
+	I’m thinking of just implementing one very simple Espresso testcase. This Espresso tescase will check Customer Login functionality, Customer Register Account functionality, and Admin Login functionality.
+What I need help with?
+	Nothing
+
+Name: Tian
+	
+What did I do since yesterday?
+	Finished implementing Schedule Event (pending Customer class)
+What am I going to do?
+	Add Customer support to ScheduleEvent, EventsJoined, EventsScheduled
+What I need help with?
+	Nothing
+
+Name: George
+	
+What did I do since yesterday?
+	Planning CreateVenues activity and continue implementing Admin class
+What am I going to do?
+	Finalize the Admin class implementation, and apply its functionalities into activities
+	Finalize CreateVenues activity and test on the emulator
+What I need help with?
+	Methods from Venue class which will connect with Admin venues section
+
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Finished Venue class
+	Reimplemented VenueReader using an interface
+What am I going to do?
+	Write test cases
+What I need help with?
+	Nothing right now
+
+Name: Chau
+	
+What did I do since yesterday?
+  Fixed bugs in Customer class. Modified Admin/CustomerUpcomingEventsScreen. Tested some features of Admin/CustomerUpcomingEventsScreen.
+What am I going to do?
+  Continue testing and updating Customer and Admin/CustomerUpcomingEventsScreen.
+What I need help with?
+  Reading Event is not working as intended.
+  
+Name: Frans
+	
+What did I do since yesterday?
+	Fix constraints for customer and admin login page
+What am I going to do?
+	Finalize json database
+What I need help with?
+

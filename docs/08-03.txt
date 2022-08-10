@@ -1,0 +1,60 @@
+Name: Chau
+	
+What did I do since yesterday?
+  Added a class for constants. Implemented signUp() and logIn(). Updated CustomerSignUpScreen and CustomerLogInScreen to execute signUp() and logIn(). Added an interface for notifying the main thread when reading data is completed.
+What am I going to do?
+  Finish User and Customer classes. Regex check for username and password. VenueReader? (I will probably need this in User)
+What I need help with?
+
+
+Name: Tian Yu
+	
+What did I do since yesterday?
+	Changed EventWriter to use an atomic reader, making corruption by simaltaneous edits impossible
+	Edited EventBinder (had a scare where it stopped working)
+What am I going to do?
+	Finish createEvent implementation
+What I need help with?
+	Nothing
+
+Name: Austin Xu
+	
+What did I do since yesterday?
+	CreateVenueScreen layout
+	Shopping for Android Phones
+What am I going to do?
+	Trying to catch up on other course’s homework
+What I need help with?
+	Nothing for now
+
+
+Name: Xiaotong Ye(George)
+	
+What did I do since yesterday?
+	Finalize the admin class
+	Working on implementing admin reader and writer
+What am I going to do?
+	Continue working and testing on admin reader and writer
+	Finalize the Create Venue activity
+	
+What I need help with?
+	Figuring out admin reader and writer functionalities
+
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Finished VenueReader class
+What am I going to do?
+	Might try to reimplement the read() method from VenueReader in a better way
+	Implement admin sign in method
+What I need help with?
+	Figuring out the best way to read firebase 
+
+Name: 
+	
+What did I do since yesterday?
+	Implement sign up and log in, ensure that duplicate names are not allowed. Link signup to customer home page via create account button.
+What am I going to do?
+	Add regex to the username and password
+What I need help with?

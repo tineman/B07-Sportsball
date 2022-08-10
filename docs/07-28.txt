@@ -1,0 +1,54 @@
+Name: Tian
+What did I do since yesterday?
+    Empty project uploaded and firebase connected
+What am I going to do?
+    Implement a writer()
+What I need help with?
+Firebase - solution - ask Alejandro and Austin 
+
+Name: Austin
+    What did I do since yesterday?
+    B09 textbook torture (100 pages), researched Android features, researched Android firebase
+What am I going to do?
+    Research more of the important Android features, Finish B09 Assignment.
+What I need help with?
+    Android features
+    UML diagram design
+    
+Name: Chau
+What did I do since yesterday?
+    Github tutorial, read api of firebase, uml for classes and methods, trying to create a login screen
+What am I going to do?
+    Get used to firebase, finalize the uml class diagram
+What I need help with?
+    Firebase methods, what is intent again?
+   
+Name: Swetha
+What did I do since yesterday?
+    Worked with Firebase- created a database and tried writing to the database from Android Studio
+    Learned github- read through a tutorial
+What am I going to do?
+    Create a writer to write to Firebase
+What I need help with?
+    Working with Android Studio
+    
+Name: Xiaotong Ye
+What did I do since yesterday?
+    Further digest intent, backend, and UI design for Android Studio
+    Learned the data storage(Firebase)
+    Setted for Jira and Github
+What am I going to do?
+    Finalize the UML diagram with groupmates
+    Finalize the database structure in Firebase
+    Start thinking how to implement activities backends, with some extension to the layout design of activities
+What I need help with?
+    Application user stories planning with group members
+    Some useful Android backend features
+    
+Name: Frans
+What did I do since yesterday?
+    Learning github and finishing my lab report
+What am I going to do?
+    Try implementing user login method
+What I need help with?
+    Android studio is hella confusing and it drains so much battery…

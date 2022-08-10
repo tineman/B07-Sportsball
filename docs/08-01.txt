@@ -1,0 +1,48 @@
+Name: Austin
+What did I do since yesterday?
+	Finished CustomerUpcomingEventsScreen
+  Finished CustomerUpcomingScheduleScreen
+What am I going to do?
+  Implement functions for CustomerUpcomingScreen and CustomerUpcomingSchedule 
+What I need help with?
+	Nothing so far
+  
+Name: Tian
+What did I do since yesterday?
+	Finished Event and EventWriter()
+Worked on EventReader()
+What am I going to do?
+	Update Jira board with backend tasks
+	Finish EventReader
+  Creating proposals for backend changes
+What I need help with?
+	Creating EventReader
+  
+Name: George(Xiaotong Ye)
+What did I do since yesterday?
+	Start implementing Admin class
+	Conduct pages emulator testing
+What am I going to do?
+	Push my updates into GitHub
+	Implementing in Admin class and Admin Writer
+What I need help with?
+	GitHub merge
+	Possible classes implementing debugging
+  
+Name: Swetha
+What did I do since yesterday?
+	Editing AdminHomePage, created Venue class, started implementing VenueWriter
+What am I going to do?
+	Finish VenueWriter, start VenueReader
+What I need help with?
+	Implementing VenueReader
+  
+Name: Chau
+What did I do since yesterday?
+  Created prototype classes for backend
+  Watched tutorials for reading and writing to realtime database
+  Reorganized and updated Customer/AdminUpcomingEventsScreen to chau-working-branch
+What am I going to do?
+  Start implementing User and Customer class
+What I need help with?
+  Nothing for now

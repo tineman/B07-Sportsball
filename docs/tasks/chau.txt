@@ -1,0 +1,7 @@
+Name: Chau
+Things done
+  Created backend class diagram.
+  Created AdminUpcomingEventsScreen, CustomerUpcomingEventsScreen, AdminUpcomingEventAdapter, CustomerUpcomingEventAdapter and corresponding .xml files.
+  Did some of the screen redirection and set up data for new activities (Login/Signup to HomePage, ScheduleEvent to EventsScheduled, UpcomingEvents after joining new event to UpcomingEvents with new event displayed).
+  Implemented Customer class, User class, Updater interface. Created and stored Constants.
+  Fixed bugs.
