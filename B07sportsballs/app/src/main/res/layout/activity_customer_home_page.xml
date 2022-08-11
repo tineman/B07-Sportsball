@@ -25,7 +25,7 @@
     <TextView
         android:id="@+id/CustomerHomePage_Username"
         android:layout_width="0dp"
-        android:layout_height="36dp"
+        android:layout_height="wrap_content"
         android:hint="@string/CustomerHomePage_Username"
         android:text="@string/CustomerHomePage_Username"
         android:textAlignment="center"
