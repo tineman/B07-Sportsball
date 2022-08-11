@@ -11,7 +11,7 @@ public class Event implements Serializable{
     private transient EventWriter writer;
     private transient EventBinder binder;
     private String name, host, location;
-    private Date startTime, endTime;
+    private Date startTime, endTime; //Java class deprecated, causing setter warning
     private int currPlayers, maxPlayers;
     //ref is the reference to the node containing the event
     private transient DatabaseReference ref;
