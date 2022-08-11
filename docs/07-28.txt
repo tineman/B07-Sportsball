@@ -4,7 +4,7 @@ What did I do since yesterday?
 What am I going to do?
     Implement a writer()
 What I need help with?
-Firebase - solution - ask Alejandro and Austin 
+    Firebase - solution - ask Alejandro and Austin 
 
 Name: Austin
     What did I do since yesterday?
