@@ -54,3 +54,13 @@ What am I going to do?
 	Implement AdminReader and CustomerReader
 What I need help with?
 	Nothing
+	
+Name: Frans
+	
+What did I do since yesterday?
+	Finishing customer login page and learn about firebase reading
+What am I going to do?
+	Implement login method
+What I need help with?
+	Firebase reading and manipulation
+
