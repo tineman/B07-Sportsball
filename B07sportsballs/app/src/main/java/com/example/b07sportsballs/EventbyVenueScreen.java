@@ -168,6 +168,7 @@ public class EventbyVenueScreen extends AppCompatActivity {
      */
     public void ScheduleEvent(View view) {
 
+        Log.i("Usertype", User.usertype);
         if(User.usertype == Constants.DATABASE.ADMIN_TYPE)
         {
             Toast.makeText(EventbyVenueScreen.this, "Admins cannot create events", Toast.LENGTH_LONG).show();
