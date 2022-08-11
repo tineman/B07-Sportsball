@@ -1,0 +1,10 @@
+Tian Yu
+1008204774
+
+Tasks Done
+	SCRUM master
+	Create Event, EventBinder, EventWriter to deal with Events
+	Create EventRecyclerViewConfig to help with displaying events
+	Create frontend for CustomerEventsJoinedScreen, CustomerEventsScheduledScreen, EventbyVenueScreen, ScheduleEventScreen, VenueScreen
+	Implement backend (i.e. Use methods other group members implemented to add functionality) for CustomerEventsJoinedScreen, CustomerEventsScheduledScreen, EventbyVenueScreen, ScheduleEventScreen, VenueScreen
+	Testing & debugging for screens implemented and minor debugging for other screens

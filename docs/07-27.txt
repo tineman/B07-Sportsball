@@ -1,0 +1,53 @@
+Name: Tian
+What did I do since yesterday?
+    Updated the Jira board
+    Messed with Firebase
+What am I going to do?
+    Get database set up asap
+    Setup empty project in github asap
+What I need help with?
+    Figuring out Firebase (tutorial)
+
+Name: Austin [NOTE: Joined today]
+What did I do since yesterday?
+    B41 homework, B09 homework, some planning for B07 project
+What am I going to do?
+    Youtube videos for Android classes
+    Websites for Android classes
+What I need help with?
+    Android specific classes (like Spinner, etc.)
+
+Name: Swetha
+What did I do since yesterday?
+    Worked on learning how to use Android Studio
+What am I going to do?
+    Continue to work with and learn how to use Android Studio
+    Figure out Firebase
+What I need help with?
+    Using FireBase
+    
+Name: George
+What did I do since yesterday?
+    I worked on constructing JSON database planning and Activities planning with groupmates
+What am I going to do?
+    How to design the activity using Java, and how to make certain activities interact each other
+What I need help with?
+    Activities interactions
+    Backend of activities(Java implementation)
+
+Name: Frans
+What did I do since yesterday?
+    Play around with firebase
+What am I going to do?
+    Find a good json editor for the database, help in making the database?
+What I need help with?
+    Forking and making pull req in github
+
+Name: Châu
+What did I do since yesterday?
+    read some articles on how to design nosql database
+What am I going to do?
+    discuss with everyone on how to divide the tasks so that i can get started on coding
+What I need help with?
+    working with github
+

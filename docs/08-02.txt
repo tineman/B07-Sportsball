@@ -1,0 +1,64 @@
+Name: Tian
+	
+What did I do since yesterday?
+	Learned about Transaction listeners
+	Finished implementing EventReader
+Changed backend plan
+What am I going to do?
+	Update EventWriter to use Transactions instead of a SetValue (more secure)
+	Test EventReader
+What I need help with?
+	Good with everything
+
+Name: Chau
+	
+What did I do since yesterday?
+  Implementing User and Customer classes
+What am I going to do?
+  Finish User and Customer classes
+What I need help with?
+  Pretty ok right now
+
+Name: Austin
+
+What did I do since yesterday?
+	Implemented functionality for CustomerEventsJoinedScreen and CustomerEventsScheduledScreen
+What am I going to do?
+	Waiting for Customer class so I can combine into main branch
+What I need help with?
+	Nothing - so far
+
+Name: George(Xiaotong Ye)
+	
+What did I do since yesterday?
+	-Merges Admin Login Page frontend to Github main branch
+	-Implementing and finalizing Admin class
+	-Working on Admin Writer
+	
+What am I going to do?
+	-Finalizing Admin class
+	-Planning and implementing Admin Writer
+	
+What I need help with?
+	-Admin Writer planning
+	-Testings
+
+Name: Frans 
+	
+What did I do since yesterday?
+	Not much, busy with other course work
+What am I going to do?
+	Finish implementing login and signup back end
+What I need help with?
+
+Name: Swetha
+	
+What did I do since yesterday?
+	Added documentation for Venue and VenueWriter
+	Finished implementing VenueWriter
+	Almost finished implementing VenueReader
+What am I going to do?
+	Finish VenueReader and add documentation
+	Test VenueReader and VenueWriter before committing
+What I need help with?
+	Nothing right now

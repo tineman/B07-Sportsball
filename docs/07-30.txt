@@ -1,0 +1,64 @@
+Name: Austin
+What did I do since yesterday?
+	Created CustomerSignUpScreen
+What am I going to do?
+	Implement the signup feature (That is, when the user clicks the “Create Account” button, 
+ 	a new Customer account will be added to the Firebase Realtime Database)
+What I need help with?
+	Getting more accustomed to ConstrainedLayout.
+
+	
+Name: George(Xiaotong Ye)
+What did I do since yesterday?
+	Start developing the backend of Admin LogIn Page
+	Committed any possible updates into Github
+What am I going to do?
+	Set the quit button for both frontend and backend
+	Studying on how to connect user input into real time database(that is, studying the interaction between backend and real time database)
+What I need help with?
+	Figuring out some errors/bugs generated when commiting changes to Github
+	Building connections between pages/activities
+  
+Name: Tian
+
+What did I do since yesterday?
+	Dubugged VenueScreen frontend
+	Created ScheduleEventScreen frontend
+What am I going to do?
+	Create another frontend
+	Review backend plan
+	Practice firebase
+What I need help with?
+	Merging - there exists some conflicts in misc.xml that I’m not sure of. Anything I tried broke the screens I was merging onto main
+
+Name: Swetha
+What did I do since yesterday?
+	Finalized and committed AdminHomePageScreen to a new branch on github 
+	Learned operations on github
+	Started writing code to implement the quit button
+What am I going to do?
+	Implement quit button for AdminHomePageScreen
+	Practice writing data in firebase
+	
+What I need help with?
+	Merging my branch to main in github
+	Writing data in firebase
+
+Name: Châu
+What did I do since yesterday?
+Implement CustomerUpcomingEventScreen
+	
+What am I going to do?
+Implement AdminUpcomingEventScreen
+	
+What I need help with?
+RecyclerView in Android Studio
+A lot of errors that somehow go away after rebooting
+
+Name: Frans
+What did I do since yesterday?
+	Create CustomerHomePage and link it to login page
+What am I going to do?
+	Admin Home Page
+What I need help with?
+	Scroll type activity and design

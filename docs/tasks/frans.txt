@@ -1,0 +1,9 @@
+Name: Frans
+
+Things done
+	Develop the UI for Customer Home Page and linking their buttons to the respective pages
+Various designs (backgrounds, icons, activity page layout, color themes etc)
+	Create finalize database format as a JSON file to be used for testing and demo
+	Help in finding bugs and debugging
+	Created CustomerLoginScreen(activity_customer_login_screen), CustomerSignUpScreen (activity_customer_sign_up_screen)
+	Coded the back-end for user story 1, to allow customer to login and sign-up, by read/write to database.
