@@ -3,6 +3,6 @@ Name: Austin
 Tasks Done
 	Created frontend design using a class diagram
 	Created frontend for some screens and helped reformat many screens
-Fixed the constraints for almost all frontend screens to make them compatible with all phone screen sizes and to also make them compatible with device rotations
+	Fixed the constraints for almost all frontend screens to make them compatible with all phone screen sizes and to also make them compatible with device rotations
 	Helped teammates get accustomed to merging on GitHub, taught teammates some GitHub Desktop features
 	Testing & helping some teammates debug some backend features
