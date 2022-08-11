@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/layout/activity_admin_upcoming_events_screen.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/activity_customer_events_joined_screen.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/activity_customer_events_scheduled_screen.xml" value="0.26795166015624994" />
+        <entry key="app/src/main/res/layout/activity_customer_home_page.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/activity_customer_upcoming_events_screen.xml" value="0.3530933773176137" />
+        <entry key="app/src/main/res/layout/activity_eventby_venue_screen.xml" value="0.28927806970042624" />
+        <entry key="app/src/main/res/layout/activity_schedule_event_screen.xml" value="0.25116082735331363" />
+        <entry key="app/src/main/res/layout/admin_upcoming_event_layout_item.xml" value="0.1483539974348012" />
+        <entry key="app/src/main/res/layout/customer_upcoming_event_layout_item.xml" value="0.2298939144269887" />
+        <entry key="app/src/main/res/layout/event_list_item.xml" value="0.269421807493395" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

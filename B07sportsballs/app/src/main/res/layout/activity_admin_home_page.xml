@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".AdminHomePage">
+
+    <TextView
+        android:id="@+id/AdminHomePage_TextView_Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="100dp"
+        android:hint="@string/CustomerHomePage_Username"
+        android:text="@string/AdminHomePage_Username"
+        android:textSize="26sp"
+        android:textStyle="italic"
+        app:layout_constraintBaseline_toBaselineOf="@+id/AdminHomePage_TextView_Hello"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/AdminHomePage_TextView_Hello" />
+
+    <TextView
+        android:id="@+id/AdminHomePage_TextView_Hello"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="6dp"
+        android:hint="@string/CustomerHomePage_HelloText"
+        android:text="@string/AdminHomePage_HelloText"
+        android:textSize="26sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toStartOf="@+id/AdminHomePage_TextView_Username"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminHomePage_TextView_Title" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_ViewVenues"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AdminHomePage_ViewVenues"
+        android:backgroundTint="#D5461A"
+        app:layout_constraintBottom_toTopOf="@+id/AdminHomePage_Button_DisplayEvents"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminHomePage_Button_CreateVenue" />
+
+    <TextView
+        android:id="@+id/AdminHomePage_TextView_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="@string/AdminHomePage_Title"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_CreateVenue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AdminHomePage_AddVenue"
+        android:backgroundTint="#D5461A"
+        app:layout_constraintBottom_toTopOf="@+id/AdminHomePage_Button_ViewVenues"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminHomePage_TextView_Hello"
+        app:layout_constraintVertical_chainStyle="spread" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_Logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#FF0000"
+        android:text="@string/Logout_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_DisplayEvents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AdminHomePage_DisplayEvents"
+        android:backgroundTint="#D5461A"
+        app:layout_constraintBottom_toTopOf="@+id/AdminHomePage_Button_Quit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AdminHomePage_Button_ViewVenues"
+        app:layout_constraintVertical_bias="0.101" />
+
+    <Button
+        android:id="@+id/AdminHomePage_Button_Quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C50505"
+        android:text="@string/Quit_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

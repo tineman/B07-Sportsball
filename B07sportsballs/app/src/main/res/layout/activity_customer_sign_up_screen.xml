@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".CustomerSignUpScreen">
+
+    <Button
+        android:id="@+id/CustomerSignUpScreen_Button_Quit"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:backgroundTint="#C50505"
+        android:text="@string/Quit_Button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/CustomerSignUpScreen_TextView_Title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CustomerSignUpScreen_title"
+        android:textColor="@color/black"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6" />
+
+    <TextView
+        android:id="@+id/CustomerSignUpScreen_TextView_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/CustomerSignUpScreen_password"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <EditText
+        android:id="@+id/CustomerSignUpScreen_EditText_Password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/CustomerSignUpScreen_enter_password"
+        android:inputType="textPersonName|textPassword"
+        android:minWidth="300dp"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_EditText_Username"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_EditText_Username"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Password" />
+
+    <EditText
+        android:id="@+id/CustomerSignUpScreen_EditText_Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/CustomerSignUpScreen_enter_username"
+        android:inputType="textPersonName"
+        android:minWidth="300dp"
+        android:minHeight="48dp"
+        android:textColorHint="#757575"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Username"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_TextView_Username" />
+
+    <TextView
+        android:id="@+id/CustomerSignUpScreen_TextView_Username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="60dp"
+        android:text="@string/CustomerSignUpScreen_username"
+        android:textAllCaps="false"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_TextView_Password"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_TextView_Title"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_TextView_Title"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:text="@string/CustomerSignUpScreen_create_account"
+        android:backgroundTint="#D5461A"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_EditText_Password"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.679" />
+
+    <Button
+        android:id="@+id/CustomerSignUpScreen_Button_BackToLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#D5461A"
+        android:text="@string/CustomerSignUpScreen_back_to_login"
+        app:layout_constraintBottom_toTopOf="@+id/CustomerSignUpScreen_Button_Quit"
+        app:layout_constraintEnd_toEndOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintStart_toStartOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintTop_toBottomOf="@+id/CustomerSignUpScreen_Button_CreateAccount"
+        app:layout_constraintVertical_bias="0.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
