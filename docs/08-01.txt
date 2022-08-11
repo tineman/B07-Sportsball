@@ -46,3 +46,12 @@ What am I going to do?
   Start implementing User and Customer class
 What I need help with?
   Nothing for now
+  
+Name:Frans
+What did I do since yesterday?
+	Trying to do backend for login
+What am I going to do?
+	finish implement login method
+What I need help with?
+	none
+
