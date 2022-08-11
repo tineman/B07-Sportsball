@@ -1,17 +1,9 @@
 package com.example.b07sportsballs;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
 import com.google.firebase.database.ServerValue;
-import com.google.firebase.database.Transaction;
 
-import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,8 +20,7 @@ public class EventWriter {
     public void write(DatabaseReference ref, Event event)
     {
 
-        ref.getParent().child(event.getName()).setValue(event);
-        //ref.setValue(event);
+        ref.setValue(event);
 
     }
 
@@ -43,7 +34,7 @@ public class EventWriter {
     {
 
         Map<String, Object> update = new HashMap<>();
-        update.put("currPlayers", ServerValue.increment(1));
+        update.put(Constants.DATABASE.EVENT_CURR_PLAYERS_KEY, ServerValue.increment(1));
         ref.updateChildren(update);
 
     }

@@ -20,7 +20,8 @@ public class CustomerHomePage extends AppCompatActivity {
 
         Intent intent = getIntent();
         TextView textView = findViewById(R.id.CustomerHomePage_Username);
-        textView.setText(Customer.username);
+        String usernameHello = "Hello, " + Customer.username;
+        textView.setText(usernameHello);
 
         Button eventsJoinedButton = findViewById(R.id.CustomerHomePage_EventsJoined);
         Button scheduledEventsButton = findViewById(R.id.CustomerHomePage_EventsScheduled);
@@ -75,6 +76,11 @@ public class CustomerHomePage extends AppCompatActivity {
             }
         });
 
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {}
+        });
+
         //Get venues for scheduleEventScreen
         DatabaseReference ref = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
         Venue venue = new Venue();
@@ -106,7 +112,7 @@ public class CustomerHomePage extends AppCompatActivity {
     }
 
     public void openVenues(){
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, EventbyVenueScreen.class); //TEMP CHANGE
         startActivity(intent);
     }
 

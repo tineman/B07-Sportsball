@@ -11,6 +11,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 
 
 public class Admin extends User {
@@ -25,14 +26,13 @@ public class Admin extends User {
     }
 
     public Admin(String username, String password, DatabaseReference ref) {
-        super(username, password, ref);
+        super(username, password, ref, Constants.DATABASE.ADMIN_TYPE);
         this.venue = new Venue();
         this.venuesCreated = new HashSet<String>();
         this.admins = new HashSet<Admin>();
     }
 
     public void setReference() {
-//        ref = FirebaseDatabase.getInstance("https://b07sportsballs-default-rtdb.firebaseio.com/").getReference();
         adminRef = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.ADMIN_PATH);
         CVRef = adminRef.child(Constants.DATABASE.ADMIN_CREATED_VENUES_KEY);
     }
@@ -46,11 +46,17 @@ public class Admin extends User {
         return username;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     public void setVenuesCreated(HashSet<String> venuesCreated) {
         venue.readFromDataBase(ref);
         this.venuesCreated = venue.allVenues;
-//        venuesCreated = venue.getAllVenues();
-//        this.venuesCreated = venuesCreated;
 
     }
 
@@ -59,13 +65,6 @@ public class Admin extends User {
         return venuesCreated;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return password;
-    }
 
 
     public void readToDatabase(final Statusdemo status) {
@@ -94,27 +93,17 @@ public class Admin extends User {
         adminRef.child(key).setValue(admin);
     }
 
-//    public void
 
 
     public void createVenue(String venue) {
 
-        Venue avenue = new Venue();
-        avenue.setName(venue);
-        venuesCreated.add(venue);
-        avenue.writeToDataBase(ref);
-//        String key = CVRef.push().getKey();
-//        CVRef.child(key).setValue(venue);
-//        if (venuesCreated.contains(venue)) {
-//            status.duplicate();
-//        }
-//        if (!venuesCreated.contains(venue)) {
-//            venuesCreated.add(venue);
-//            avenue.writeToDataBase(ref);
-//            DatabaseReference cvenueRef = ref.child("Root").child("Admin").child("VenuesCreated");
-//            String key = cvenueRef.push().getKey();
-//            cvenueRef.child(key).setValue(avenue.name);
-//        }
+        if(!venuesCreated.contains(venue)){
+            Venue avenue = new Venue();
+            avenue.setName(venue);
+            venuesCreated.add(venue);
+            avenue.writeToDataBase(ref);
+        }
+
 
 
     }
@@ -122,7 +111,7 @@ public class Admin extends User {
 
     @Override
     public int hashCode() {
-        return username.hashCode() + password.hashCode();
+        return Objects.hash(username) + Objects.hash(password);
     }
 
 

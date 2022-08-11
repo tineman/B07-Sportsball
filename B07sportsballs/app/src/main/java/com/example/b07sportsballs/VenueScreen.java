@@ -4,14 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -20,22 +18,22 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
 
     ListView listView;
     ArrayAdapter arrayAdapter;
-
-    //Placeholder
     ArrayList<String> venues = new ArrayList<String>();
+
+    public static final String CUSTOMVENUE = "VENUE_PREF";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_venue_screen);
 
         venues = new ArrayList<>(Venue.getAllVenues());
-
         listView = (ListView) findViewById(R.id.VenueScreen_List);
         listView.setOnItemClickListener(this::onItemClick);
         arrayAdapter = new ArrayAdapter(VenueScreen.this, android.R.layout.simple_list_item_1, venues);
+        listView.setAdapter(arrayAdapter);
 
+        //If there are no venues
         if(Venue.getAllVenues() == null)
         {
             Toast.makeText(VenueScreen.this, "No venues available at this moment", Toast.LENGTH_LONG).show();
@@ -44,9 +42,9 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
             return;
         }
 
-        listView.setAdapter(arrayAdapter);
 
 
+        //Back button
         Button backButton = findViewById(R.id.VenueScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +53,7 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
             }
         });
 
+        //Quit button
         Button quitButton = findViewById(R.id.VenueScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,16 +77,20 @@ public class VenueScreen extends AppCompatActivity implements OnItemClickListene
         this.finishAffinity();
     }
 
+    /**
+     * Checks if User is Admin
+     * If not, sends Customer to the ScheduleEventScreen
+     */
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        if(Customer.username == null)
+        if(User.ref.toString().contains(Constants.DATABASE.ADMIN_PATH)) //ask about User type field
         {
             Toast.makeText(VenueScreen.this, "Admins cannot create events", Toast.LENGTH_LONG).show();
             return;
         }
 
         Intent intent = new Intent(VenueScreen.this, ScheduleEventScreen.class);
-        intent.putExtra("VENUE_PREF", venues.get(i));
+        intent.putExtra(CUSTOMVENUE, venues.get(i));
         startActivity(intent);
         return;
 

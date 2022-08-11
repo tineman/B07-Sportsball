@@ -24,15 +24,17 @@ public abstract class User {
     static String username;
     static String password;
     static DatabaseReference ref;
+    static String usertype;
 
     // Default constructor for reading from database.
     public User() {}
 
     // This constructor is called only once when the user logs in/signs up successfully.
-    public User (String username, String password, DatabaseReference ref) {
+    public User (String username, String password, DatabaseReference ref, String usertype) {
         this.username = username;
         this.password = password;
         this.ref = ref;
+        this.usertype = usertype;
     }
 
     /**
@@ -46,6 +48,7 @@ public abstract class User {
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                venuesNames.clear();
                 for (DataSnapshot data : snapshot.getChildren()) {
                     venuesNames.add(data.getKey());
                 }
@@ -71,6 +74,7 @@ public abstract class User {
         venuesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                events.clear();
                 // venuesCount and eventsCount keep track of the number of venues/events left
                 // to check. Once there are no venues and events left, onUpdate() is called to
                 // let the calling function know that reading is done.
@@ -83,14 +87,12 @@ public abstract class User {
                             venue.child(Constants.DATABASE.VENUE_EVENTS_KEY).getChildren()) {
                         eventsCount--;
                         Event e = new Event();
-                        Log.i("UserTest", event.getRef().toString());
+                        Log.i("UserTest", "Upcoming event: "+event.getRef().toString());
                         long finalEventsCount = eventsCount;
                         long finalVenuesCount = venuesCount;
                         e.bindToDatabase(event.getRef(), new Updater() {
                             @Override
                             public void onUpdate() {
-                                e.setName(event.getKey());
-                                e.setLocation(venue.getKey());
                                 if (e.getStartTime().compareTo(now) > 0) {
                                     events.add(e);
                                 }

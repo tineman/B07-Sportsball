@@ -1,12 +1,14 @@
 package com.example.b07sportsballs;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,30 +34,25 @@ public class CustomerUpcomingEventAdapter extends
     public EventHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate
                 (R.layout.customer_upcoming_event_layout_item, parent, false);
-        return new EventHolder(view);
+        return new EventHolder(view).linkAdapter(this);
     }
 
     @Override
     public void onBindViewHolder
             (@NonNull CustomerUpcomingEventAdapter.EventHolder holder, int position) {
-        Event event = events.get(position);
-        holder.setDetails(event);
+        holder.setDetails(position);
     }
-
-//    public void removeEvent(int position) {
-//        events.remove(position);
-//        notifyItemRemoved(position);
-//        notifyItemRangeChanged(position, events.size());
-//    }
 
     @Override
     public int getItemCount() {
         return events.size();
     }
 
-    public static class EventHolder extends RecyclerView.ViewHolder {
+
+    public class EventHolder extends RecyclerView.ViewHolder {
         private TextView txtName, txtOwner, txtVenue, txtTime, txtNumPlayers;
         private Button buttonJoin;
+        private CustomerUpcomingEventAdapter adapter;
 
         public EventHolder(@NonNull View view) {
             super(view);
@@ -69,9 +66,8 @@ public class CustomerUpcomingEventAdapter extends
             buttonJoin = (Button) view.findViewById(R.id.buttonJoin);
         }
 
-        //TODO: Modify when class Event is finalized.
-        void setDetails(Event event) {
-//            Log.i("UserTest", event==null?"y":"n");
+        void setDetails(int position) {
+            Event event = adapter.events.get(position);
             SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
             txtName.setText(event.getName());
             txtOwner.setText(String.format("Created by: %s", event.getHost()));
@@ -81,16 +77,22 @@ public class CustomerUpcomingEventAdapter extends
             txtNumPlayers.setText(String.format("Players: %d/%d",
                     event.getCurrPlayers(), event.getMaxPlayers()));
             buttonJoin.setOnClickListener(new View.OnClickListener() {
-                //TODO: Modify to call method to join events once class Customer is finalized.
                 public void onClick(View v) {
                     event.setWriter();
                     Customer.joinEvent(event);
-
+                    adapter.events.remove(event);
+                    adapter.notifyItemRemoved(position);
+                    Toast.makeText(adapter.context, "Event joined.", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(adapter.context, CustomerEventsJoinedScreen.class);
+                    context.startActivity(intent);
                 }
             });
         }
 
-        void removeEvent(Event e) {}
+        public EventHolder linkAdapter(CustomerUpcomingEventAdapter adapter) {
+            this.adapter = adapter;
+            return this;
+        }
     }
 }
 

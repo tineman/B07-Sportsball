@@ -1,10 +1,11 @@
 package com.example.b07sportsballs;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +18,13 @@ public class EventRecyclerviewConfig {
 
     private Context context;
     private EventAdapter adapter;
+
+    /**
+     * A Facade for the recycler configuration
+     * @param recyclerView the recyclerview to be setup
+     * @param context the context the recycler is in
+     * @param events the list of events to display
+     */
     public void setConfig(RecyclerView recyclerView, Context context, List<Event> events)
     {
          this.context = context;
@@ -27,13 +35,17 @@ public class EventRecyclerviewConfig {
 
     }
 
+    /**
+     * Creates a template for each event. The recyclerview contains a list of EventViews
+     */
     class EventView extends RecyclerView.ViewHolder
     {
         private TextView name;
         private TextView host;
         private TextView venue;
         private TextView capacity;
-        private TextView duration;
+        private TextView start;
+        private TextView end;
 
         public EventView(ViewGroup parent) {
             super(LayoutInflater.from(context).inflate(R.layout.event_list_item, parent, false));
@@ -42,21 +54,35 @@ public class EventRecyclerviewConfig {
             host = (TextView) itemView.findViewById(R.id.textEventHost);
             venue = (TextView) itemView.findViewById(R.id.textEventVenue);
             capacity = (TextView) itemView.findViewById(R.id.textEventCapacity);
-            duration = (TextView) itemView.findViewById(R.id.textEventDuration);
+            start = (TextView) itemView.findViewById(R.id.textEventStart);
+            end = (TextView) itemView.findViewById(R.id.textEventEnd);
 
         }
 
+        /**
+         * Updates the EventView with the Event information
+         */
         public void bind(Event event, String name)
         {
-            this.name.setText(event.getName());
-            host.setText(event.getHost());
-            venue.setText(event.getLocation());
-            capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
-            duration.setText("Duration: " + new SimpleDateFormat("HH:mm").format(event.getStartTime()) + " - " + new SimpleDateFormat("HH:mm").format(event.getEndTime()));
+            try {
+                this.name.setText(event.getName());
+                host.setText("Host: " + event.getHost());
+                venue.setText("Venue: " + event.getLocation());
+                capacity.setText("Current Capacity: " + event.getCurrPlayers() + "/" + event.getMaxPlayers());
+                start.setText("Start: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getStartTime()));
+                end.setText("End: " + new SimpleDateFormat("d, MMM yyyy HH:mm").format(event.getEndTime()));
+            }
+            catch(NullPointerException e)
+            {
+                //Toast.makeText(venue.getContext(), "Error loading events. Please check your connection", Toast.LENGTH_LONG).show();
+            }
         }
 
     }
 
+    /**
+     * An Adapter between Events and RecyclerView
+     */
     class EventAdapter extends RecyclerView.Adapter<EventView>
     {
           private List<Event> events;

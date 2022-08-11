@@ -7,16 +7,11 @@ import androidx.annotation.NonNull;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EventBinder {
 
-    private Event parent;
+    private Event parent; //the parent the binder is attached to
     private ValueEventListener listener;
 
     /**
@@ -53,7 +48,14 @@ public class EventBinder {
 
                 //Null checking?
                 Event event = snapshot.getValue(Event.class);
-                if(event != null) parent.setData(event);
+                if(event != null)
+                {
+                    parent.setData(event);
+                }
+                else
+                {
+                    Log.i("Event Binder Error", "Tried to bind to empty node at " + ref.toString());
+                }
                 onUpdate.onUpdate();
 
             }

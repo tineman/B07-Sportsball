@@ -97,7 +97,7 @@ public class AdminHomePage extends AppCompatActivity {
      */
     public void openVenueScreen()
     {
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, EventbyVenueScreen.class);
         startActivity(intent);
     }
 

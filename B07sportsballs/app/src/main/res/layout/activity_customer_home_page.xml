@@ -17,7 +17,6 @@
         android:textColor="@color/black"
         android:textSize="35sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_HelloText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,35 +24,18 @@
 
     <TextView
         android:id="@+id/CustomerHomePage_Username"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="108dp"
         android:hint="@string/CustomerHomePage_Username"
         android:text="@string/CustomerHomePage_Username"
-        android:textSize="26sp"
-        android:textStyle="italic"
-        app:layout_constraintBaseline_toBaselineOf="@+id/CustomerHomePage_HelloText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.866"
-        app:layout_constraintStart_toEndOf="@+id/CustomerHomePage_HelloText" />
-
-    <TextView
-        android:id="@+id/CustomerHomePage_HelloText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="6dp"
-        android:hint="@string/CustomerHomePage_HelloText"
-        android:text="@string/CustomerHomePage_HelloText"
+        android:textAlignment="center"
         android:textSize="26sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/CustomerHomePage_EventsJoined"
-        app:layout_constraintEnd_toStartOf="@+id/CustomerHomePage_Username"
-        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089" />
+        app:layout_constraintTop_toBottomOf="@+id/CustomerHomePage_TextView_Title"
+        app:layout_constraintVertical_bias="0.157" />
 
     <Button
         android:id="@+id/CustomerHomePage_EventsJoined"

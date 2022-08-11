@@ -4,6 +4,7 @@ package com.example.b07sportsballs;
 import android.util.Log;
 
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 import java.util.HashSet;
@@ -11,12 +12,14 @@ import java.util.Objects;
 
 public class Venue
 {
-        private String name;
+        private String name = "";
         private HashSet<Event> events;
         private DatabaseReference ref;
         private VenueWriter venuewriter;
         private VenueReader venuereader;
         public static HashSet<String> allVenues = new HashSet<String>();
+        //hashsets of all events for the given venue
+        public HashSet<String> allEvents = new HashSet<String>();
 
         //Empty constructor
         public Venue() { }
@@ -59,6 +62,7 @@ public class Venue
         //read the venues stored in the database
         public void readFromDataBase(DatabaseReference ref)
         {
+                getAllEvents();
                 setReader(new VenueReader());
                 VenueReader.ref = ref.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH);
                 venuereader.read(ref);
@@ -74,12 +78,28 @@ public class Venue
         //return a HashSet of all venues that exist
         public static HashSet<String> getAllVenues()
         {
-                if (!VenueReader.isRunning)
-                {
-                        Log.i("demo", "allVenues: " + allVenues);
-                }
                 return allVenues;
         }
+
+        //read database to store all of the event names for the given venue in a hashset
+        public void getAllEvents()
+        {
+                if (!name.equals(null) && !name.equals(""))
+                {
+                        VenueGetEventsReader eventsReader = new VenueGetEventsReader();
+                        DatabaseReference ref2 = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).getReference();
+                        ref2 = ref2.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.VENUE_PATH).
+                                child(name).child(Constants.DATABASE.VENUE_EVENTS_KEY);
+                        eventsReader.read(ref2, this);
+                }
+        }
+
+        //store all of the event names for the venue in allEvents
+        public void storeAllEvents(HashSet<String> keys)
+        {
+                this.allEvents = keys;
+        }
+
 
 
         @Override

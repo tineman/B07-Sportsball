@@ -35,9 +35,30 @@ public class CreateVenueScreen extends AppCompatActivity {
             public void onClick(View view) {
                 EditText VenueName = (EditText) findViewById(R.id.CreateVenueScreen_EditText_VenueName);
                 String avenuename = VenueName.getText().toString();
-                Venue venue = new Venue();
-                venue.setName(avenuename);
-                venue.writeToDataBase(ref);
+                if(avenuename.isEmpty()){
+                    Toast.makeText(CreateVenueScreen.this, "Field cannot be empty", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Venue venue = new Venue();
+                    venue.setName(avenuename);
+                    String vName = venue.getName();
+                    venue.readFromDataBase(ref);
+                    if(venue.allVenues.contains(vName)){
+                        Toast.makeText(CreateVenueScreen.this, "A venue with this venue name already exists, please try another venue name", Toast.LENGTH_LONG).show();
+                    }else if (vName.contains("/")){
+                        Toast.makeText(CreateVenueScreen.this, "A venue's name cannot contain \"/\"", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(CreateVenueScreen.this, "\"" + avenuename + "\" has been added", Toast.LENGTH_LONG).show();
+                        venue.writeToDataBase(ref);
+                    }
+
+                }
+
+
+
+
+
+
 
             }
         });
@@ -78,7 +99,7 @@ public class CreateVenueScreen extends AppCompatActivity {
      * This method is called when the "View Venues" button is pressed
      */
     private void listVenue() {
-        Intent intent = new Intent(this, VenueScreen.class);
+        Intent intent = new Intent(this, EventbyVenueScreen.class);
         startActivity(intent);
     }
 

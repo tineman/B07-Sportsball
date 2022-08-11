@@ -30,7 +30,6 @@ public class CustomerLoginScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_login_screen);
         reference = FirebaseDatabase.getInstance("https://sportsballtesting-default-rtdb.firebaseio.com/").getReference();
-
         Log.i("MainActivity", "Startup");
         Log.i("MainActivity", "Use \"https://b07sportsballs-default-rtdb.firebaseio.com/\"");
 
@@ -132,35 +131,36 @@ public class CustomerLoginScreen extends AppCompatActivity {
         String password = passwordET.getText().toString();
 
 
-        reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH).addListenerForSingleValueEvent(new ValueEventListener() {
+        reference.child(Constants.DATABASE.ROOT).child(Constants.DATABASE.CUSTOMER_PATH).
+                addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 boolean match = false;
                 for(DataSnapshot infoSnapshot : snapshot.getChildren()){
                     if(infoSnapshot!=null){
                         String dataName = infoSnapshot.getKey();
-                        System.out.println(dataName);
                         if(username.isEmpty() || password.isEmpty()){
-                            Toast.makeText(CustomerLoginScreen.this, "Field must not be empty", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(CustomerLoginScreen.this,
+                                    "Field must not be empty", Toast.LENGTH_SHORT).show();
                             match = true;
+                            break;
                         }else if(dataName.equals(username)){
                             match = true;
-                            if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).getValue().toString().equals(password)){
-                                Customer customer = new Customer(username, password, infoSnapshot.getRef());
-                                Customer.readFromDatabase(new Updater() {
-                                    @Override
-                                    public void onUpdate() {
-                                        openCustomerHomePage();
-                                    }
-                                });
-//                                openCustomerHomePage();
+                            if(infoSnapshot.child(Constants.DATABASE.PASSWORD_KEY).
+                                    getValue().toString().equals(password)){
+                                Customer customer = new Customer(username, password,
+                                        infoSnapshot.getRef());
+                                openCustomerHomePage();
                             }else{
-                                Toast.makeText(CustomerLoginScreen.this, "Wrong password", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CustomerLoginScreen.this,
+                                        "Wrong password", Toast.LENGTH_SHORT).show();
+                                break;
                             }
                         }
                     }
                 }
-                if(match==false) {Toast.makeText(CustomerLoginScreen.this, "Username not found", Toast.LENGTH_SHORT).show();}
+                if(!match) {Toast.makeText(CustomerLoginScreen.this,
+                        "Username not found", Toast.LENGTH_SHORT).show();}
             }
 
             @Override

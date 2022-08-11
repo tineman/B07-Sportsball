@@ -44,7 +44,6 @@ public class AdminUpcomingEventsScreen extends AppCompatActivity
         setEvents();
         setVenues();
 
-
         Button backButton = findViewById(R.id.AdminUpcomingEventsScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

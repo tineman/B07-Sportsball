@@ -6,7 +6,7 @@ public class Constants {
     public static class DATABASE {
         /* Relative path to direct branches of root. */
         public final static String DB_URL = "https://sportsballtesting-default-rtdb.firebaseio.com";
-        public final static String ROOT = "Final_Backup";
+        public final static String ROOT = "Final";
         public final static String CUSTOMER_PATH = "Customers";
         public final static String ADMIN_PATH = "Admins";
         public final static String VENUE_PATH = "Venues";
@@ -26,5 +26,9 @@ public class Constants {
         public final static String EVENT_END_TIME_KEY = "endTime";
         public final static String EVENT_CURR_PLAYERS_KEY = "currPlayers";
         public final static String EVENT_MAX_PLAYERS_KEY = "maxPlayers";
+
+        /* User type. */
+        public final static String ADMIN_TYPE = "ADMIN";
+        public final static String CUSTOMER_TYPE = "CUSTOMER";
     }
 }

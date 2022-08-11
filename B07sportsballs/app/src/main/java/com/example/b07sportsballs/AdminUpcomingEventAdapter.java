@@ -63,7 +63,6 @@ public class AdminUpcomingEventAdapter
             txtNumPlayers = (TextView) view.findViewById(R.id.txtNumPlayers);
         }
 
-        //TODO: Modify once class Event is finalized.
         void setDetails(Event event) {
             SimpleDateFormat timeFormat = new SimpleDateFormat("d MMM yyyy HH:mm a");
             txtName.setText(event.getName());

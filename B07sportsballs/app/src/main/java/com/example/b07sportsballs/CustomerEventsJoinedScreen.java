@@ -5,13 +5,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,11 +19,43 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
 
     private RecyclerView recyclerView;
 
+    private View noEvents;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_events_joined_screen);
 
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
+
+        noEvents = findViewById(R.id.customerEventJoinedScreen_View_NoEvents);
+        noEvents.setVisibility(View.VISIBLE);
+
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {
+
+                List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
+
+                //Updating the recyclerview
+                for(Event event : events)
+                {
+                    //Notifes user of no events. Cannot use toast because loading a list of events
+                    //is asynchronous
+                    noEvents.setVisibility(View.GONE);
+                    event.changeOnUpdate(new Updater() {
+                        @Override
+                        public void onUpdate() {
+                            new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsJoinedScreen.this, events);
+                        }
+                    });
+                }
+
+            }
+        });
+
+        //Back button
         Button backButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Back);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -33,6 +64,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
             }
         });
 
+        //Quit button
         Button quitButton = findViewById(R.id.CustomerEventsJoinedScreen_Button_Quit);
         quitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +72,7 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
                 quitApp();
             }
         });
+
     }
 
     /**
@@ -47,6 +80,8 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      */
     public void backToCustomerHomePage() {
         this.finish();
+        Intent intent = new Intent(this, CustomerHomePage.class);
+        startActivity(intent);
     }
 
     /**
@@ -54,26 +89,5 @@ public class CustomerEventsJoinedScreen extends AppCompatActivity {
      */
     public void quitApp() {
         this.finishAffinity();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView2);
-
-        if(Customer.getJoinedEvents() == null)
-        {
-            Toast.makeText(CustomerEventsJoinedScreen.this, "No events found!", Toast.LENGTH_LONG).show();
-            ((ViewGroup) recyclerView.getParent()).removeView(recyclerView);
-            return;
-        }
-        List<Event> events = new ArrayList<>(Customer.getJoinedEvents());
-
-        //
-
-        for(Event event : events)
-        {
-            event.changeOnUpdate(new Updater() {
-                @Override
-                public void onUpdate() {
-                    new EventRecyclerviewConfig().setConfig(recyclerView, CustomerEventsJoinedScreen.this, events);
-                }
-            });
-        }
     }
 }

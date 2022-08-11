@@ -5,21 +5,21 @@ import com.google.firebase.database.DatabaseReference;
 import java.util.Date;
 import java.util.Objects;
 import java.io.Serializable;
-import java.util.*;
 
 public class Event implements Serializable{
 
     private transient EventWriter writer;
     private transient EventBinder binder;
     private String name, host, location;
-    private Date startTime, endTime;
+    private Date startTime, endTime; //Java class deprecated, causing setter warning
     private int currPlayers, maxPlayers;
     //ref is the reference to the node containing the event
     private transient DatabaseReference ref;
 
     /**
-     * When using the empty constructor, call bindToDatabase to initialise the values. Call setWriter()
-     * before calling writeToDatabase() or increment()
+     * When using the empty constructor, call bindToDatabase afterwards to initialise the values and
+     * the reference.
+     * Call setWriter() before calling writeToDatabase() or increment()
      */
 
     public Event()
@@ -52,10 +52,12 @@ public class Event implements Serializable{
      */
     public void bindToDatabase(DatabaseReference ref, Updater onUpdate)
     {
-        this.ref = ref;
-        EventBinder binder = new EventBinder(this);
-        this.binder = binder;
-        this.binder.bind(this.ref, onUpdate);
+        if (this.ref == null) {
+            this.ref = ref;
+            EventBinder binder = new EventBinder(this);
+            this.binder = binder;
+            this.binder.bind(this.ref, onUpdate);
+        }
     }
 
     /**
@@ -72,7 +74,6 @@ public class Event implements Serializable{
     /**
      * Call setWriter on an event before writing to it
      */
-
     public void setWriter()
     {
         if (this.writer == null) this.writer = new EventWriter();
@@ -102,17 +103,21 @@ public class Event implements Serializable{
 
     }
 
+    /**
+     * An event is defined as equalling another event when it has the same name and location
+     * This is to ensure only one event at a venue can have a certain name
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Event event = (Event) o;
-        return name.equals(event.name);
+        return this.name.equals(event.getName()) && this.location.equals(event.getLocation());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(name) + Objects.hash(location);
     }
 
 
@@ -121,7 +126,7 @@ public class Event implements Serializable{
 
     //Helper functions
 
-    //Getters
+    //Getters & setters
     public String getName() {
         return name;
     }
@@ -150,17 +155,17 @@ public class Event implements Serializable{
         return maxPlayers;
     }
 
+    public DatabaseReference collectRef() {
+        return ref;
+    }
+
     public void setCurrPlayers(int currPlayers) {
         this.currPlayers = currPlayers;
     }
 
     public void setBinder(EventBinder binder) {this.binder = binder;}
 
-    public void setName(String name) {this.name = name;}
-
-    public void setLocation(String location) {this.location = location;}
-
-    //Sets name, host, location, starttime, endrime, currplayers, maxplayers to those in events
+    //Sets name, host, location, starttime, endtime, currplayers, maxplayers to those in events
     public void setData(Event event)
     {
         this.name = event.getName();

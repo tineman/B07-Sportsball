@@ -2,6 +2,7 @@ package com.example.b07sportsballs;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,14 +36,21 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Customer.readFromDatabase(new Updater() {
+            @Override
+            public void onUpdate() {}
+        });
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_upcoming_events_screen);
 
         // Set up layout elements.
         eventsView = findViewById(R.id.upcoming_events);
+        eventsView.addItemDecoration(new DividerItemDecoration(eventsView.getContext(), DividerItemDecoration.VERTICAL));
         setAdapter();
 
         // Fetch data from database.
+        events.clear();
         setEvents();
 
         Button backButton = findViewById(R.id.CustomerUpcomingEventsScreen_Button_Back);
@@ -84,6 +92,7 @@ public class CustomerUpcomingEventsScreen extends AppCompatActivity {
     }
 
     private void setEvents() {
+        events.clear();
         Customer.collectUpcomingEvents(events, new Updater() { 
             @Override
             public void onUpdate() {

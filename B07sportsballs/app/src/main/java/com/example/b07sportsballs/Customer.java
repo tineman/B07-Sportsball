@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +17,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class Customer extends User {
     static HashSet<Event> joinedEvents;
@@ -23,7 +27,7 @@ public class Customer extends User {
 
     // This constructor is called only once when the user logs in/signs up successfully.
     public Customer(String username, String password, DatabaseReference ref) {
-        super(username, password, ref);
+        super(username, password, ref, Constants.DATABASE.CUSTOMER_TYPE);
         joinedEvents = new HashSet<Event>();
         scheduledEvents = new HashSet<Event>();
     }
@@ -32,15 +36,15 @@ public class Customer extends User {
      * Writes all events joined and scheduled by the customer to respective branch of database.
      */
     public static void writeToDatabase() {
-        DatabaseReference joinedEventsRoot = ref.child
-                (Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY);
-        for (Event event : joinedEvents) {
-            joinedEventsRoot.child(event.getLocation()).push().setValue(event.getName());
+        ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).setValue(null);
+        for (Event e:joinedEvents) {
+            ref.child(Constants.DATABASE.CUSTOMER_JOINED_EVENTS_KEY).child(e.getLocation()).push().
+                    setValue(e.getName());
         }
-        DatabaseReference scheduledEventsRoot = ref.child
-                (Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY);
-        for (Event event : scheduledEvents) {
-            scheduledEventsRoot.child(event.getLocation()).push().setValue(event.getName());
+        ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).setValue(null);
+        for (Event e:scheduledEvents) {
+            ref.child(Constants.DATABASE.CUSTOMER_SCHEDULED_EVENTS_KEY).child(e.getLocation()).push().
+                    setValue(e.getName());
         }
     }
 
@@ -49,33 +53,46 @@ public class Customer extends User {
         joinedEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long venuesCount = snapshot.getChildrenCount();
-                long eventsCount = 0L;
-                for (DataSnapshot venue : snapshot.getChildren()) {
-                    venuesCount--;
-                    eventsCount += venue.getChildrenCount();
-                    for (DataSnapshot event : venue.getChildren()) {
-                        eventsCount--;
-                        Event e = new Event();
-                        DatabaseReference ref = FirebaseDatabase.
-                                getInstance(Constants.DATABASE.DB_URL).
-                                getReference(Constants.DATABASE.ROOT+"/"+
-                                        Constants.DATABASE.VENUE_PATH+"/"+
-                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
-                                        event.getValue(String.class));
-                        Log.i("test", ref.toString());
-                        long finalEventsCount = eventsCount;
-                        long finalVenuesCount = venuesCount;
-                        e.bindToDatabase(ref, new Updater() {
-                            @Override
-                            public void onUpdate() {
-                                e.setName(event.getValue(String.class));
-                                e.setLocation(venue.getKey());
-                                joinedEvents.add(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0)
-                                    updater.onUpdate();
-                            }
-                        });
+                joinedEvents.clear();
+                Log.i("CustomerTest", "joinedEvents cleared, now have "+
+                        joinedEvents.size() + " events, ready to read data");
+                if (!snapshot.exists()) {
+                    Log.i("CustomerTest", "Data changed: no joined events");
+                    updater.onUpdate();
+                } else {
+                    Log.i("CustomerTest", String.format("Data changed: %d joined events",
+                            snapshot.getChildrenCount()));
+                    long venuesCount = snapshot.getChildrenCount();
+                    long eventsCount = 0L;
+                    for (DataSnapshot venue : snapshot.getChildren()) {
+                        venuesCount--;
+                        eventsCount += venue.getChildrenCount();
+                        for (DataSnapshot event : venue.getChildren()) {
+                            eventsCount--;
+                            Event e = new Event();
+                            DatabaseReference eventRef = FirebaseDatabase.
+                                    getInstance(Constants.DATABASE.DB_URL).
+                                    getReference(Constants.DATABASE.ROOT + "/" +
+                                            Constants.DATABASE.VENUE_PATH + "/" +
+                                            venue.getKey() + "/" +
+                                            Constants.DATABASE.VENUE_EVENTS_KEY + "/" +
+                                            event.getValue(String.class));
+                            long finalEventsCount = eventsCount;
+                            long finalVenuesCount = venuesCount;
+                            e.bindToDatabase(eventRef, new Updater() {
+                                @Override
+                                public void onUpdate() {
+                                    joinedEvents.add(e);
+                                    Log.i("CustomerTest", "Added "+e.getName()+" at " +
+                                            e.collectRef().toString());
+                                    Log.i("CustomerTest", "joinedEvents now has "+
+                                            joinedEvents.size()+" events");
+                                    if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                        updater.onUpdate();
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
             }
@@ -93,32 +110,47 @@ public class Customer extends User {
         scheduledEventsRoot.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                long venuesCount = snapshot.getChildrenCount();
-                long eventsCount = 0L;
-                for (DataSnapshot venue : snapshot.getChildren()) {
-                    venuesCount--;
-                    eventsCount += venue.getChildrenCount();
-                    for (DataSnapshot event : venue.getChildren()) {
-                        eventsCount--;
-                        Event e = new Event();
-                        DatabaseReference ref = FirebaseDatabase.
-                                getInstance(Constants.DATABASE.DB_URL).
-                                getReference(Constants.DATABASE.ROOT+"/"+
-                                        Constants.DATABASE.VENUE_PATH+"/"+
-                                        Constants.DATABASE.VENUE_EVENTS_KEY+"/"+
-                                        event.getValue(String.class));
-                        long finalEventsCount = eventsCount;
-                        long finalVenuesCount = venuesCount;
-                        e.bindToDatabase(ref, new Updater() {
-                            @Override
-                            public void onUpdate() {
-                                e.setName(event.getValue(String.class));
-                                e.setLocation(venue.getKey());
-                                scheduledEvents.add(e);
-                                if (finalVenuesCount == 0 && finalEventsCount == 0)
-                                    updater.onUpdate();
-                            }
-                        });
+                scheduledEvents.clear();
+                Log.i("CustomerTest", "scheduledEvents cleared, now have "+
+                        scheduledEvents.size() + " events, ready to read data");
+                if (!snapshot.exists()) {
+                    Log.i("CustomerTest", "Data changed: no scheduled events");
+                    updater.onUpdate();
+                }
+                else {
+                    Log.i("CustomerTest", String.format("Data changed: %d joined events",
+                            snapshot.getChildrenCount()));
+                    long venuesCount = snapshot.getChildrenCount();
+                    long eventsCount = 0L;
+                    for (DataSnapshot venue : snapshot.getChildren()) {
+                        venuesCount--;
+                        eventsCount += venue.getChildrenCount();
+                        for (DataSnapshot event : venue.getChildren()) {
+                            eventsCount--;
+                            Event e = new Event();
+                            DatabaseReference eventRef = FirebaseDatabase.
+                                    getInstance(Constants.DATABASE.DB_URL).
+                                    getReference(Constants.DATABASE.ROOT + "/" +
+                                            Constants.DATABASE.VENUE_PATH + "/" +
+                                            venue.getKey() + "/" +
+                                            Constants.DATABASE.VENUE_EVENTS_KEY + "/" +
+                                            event.getValue(String.class));
+                            long finalEventsCount = eventsCount;
+                            long finalVenuesCount = venuesCount;
+                            e.bindToDatabase(eventRef, new Updater() {
+                                @Override
+                                public void onUpdate() {
+                                    scheduledEvents.add(e);
+                                    Log.i("CustomerTest", "Added "+e.getName()+" at " +
+                                            e.collectRef().toString());
+                                    Log.i("CustomerTest", "scheduledEvents now has "+
+                                            scheduledEvents.size()+" events");
+                                    if (finalVenuesCount == 0 && finalEventsCount == 0) {
+                                        updater.onUpdate();
+                                    }
+                                }
+                            });
+                        }
                     }
                 }
             }
@@ -155,7 +187,8 @@ public class Customer extends User {
      * @param e the event to join
      */
     public static void joinEvent(Event e) {
-        if (e.increment()) {
+        e.setWriter();
+        if (!joinedEvents.contains(e) && e.increment()) {
             joinedEvents.add(e);
             writeToDatabase();
         }
@@ -163,10 +196,16 @@ public class Customer extends User {
 
     // Assume that location is valid (ie. venue exists). Assume that setData() has been called on e
     // to set user-input info.
+
+    /**
+     * Check for valid name and schedule a new event. Write to database under Customers and Venues.
+     * @param e event to be scheduled
+     * @param updater callback to notify writing is done
+     */
     public static void scheduleEvent(Event e, Updater updater) {
-        // Check for duplicate event names inside venue
         DatabaseReference eventRoot = FirebaseDatabase.getInstance(Constants.DATABASE.DB_URL).
-                getReference(Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
+                getReference(Constants.DATABASE.ROOT+"/"+
+                        Constants.DATABASE.VENUE_PATH+"/"+e.getLocation()+"/"+
                         Constants.DATABASE.VENUE_EVENTS_KEY+"/"+e.getName());
         eventRoot.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -178,11 +217,11 @@ public class Customer extends User {
                         public void onUpdate() {
                             // Write new event to corresponding venue branch.
                             e.setWriter();
-                            Log.i("Customer", snapshot.getRef().toString());
                             e.writeToDatabase();
                             // Write new event to corresponding customer branch.
-                            scheduledEvents.add(e);
-                            writeToDatabase();
+                            if (!scheduledEvents.contains(e))
+                                scheduledEvents.add(e);
+                                writeToDatabase();
                         }
                     });
                 }
